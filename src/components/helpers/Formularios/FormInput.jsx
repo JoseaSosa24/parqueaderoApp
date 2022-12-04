@@ -1,12 +1,15 @@
 import React from 'react'
 import { Section } from './Section'
 
-export const FormInput = () => {
+export const FormInput = ({tituloRegistro}) => {
     return (
         <section>
-            <label>
-            </label>
-            <input />
+            <h1>{tituloRegistro}</h1>
+            <section>
+            <input type="text" />
+            <input type="button" />
+            </section>
+            
         </section>
     )
 }
