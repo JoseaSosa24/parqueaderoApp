@@ -1,0 +1,11 @@
+.barra-lateral {
+  background-color: #3d5656;
+  height: 100vh;
+  width: 22vw;
+}
+
+main {
+  background-color: #6eccaf;
+  height: 100vh;
+  width: 78vw;
+}
