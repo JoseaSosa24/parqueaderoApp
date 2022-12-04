@@ -4,8 +4,15 @@
   width: 22vw;
 }
 
+.item-encabezado{
+  margin-top: 10%;
+  margin-bottom: 8%;
+}
+
 main {
   background-color: #6eccaf;
   height: 100vh;
   width: 78vw;
 }
+
+
