@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const MenuItem = ({src, itemText}) => {
+export const MenuItem = ({src, itemText, classImg }) => {
     return (
-        <section className='menu-item'>
-            <img src={src} className='' id='' width='38' height=''/>
-            <a className='' id=''>{itemText}</a>
+        <section className='menu-item d-flex align-items-center justify-content-center'>
+            <img src={src} className={classImg} id='' width='38' height=''/>
+            <a  id=''>{itemText}</a>
         </section>
     )
 }
