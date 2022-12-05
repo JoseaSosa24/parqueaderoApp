@@ -61,18 +61,20 @@ section h2 {
   background-color: #3d5656;
   border-radius: 15px;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
 }
 
 .input-botton {
   margin-top: 5px;
-  margin-left: 45px;
+  margin-left: 32px;
   gap: 8.5%;
 }
 
 .item-form {
-  width: 270px;
+  width: 300px;
   height: 47px;
-  margin-top: 2%;
   border-radius: 12px;
   background-color: #cffdec;
   border: none;
@@ -82,12 +84,18 @@ section h2 {
   cursor: auto;
 }
 
+.inputs {
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
 .guardar {
   width: 180px;
   height: 43px;
+  margin-top: 2%;
   margin-left: 450px;
   margin-bottom: 15px;
-  background-color: #cffdec;
+  background-color: #6eccaf;
   border: none;
   cursor: pointer;
   color: #4f5d73;
@@ -97,34 +105,54 @@ section h2 {
 }
 
 .guardar:hover {
-  background-color: #6eccaf;
+  background-color: #cffdec;
   border: none;
   color: #4f5d73;
+  color: #4f5d73 !important;
+  box-shadow: 0 4px 16px #6eccaf;
+  transition: all 0.2s ease;
 }
 
 .seccion-buscar {
   width: 100%;
-  gap: 380px;
+  gap: 370px;
 }
 
-.input-buscar {
+.search {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 300px;
+  height: 42px;
+  background-color: #3d5656;
+  border-radius: 20px;
+  margin-bottom: 2%;
+}
+
+#search {
   width: 290px;
-  height: 40px;
+  height: 42px;
   border-radius: 20px;
   background-color: #3d5656;
   border: none;
   cursor: pointer;
   outline: none;
+  color: #e0e0e0;
+  text-align: center;
+  font-style: italic;
 }
 
-.input-buscar::placeholder {
+#search::placeholder {
   color: #e0e0e0;
   text-align: center;
 }
 
-.input-buscar:hover {
-  color: #e0e0e0;
-  text-align: center;
+.icon-buscar {
+  margin-right: 3%;
+  margin-right: 0;
+  width: 70px;
+  background-color: #4f6c68;
+  border-radius: 20px;
+  border: none;
 }
 
 .tablaRegistros {

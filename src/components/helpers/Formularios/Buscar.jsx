@@ -1,7 +1,11 @@
 import React from "react";
 
-export const Buscar = ({buscadorInput, inputbuscar}) => {
+export const Buscar = () => {
   return (
-    <input type={"serch"} className={inputbuscar} placeholder={buscadorInput} />
+    <form action="" class="search">
+      <button class="icon-buscar" type="submit"><img src="../../../../src/assets/icons/icon-buscar.png" width={25} alt="img" /></button>
+      <a href="" className="boton-buscar"></a>
+      <input type="serch" id="search" placeholder="Ingrese documento" />
+    </form>
   );
 };
