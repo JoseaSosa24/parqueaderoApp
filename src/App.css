@@ -3,10 +3,6 @@
   background-color: #3d5656;
   height: 100vh;
   width: 22vw;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
 }
 
 .item-encabezado {
@@ -14,7 +10,7 @@
   margin-bottom: 9%;
 }
 
-.icon-venta{
+.icon-venta {
   margin-left: -9%;
 }
 
@@ -25,7 +21,7 @@
   border-radius: 12px;
   background-color: #688686;
   gap: 10px;
-  color: #a0a0a0;
+  color: #4f5d73;
   font-size: 18px;
   cursor: pointer;
   position: relative;
@@ -52,7 +48,103 @@
 
 /*main-formularios*/
 main {
-  background-color: #6eccaf;
   height: 100vh;
   width: 78vw;
+  background-color: #6eccaf;
+}
+
+section h2 {
+  color: #333333;
+}
+
+.formulario {
+  background-color: #3d5656;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.input-botton {
+  margin-top: 5px;
+  margin-left: 45px;
+  gap: 8.5%;
+}
+
+.item-form {
+  width: 270px;
+  height: 47px;
+  margin-top: 2%;
+  border-radius: 12px;
+  background-color: #cffdec;
+  border: none;
+  color: #869f9f;
+  font-size: 18px;
+  outline: none;
+  cursor: auto;
+}
+
+.guardar {
+  width: 180px;
+  height: 43px;
+  margin-left: 450px;
+  margin-bottom: 15px;
+  background-color: #cffdec;
+  border: none;
+  cursor: pointer;
+  color: #4f5d73;
+  transition: ease all 0.5s;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.guardar:hover {
+  background-color: #6eccaf;
+  border: none;
+  color: #4f5d73;
+}
+
+.seccion-buscar {
+  width: 100%;
+  gap: 380px;
+}
+
+.input-buscar {
+  width: 290px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #3d5656;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.input-buscar::placeholder {
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.input-buscar:hover {
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.tablaRegistros {
+  width: 100%;
+  height: 361px;
+  background-color: #3d5656;
+  border-radius: 12px;
+}
+
+table {
+  width: 95%;
+  margin-top: 15px;
+  text-align: center;
+}
+
+tr td {
+  border: #869f9f solid 2px;
+}
+
+.td-principal {
+  background-color: #6eccaf;
+  height: 50px;
 }

@@ -1,15 +1,10 @@
-import React from 'react'
-import { Section } from './Section'
+import React from "react";
 
-export const FormInput = ({tituloRegistro}) => {
-    return (
-        <section>
-            <h1>{tituloRegistro}</h1>
-            <section>
-            <input type="text" />
-            <input type="button" />
-            </section>
-            
-        </section>
-    )
-}
+export const FormInput = ({ infomacionInput, classInput }) => {
+  return (
+    <section className="">
+      <h3 className="text-white fs-5">{infomacionInput}</h3>
+      <input className={classInput} type="text" />
+    </section>
+  );
+};
