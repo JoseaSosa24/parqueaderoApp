@@ -23,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/JoseaSosa24/parqueadero-back/issues"
   },
-  "homepage": "https://github.com/JoseaSosa24/parqueadero-back#readme"
+  "homepage": "https://github.com/JoseaSosa24/parqueadero-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.26.0"
+  }
 }
