@@ -2,7 +2,7 @@ import React from "react";
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
-import { Forms } from "./Table";
+import { Table } from "../table/Table";
 
 export const RegistroCliente = () => {
   return (
@@ -18,12 +18,16 @@ export const RegistroCliente = () => {
       </section>
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Clientes registrados: "} />
-        <Buscar
-          inputbuscar={"input-buscar fst-italic"}
-          buscadorInput={"Ingrese documento"}
-        />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'}/>
       </section>
-      <Forms />
+      <Table
+        Td1={"Documento"}
+        Td2={"Nombre"}
+        Td3={"Correo"}
+        Td4={"Direccion"}
+        Td5={"Celular"}
+        Td6={"Accion"}
+      />
     </section>
   );
 };
