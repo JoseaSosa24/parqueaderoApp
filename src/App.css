@@ -13,7 +13,7 @@
   margin-bottom: 9%;
 }
 
-.icon-inicio{
+.icon-inicio {
   margin-left: -41%;
 }
 
@@ -22,8 +22,9 @@
 }
 
 .menu-item {
+  padding: 1%;
   width: 90%;
-  height: 5.9%;
+  /*  height: 5.9%; */
   margin-top: 2%;
   border-radius: 12px;
   background-color: #688686;
@@ -58,7 +59,7 @@ main {
   height: 100vw;
   width: 78vw;
   margin-right: 3%;
-  background-color: #6eccaf; 
+  background-color: #6eccaf;
   position: relative;
   top: 0;
   left: 30%;
@@ -101,7 +102,7 @@ section h2 {
   margin-top: 2%;
 }
 
-textarea{
+textarea {
   text-align: start;
   width: 983px;
   height: 47px;
