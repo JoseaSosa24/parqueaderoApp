@@ -1,4 +1,4 @@
-import { Ingreso } from "../models/IngresoModel.js";
+import Ingreso  from '../model/IngresoModel.js';
 
 const crearIngreso = async(req, res)=>{
 
@@ -48,43 +48,36 @@ const mostrarIngreso = async(req, res)=>{
 
 const editarIngreso = async(req, res)=>{
     try {
-        let ingreso = await Ingreso.findOne({
+        await Ingreso.update(req.body, {
             where:{idIngreso: req.params.id}
-        })
-
-        if(ingreso){
-
-            ingreso = await Ingreso.updateOne({idIngreso:req.params.id}, {$set:{idCliente,placaMoto,horaIngreso,fechaIngreso,horasTotales}});
-            res.json(ingreso);
-        }else{
-            return res.status(404).json({msg: 'No existe el ingresos a editar'});
-        }
+        });
+        res.json({
+            message: "El ingreso se ha actualizado correctamente "
+        });
+        
         
     } catch (error) {
         res.json({
-            message: "No se pudo encontrar el ingreso " + error
-        })
+            message: "El ingreso no se puede editar " + error
+        });  
+        
         
     }
 }
 
 const borrarIngreso = async(req, res)=>{
     try {
-        const ingreso = await Ingreso.findOne({
+        await Ingreso.destroy({
             where:{idIngreso: req.params.id}
-        })
-    
-        if(ingreso){
-            await Ingreso.findAndDelete({idIngreso:req.params.id})
-        }else{
-            return res.status(500).json({
-                error: error
-            });
-        }
+        });
+        res.json({
+            message: "El ingreso borrado correctamente "
+        });
+      
         
     } catch (error) {
         res.json({
-            message: "El cliente no se puede borrar el cliente " + error
+            message: "El ingreso no se puede borrar " + error
         });    
     }
  

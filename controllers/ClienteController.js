@@ -39,7 +39,7 @@ const mostrarCliente = async(req,res)=>{
         
     } catch (error) {
         res.json({
-            message: "El cliente no se puede mostrar el cliente " + error
+            message: "El cliente no se puede mostrar " + error
         });   
     }
 }
@@ -47,23 +47,17 @@ const mostrarCliente = async(req,res)=>{
 const editarCliente = async(req, res)=>{
 
     try {
-        const {cedCliente, nombre, correo, direccion, celular} = req.body
-        let cliente = await Cliente.findOne({
-            where:{idCliente: req.params.id}
+        await Cliente.update(req.body, {
+            where: {idCliente: req.params.id}
         });
-    
-        if(cliente){
-            cliente = await Cliente.updateOne({idCliente:req.params.id}, {$set:{cedCliente, nombre, correo, direccion, celular}});
-            res.json(cliente);
-            
-        }else{
-            return res.status(404).json({msg: 'No existe el cliente a borrar'});
-        }
-        
+        res.json({
+            message: "El cliente se ha actualizado correctamente "
+        });
+
     } catch (error) {
-        return res.status(500).json({
-            error: error
-        });
+        res.json({
+            message: "El cliente no se puede editar " + error
+        });  
     }
 
    
@@ -72,28 +66,19 @@ const editarCliente = async(req, res)=>{
 
 const borrarCliente = async(req, res)=>{
     try {
-        let cliente = await Cliente.findOne({
+
+        await Cliente.destroy({
             where:{idCliente: req.params.id}
-        })
-
-        if(cliente){
-            await Cliente.findAndDelete({idCliente:req.params.id})
-
-        }else{
-            return res.status(500).json({
-                error: error
-            });
-            
-
-        }
-
-
-        
+        });
+        res.json({
+            message: "El cliente se borrado correctamente "
+        });
+             
     } catch (error) {
         res.json({
-            message: "El cliente no se puede borrar el cliente " + error
-        });   
-        
+            message: "El cliente no se puede borrar " + error
+        }); 
+       
     }
 
 }
