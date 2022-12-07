@@ -1,6 +1,7 @@
 import express from "express";
 import dataBase from "./database/dataBase.js";
 import clienteRouter from "./routes/ClienteRoute.js";
+import ingresoRouter from "./routes/IngresoRoute.js";
 import cors from 'cors'
 
 const app = express();
@@ -17,7 +18,9 @@ try {
 
 app.use(cors());
 app.use(express.json());
-app.use('/clientes', clienteRouter)
+app.use('/clientes', clienteRouter) // ruta clientes
+app.use('/ingresos', ingresoRouter) // ruta ingresos
+
 
 
 

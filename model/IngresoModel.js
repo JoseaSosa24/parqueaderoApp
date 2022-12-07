@@ -1,9 +1,13 @@
-import { dataBase } from "../database/dataBase.js";
+import dataBase  from "../database/dataBase.js";
 import { DataTypes } from "sequelize";
 
 const Ingreso = dataBase.define('ingresos', {
     
-    idIngreso
+    idIngreso:{
+        type:DataTypes.STRING,
+        primaryKey: true,
+
+    },
 
     idCliente:{
         type: DataTypes.INTEGER
@@ -23,6 +27,4 @@ const Ingreso = dataBase.define('ingresos', {
 
 });
 
-export {
-    Ingreso
-}
+export default Ingreso
