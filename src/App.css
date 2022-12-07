@@ -51,7 +51,7 @@
 
 /*main-formularios*/
 main {
-  height: 1000px;
+  height: 100vw;
   width: 78vw;
   margin-right: 3%;
   background-color: #6eccaf; 
@@ -89,6 +89,7 @@ section h2 {
   font-size: 18px;
   outline: none;
   cursor: auto;
+  text-align: center;
 }
 
 .inputs {
