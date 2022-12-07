@@ -1,15 +1,10 @@
-import React from 'react'
+import React from "react";
+import { RegistroCliente } from "../helpers/Formularios/registroClientes/RegistroCliente";
 
 export const Main = () => {
-    return (
-        <main className='' id=''>
-            <section>
-                <h4>
-                </h4>
-                <form>
-                
-                </form>
-            </section>
-        </main>
-    )
-}
+  return (
+    <main className="" id="">
+      <RegistroCliente />
+    </main>
+  );
+};

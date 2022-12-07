@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export const Titulo = ({textTitulo}) => {
-    return (
-        <section className=''>
-            <h4>{textTitulo}</h4>
-        </section>
-    )
-}
+export const Titulo = ({ textTitulo }) => {
+  return (
+    <section className="">
+      <h2 className="fw-bold">{textTitulo}</h2>
+    </section>
+  );
+};
