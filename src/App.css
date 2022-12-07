@@ -21,6 +21,11 @@
   margin-left: -9%;
 }
 
+.menu-item-link{
+  color: #4f5d73;
+  gap: 10px;
+}
+
 .menu-item {
   padding: 1%;
   width: 90%;
@@ -35,7 +40,8 @@
   position: relative;
 }
 
-.menu-item:after {
+
+.menu-item>:after {
   content: "";
   position: absolute;
   background-color: #cffdec;
@@ -46,12 +52,13 @@
   transition: 0.5s;
 }
 
-.menu-item:hover {
+.menu-item>:hover {
   color: white;
 }
 
-.menu-item:hover::after {
+.menu-item>:hover::after {
   width: 100%;
+  
 }
 
 /*main-formularios*/
