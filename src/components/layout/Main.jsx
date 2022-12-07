@@ -1,10 +1,12 @@
 import React from "react";
-import { RegistroCliente } from "../helpers/Formularios/registroClientes/RegistroCliente";
+import { Clientes } from "../helpers/Formularios/Clientes/Clientes";
+import { Ingresos } from "../helpers/Formularios/Ingresos/Ingresos"
 
 export const Main = () => {
   return (
     <main className="" id="">
-      <RegistroCliente />
+      <Clientes />
+      <Ingresos/>
     </main>
   );
 };
