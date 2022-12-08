@@ -12,12 +12,13 @@
   margin-top: 10%;
   margin-bottom: 9%;
 }
-.icon-inicio {
-  margin-left: -41%;
+
+.icon-inicio{
+  margin-left: -105%;
 }
 
 .icon-venta {
-  margin-left: -10%;
+  margin-left: -12%;
 }
 
 .menu-item-link{
@@ -28,7 +29,6 @@
 .menu-item {
   padding: 1%;
   width: 90%;
-  /*  height: 5.9%; */
   margin-top: 2%;
   border-radius: 12px;
   background-color: #688686;
@@ -61,13 +61,12 @@
   width: 100%;
   
 }
-
 /*main-formularios*/
 main {
   height: 100vw;
   width: 78vw;
   margin-right: 3%;
-  background-color: #6eccaf;
+  background-color: #6eccaf; 
   position: relative;
   top: 0;
   left: 30%;
@@ -125,7 +124,7 @@ textarea {
 }
 
 .guardar {
-  width: 180px;
+  width: 15%;
   height: 43px;
  /*  margin-top: 2%;
   margin-left: 450px;
@@ -150,12 +149,12 @@ textarea {
 
 .seccion-buscar {
   width: 100%;
-  gap: 335px;
+  gap: 32.3%;
 }
 
 .seccion-buscar2 {
   width: 100%;
-  gap: 318px;
+  gap: 30.4%;
 }
 
 .search {
@@ -165,11 +164,11 @@ textarea {
   height: 42px;
   background-color: #3d5656;
   border-radius: 20px;
-  margin-bottom: 2%;
+  margin-bottom: 4%;
 }
 
 #search {
-  width: 290px;
+  width: 100%;
   height: 42px;
   border-radius: 20px;
   background-color: #3d5656;
@@ -189,7 +188,7 @@ textarea {
 .icon-buscar {
   margin-right: 3%;
   margin-right: 0;
-  width: 70px;
+  width: 20%;
   background-color: #4f6c68;
   border-radius: 20px;
   border: none;
@@ -204,8 +203,8 @@ textarea {
 
 table {
   width: 95%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
   text-align: center;
 }
 
