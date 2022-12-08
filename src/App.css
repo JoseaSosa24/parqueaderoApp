@@ -58,6 +58,7 @@ width: 100vw;
   transition: 0.5s;
 }
 
+
 .menu-item:hover {
   color: white;
 }
@@ -67,6 +68,52 @@ width: 100vw;
 .menu-item:hover::after {
   width: 100%;
   
+}
+
+/*inicio*/
+.header {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+
+}
+
+.encabezado {
+  width: 100%;
+}
+
+.titulo-inicio {
+  width: 60%;
+  height: 75px;
+  background-color: #3d5656;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.titulo-inicio h1 {
+  text-align: center;
+}
+
+.time {
+  margin-top: 4%;
+  margin-bottom: 17%;
+}
+
+.contenedor-inferior-iconos {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+  border-bottom: 4px solid #3d5656;
+}
+
+.iconos-inferior {
+  margin-bottom: 1.5%;
 }
 /*main-formularios*/
 main {
