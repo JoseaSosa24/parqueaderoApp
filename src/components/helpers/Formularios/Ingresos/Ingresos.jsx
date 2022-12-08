@@ -3,6 +3,7 @@ import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
 import { Table } from "../Table/Table";
+import { TableIngresos } from "../table/TableIngresos";
     
 export const Ingresos = () => {
     return (
@@ -20,7 +21,7 @@ export const Ingresos = () => {
           <Titulo textTitulo={"Registros Ingresos: "} tittle={'me-4'}/>
           <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'}/>
         </section>
-        <Table
+        <TableIngresos
           textoColumna1={"Documento Cliente"}
           textoColumna2={"Placa Moto"}
           textoColumna3={"Fecha Ingreso"}

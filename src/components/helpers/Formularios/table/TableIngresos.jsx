@@ -1,22 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Clientes } from "../Clientes/Clientes";
 
-const URI = 'http://localhost:3100/clientes';
+const URI = 'http://localhost:3100/ingresos';
 
-export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
+export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
-  const [cliente, setCliente] = useState([]);
+  const [ingreso, setIngreso] = useState([]);
 
   useEffect(()=>{
-    getClientes();
+    getIngresos();
   })
 
-  const getClientes = async ()=>{
+  const getIngresos = async ()=>{
    const res = await axios.get(URI)
-   setCliente(res.data)
+   setIngreso(res.data)
 
   }
 
@@ -35,22 +33,18 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
           </tr>
         </thead>
         <tbody>
-          {cliente.map((client) =>(
-             <tr key={client.idCliente}>
-              <td>{client.cedCliente}</td>
-              <td>{client.nombre}</td>
-              <td>{client.correo}</td>
-              <td>{client.direccion}</td>
-              <td>{client.direccion}</td>
+          {ingreso.map((ingres) =>(
+             <tr key={ingres.idIngreso}>
+              <td>{ingres.idCliente}</td>
+              <td>{ingres.placaMoto}</td>
+              <td>{ingres.fechaIngreso}</td>
+              <td>{ingres.horaIngreso}</td>
+              <td>{ingres.horasTotales}</td>
            </tr>
           )
            
-
           )}
          
-
-          
-
         </tbody>
       </table>
     </section>

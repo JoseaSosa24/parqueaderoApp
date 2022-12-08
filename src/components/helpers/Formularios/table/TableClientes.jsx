@@ -1,12 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Clientes } from "../Clientes/Clientes";
 
 const URI = 'http://localhost:3100/clientes';
 
-export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
+export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
   const [cliente, setCliente] = useState([]);
 
@@ -37,6 +35,7 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
         <tbody>
           {cliente.map((client) =>(
              <tr key={client.idCliente}>
+              
               <td>{client.cedCliente}</td>
               <td>{client.nombre}</td>
               <td>{client.correo}</td>
