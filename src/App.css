@@ -93,16 +93,15 @@ section h2 {
 } */
 
 .item-form {
-  width: 300px;
   height: 47px;
-  border-radius: 12px;
-  background-color: #cffdec;
-  border: none;
-  color: #869f9f;
-  font-size: 18px;
-  outline: none;
-  cursor: auto;
-  text-align: center;
+  border-radius: 12px !important;
+  background-color: #cffdec !important;
+  border: none !important;
+  color: #869f9f !important;
+  font-size: 18px !important;
+  outline: none !important;
+  cursor: auto !important;
+  text-align: center!important;
 }
 
 /* .inputs {
