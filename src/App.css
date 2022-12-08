@@ -1,4 +1,11 @@
+/* .App{
+background-color: #333333 !important;
+width: 100vw;
+} */
+
 /*barra lateral*/
+
+
 .barra-lateral {
   background-color: #3d5656;
   height: 100vh;
@@ -36,7 +43,7 @@
   color: #4f5d73;
   font-size: 18px;
   cursor: pointer;
-  position: relative;
+/*   position: relative; */
 }
 
 
@@ -64,12 +71,12 @@
 /*main-formularios*/
 main {
   height: 100vw;
-  width: 78vw;
-  margin-right: 3%;
-  background-color: #6eccaf; 
-  position: relative;
+  width: 100vw;
+  /* margin-right: 3%; */
+  background-color: #6eccaf;
+  /* position: relative; */
   top: 0;
-  left: 30%;
+  margin-left:22%;
 }
 
 section h2 {
@@ -79,7 +86,7 @@ section h2 {
 .formulario {
   background-color: #3d5656;
   border-radius: 15px;
-  height: 300px;
+  /* height: 300px; */
   /* width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -111,8 +118,8 @@ section h2 {
  */
 textarea {
   text-align: start;
-  width: 983px;
-  height: 47px;
+  width: 100%;
+ /*  height: 47px; */
   border-radius: 12px;
   background-color: #cffdec;
   border: none;
