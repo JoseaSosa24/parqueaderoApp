@@ -12,13 +12,12 @@
   margin-top: 10%;
   margin-bottom: 9%;
 }
-
 .icon-inicio {
   margin-left: -41%;
 }
 
 .icon-venta {
-  margin-left: -9%;
+  margin-left: -10%;
 }
 
 .menu-item-link{
@@ -41,7 +40,7 @@
 }
 
 
-.menu-item>:after {
+.menu-item:after {
   content: "";
   position: absolute;
   background-color: #cffdec;
@@ -52,11 +51,13 @@
   transition: 0.5s;
 }
 
-.menu-item>:hover {
+.menu-item:hover {
   color: white;
 }
-
-.menu-item>:hover::after {
+.menu-item-link:hover{
+  color: white;
+}
+.menu-item:hover::after {
   width: 100%;
   
 }
