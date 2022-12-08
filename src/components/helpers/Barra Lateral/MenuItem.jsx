@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, Outlet, Router } from 'react-router-dom'
+import { Link, Outlet,BrowserRouter as Router } from 'react-router-dom'
+
 
 export const MenuItem = ({ src, itemText, classImg, to, href }) => {
   return (
