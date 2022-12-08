@@ -8,10 +8,10 @@ import { Button } from "../Button";
 
 export const Productos = () => {
   return (
-    <section className="registro-cliente m-4 d-flex flex-column align-items-center justify-content-center">
+    <section className="registro-cliente m-4 d-flex flex-column justify-content-center">
       <Titulo textTitulo={"Registro Producto:"} />
       <section className="formulario d-flex align-items-center justify-content-center p-4">
-        <form className="formulario-clientes row col-12 d-flex g-3 ">
+        <form className="formulario-clientes row col-12 d-flex g-3">
           <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'} />
           <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Precio: "} inputId={'precio'} inputName={'precio'} inputPlaceholder={'50000'} />
           <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Inventario: "} inputId={'inventario'} inputName={'inventario'} inputPlaceholder={'50'} />

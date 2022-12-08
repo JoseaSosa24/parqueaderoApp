@@ -117,7 +117,7 @@ width: 100vw;
 }
 /*main-formularios*/
 main {
-  height: 100vw;
+  /* height: 100vw; */
   width: 100vw;
   /* margin-right: 3%; */
   background-color: #6eccaf;
