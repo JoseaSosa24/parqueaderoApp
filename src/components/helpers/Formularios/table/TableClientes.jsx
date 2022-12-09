@@ -18,6 +18,12 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
   }
 
+  const deleteCliente = async (id)=>{
+     await axios.delete(`${URI}/${id}`);
+    getClientes();
+
+  }
+
 
   return (
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
@@ -41,6 +47,9 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{client.correo}</td>
               <td>{client.direccion}</td>
               <td>{client.celular}</td>
+              <td>
+                <button onClick={()=>{deleteCliente(client.idCliente)}}>Delete</button>
+              </td>
            </tr>
           )
            
