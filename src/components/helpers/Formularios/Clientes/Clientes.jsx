@@ -3,6 +3,7 @@ import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
 import { Table } from "../Table/Table";
+import { TableClientes } from "../table/TableClientes";
 import { Button } from "../Button";
 
 
@@ -25,14 +26,26 @@ export const Clientes = () => {
         <Titulo textTitulo={"Clientes Registrados: "} />
         <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} />
       </section>
-      <Table
+
+      <TableClientes 
         textoColumna1={"Documento"}
         textoColumna2={"Nombre"}
         textoColumna3={"Correo"}
         textoColumna4={"Direccion"}
         textoColumna5={"Celular"}
         textoColumna6={"Accion"}
+        
       />
+
+
+      {/* <Table
+        textoColumna1={"Documento"}
+        textoColumna2={"Nombre"}
+        textoColumna3={"Correo"}
+        textoColumna4={"Direccion"}
+        textoColumna5={"Celular"}
+        textoColumna6={"Accion"}
+      /> */}
     </section>
   );
 };
