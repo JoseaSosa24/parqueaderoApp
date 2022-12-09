@@ -43,7 +43,7 @@ width: 100vw;
   color: #4f5d73;
   font-size: 18px;
   cursor: pointer;
-/*   position: relative; */
+  position: relative;
 }
 
 
@@ -226,7 +226,7 @@ textarea {
   border-radius: 20px;
   background-color: #3d5656;
   border: none;
-  cursor: pointer;
+ /*  cursor: pointer; */
   outline: none;
   color: #e0e0e0;
   text-align: center;
