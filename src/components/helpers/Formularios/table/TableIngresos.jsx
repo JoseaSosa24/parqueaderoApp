@@ -18,6 +18,11 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
   }
 
+  const deleteIngresos = async(id)=>{
+    await axios.delete(`${URI}/${id}`);
+    getIngresos();
+  }
+
 
   return (
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
@@ -40,6 +45,8 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{ingres.fechaIngreso}</td>
               <td>{ingres.horaIngreso}</td>
               <td>{ingres.horasTotales}</td>
+              <td><button onClick={()=>{deleteIngresos(ingres.idIngreso)}}>De</button>  </td>
+              
            </tr>
           )
            
