@@ -1,4 +1,11 @@
+/* .App{
+background-color: #333333 !important;
+width: 100vw;
+} */
+
 /*barra lateral*/
+
+
 .barra-lateral {
   background-color: #3d5656;
   height: 100vh;
@@ -12,12 +19,13 @@
   margin-top: 10%;
   margin-bottom: 9%;
 }
-.icon-inicio {
-  margin-left: -41%;
+
+.icon-inicio{
+  margin-left: -105%;
 }
 
 .icon-venta {
-  margin-left: -10%;
+  margin-left: -12%;
 }
 
 .menu-item-link{
@@ -28,7 +36,6 @@
 .menu-item {
   padding: 1%;
   width: 90%;
-  /*  height: 5.9%; */
   margin-top: 2%;
   border-radius: 12px;
   background-color: #688686;
@@ -36,7 +43,7 @@
   color: #4f5d73;
   font-size: 18px;
   cursor: pointer;
-  position: relative;
+/*   position: relative; */
 }
 
 
@@ -51,6 +58,7 @@
   transition: 0.5s;
 }
 
+
 .menu-item:hover {
   color: white;
 }
@@ -62,15 +70,60 @@
   
 }
 
+/*inicio*/
+.header {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+
+}
+
+.encabezado {
+  width: 100%;
+}
+
+.titulo-inicio {
+  width: 60%;
+  height: 75px;
+  background-color: #3d5656;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.titulo-inicio h1 {
+  text-align: center;
+}
+
+.time {
+  margin-top: 4%;
+  margin-bottom: 17%;
+}
+
+.contenedor-inferior-iconos {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+  border-bottom: 4px solid #3d5656;
+}
+
+.iconos-inferior {
+  margin-bottom: 1.5%;
+}
 /*main-formularios*/
 main {
-  height: 100vw;
-  width: 78vw;
-  margin-right: 3%;
+  /* height: 100vw; */
+  width: 100vw;
+  /* margin-right: 3%; */
   background-color: #6eccaf;
-  position: relative;
+  /* position: relative; */
   top: 0;
-  left: 30%;
+  margin-left:22%;
 }
 
 section h2 {
@@ -80,40 +133,40 @@ section h2 {
 .formulario {
   background-color: #3d5656;
   border-radius: 15px;
-  width: 100%;
+  /* height: 300px; */
+  /* width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2%;
-}
+  gap: 2%; */
+} 
 
-.input-botton {
+/* .input-botton {
   margin-top: 5px;
   margin-left: 32px;
   gap: 8.5%;
-}
+} */
 
 .item-form {
-  width: 300px;
   height: 47px;
-  border-radius: 12px;
-  background-color: #cffdec;
-  border: none;
-  color: #869f9f;
-  font-size: 18px;
-  outline: none;
-  cursor: auto;
-  text-align: center;
+  border-radius: 12px !important;
+  background-color: #cffdec !important;
+  border: none !important;
+  color: #869f9f !important;
+  font-size: 18px !important;
+  outline: none !important;
+  cursor: auto !important;
+  text-align: center!important;
 }
 
-.inputs {
+/* .inputs {
   margin-left: 2%;
   margin-top: 2%;
 }
-
+ */
 textarea {
   text-align: start;
-  width: 983px;
-  height: 47px;
+  width: 100%;
+ /*  height: 47px; */
   border-radius: 12px;
   background-color: #cffdec;
   border: none;
@@ -124,11 +177,11 @@ textarea {
 }
 
 .guardar {
-  width: 180px;
+  width: 15%;
   height: 43px;
-  margin-top: 2%;
+ /*  margin-top: 2%;
   margin-left: 450px;
-  margin-bottom: 15px;
+  margin-bottom: 15px; */
   background-color: #6eccaf;
   border: none;
   cursor: pointer;
@@ -149,12 +202,12 @@ textarea {
 
 .seccion-buscar {
   width: 100%;
-  gap: 335px;
+  gap: 32.3%;
 }
 
 .seccion-buscar2 {
   width: 100%;
-  gap: 318px;
+  gap: 30.4%;
 }
 
 .search {
@@ -164,11 +217,11 @@ textarea {
   height: 42px;
   background-color: #3d5656;
   border-radius: 20px;
-  margin-bottom: 2%;
+  margin-bottom: 4%;
 }
 
 #search {
-  width: 290px;
+  width: 100%;
   height: 42px;
   border-radius: 20px;
   background-color: #3d5656;
@@ -188,7 +241,7 @@ textarea {
 .icon-buscar {
   margin-right: 3%;
   margin-right: 0;
-  width: 70px;
+  width: 20%;
   background-color: #4f6c68;
   border-radius: 20px;
   border: none;
@@ -203,8 +256,8 @@ textarea {
 
 table {
   width: 95%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
   text-align: center;
 }
 
