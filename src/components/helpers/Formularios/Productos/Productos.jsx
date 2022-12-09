@@ -2,7 +2,7 @@ import React from "react";
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
-import { Table } from "../Table/Table";
+import { TableProductos } from "../table/TableProductos";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
 
@@ -24,11 +24,11 @@ export const Productos = () => {
         <Titulo textTitulo={"Productos Registrados: "} tittle={'tittle'} />
         <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese Id Producto'} />
       </section>
-      <Table
+      <TableProductos
         textoColumna1={"Id Producto"}
         textoColumna2={"Nombre"}
         textoColumna3={"Precio"}
-        textoColumna4={"Descripcion"}
+        textoColumna4={"Descripción"}
         textoColumna5={"Iventario"}
         textoColumna6={"Accion"}
       />

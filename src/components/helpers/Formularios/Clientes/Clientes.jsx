@@ -2,7 +2,6 @@ import React from "react";
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
-import { Table } from "../Table/Table";
 import { TableClientes } from "../table/TableClientes";
 import { Button } from "../Button";
 

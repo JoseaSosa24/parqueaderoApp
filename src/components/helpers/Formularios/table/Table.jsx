@@ -4,22 +4,21 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Clientes } from "../Clientes/Clientes";
 
-const URI = 'http://localhost:3100/clientes';
 
-export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
-  const [cliente, setCliente] = useState([]);
+/* export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId,datos }) => {
+  
+  let URI =  'http://localhost:3100/'+datos;
+  let [datos, setDatos] = useState([]);
 
-  useEffect(() => {
-    getClientes();
-  }, [])
-
-  const getClientes = async () => {
+  const getDatos = async () => {
     const res = await axios.get(URI)
-    setCliente(res.data)
+    setDatos(res.data)
 
   }
-
+  useEffect(() => {
+    getDatos();
+  }, [])
 
   return (
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
@@ -35,18 +34,18 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
           </tr>
         </thead>
         <tbody>
-         {/*  {cliente.map((client) => (
-            <tr key={client.idCliente}>
-              <td>{client.cedCliente}</td>
-              <td>{client.nombre}</td>
-              <td>{client.correo}</td>
-              <td>{client.direccion}</td>
-              <td>{client.direccion}</td>
+          {datos.map((dato) => (
+            <tr key={dato}>
+              <td>{dato.cedCliente}</td>
+              <td>{dato.nombre}</td>
+              <td>{dato.correo}</td>
+              <td>{dato.direccion}</td>
+              <td>{dato.direccion}</td>
             </tr>
           )
 
 
-          )} */}
+          )}
 
 
 
@@ -55,4 +54,4 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
       </table>
     </section>
   );
-};
+}; */
