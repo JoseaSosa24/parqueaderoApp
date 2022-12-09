@@ -40,7 +40,7 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{client.nombre}</td>
               <td>{client.correo}</td>
               <td>{client.direccion}</td>
-              <td>{client.direccion}</td>
+              <td>{client.celular}</td>
            </tr>
           )
            

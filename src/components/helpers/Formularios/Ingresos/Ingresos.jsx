@@ -3,7 +3,7 @@ import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
 import { Table } from "../Table/Table";
-import TableIngresos from '../table/TableIngresos'
+import {TableIngresos} from '../table/TableIngresos'
 
 import { Button } from "../Button";
 
