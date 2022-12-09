@@ -3,6 +3,8 @@ import dataBase from "./database/dataBase.js";
 import clienteRouter from "./routes/ClienteRoute.js";
 import ingresoRouter from "./routes/IngresoRoute.js";
 import cors from 'cors'
+import productoRouter from "./routes/ProductoRoute.js";
+import ventaRouter from "./routes/VentaRoute.js";
 
 const app = express();
 const port = 3100;
@@ -21,9 +23,9 @@ try {
 app.use(cors());
 app.use(express.json());
 app.use('/clientes', clienteRouter) // ruta clientes
-app.use('/productos', ingresoRouter) // ruta productos
+app.use('/productos', productoRouter) // ruta productos
 app.use('/ingresos', ingresoRouter) // ruta ingresos
-app.use('/ventas', ingresoRouter) // ruta ventas
+app.use('/ventas', ventaRouter) // ruta ventas
 
 
 

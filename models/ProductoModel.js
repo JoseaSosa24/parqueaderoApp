@@ -3,7 +3,7 @@ import { DataTypes } from "sequelize";
 
 const Producto = dataBase.define("productos", {
 
-    idPoducto: {
+    idProducto: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
