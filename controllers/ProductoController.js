@@ -1,1 +1,83 @@
 import { Producto } from "../models/ProductoModel.js";
+
+const crearProducto = async (req, res) => {
+    try {
+        await Producto.create(req.body);
+        res.json({
+            message: "Producto creado correctamente"
+        })
+
+    } catch (error) {
+        res.json({
+            message: "El producto no se pudo crear " + error
+        });
+    }
+}
+const mostrarProductos = async (req, res) => {
+    try {
+        const productos = await Producto.findAll();
+        res.json(productos)
+
+    } catch (error) {
+        res.json({
+            message: "Los Productos no se puedo mostrar " + error
+        });
+    }
+}
+
+const mostrarProducto = async (req, res) => {
+    try {
+        const producto = await Producto.findOne({
+            where: { idProducto: req.params.id }
+        });
+        res.json(producto)
+
+    } catch (error) {
+        res.json({
+            message: "El Producto no se puedo mostrar " + error
+        });
+    }
+}
+
+const editarProducto = async (req, res) => {
+    try {
+        await Producto.update(req.body, {
+            where: { idProducto: req.params.id }
+        });
+        res.json({
+            message: "El producto se ha actualizado correctamente "
+        });
+
+    } catch (error) {
+        res.json({
+            message: "El producto no se puede editar " + error
+        });
+    }
+
+}
+
+const borrarProducto = async (req,res) => {
+    try {
+
+        await Producto.destroy({
+            where: { idProducto: req.params.id }
+        });
+        res.json({
+            message: "El producto se ha borrado correctamente "
+        });
+
+    } catch (error) {
+        res.json({
+            message: "El producto no se puede borrar " + error
+        });
+
+    }
+}
+
+export {
+    crearProducto,
+    mostrarProductos,
+    mostrarProducto,
+    editarProducto,
+    borrarProducto
+}

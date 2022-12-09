@@ -1,4 +1,4 @@
-import { Cliente } from "../model/ClienteModel.js";
+import { Cliente } from "../models/ClienteModel.js";
 
 const crearCliente = async(req, res)=>{
     try {

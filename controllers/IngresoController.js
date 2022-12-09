@@ -1,4 +1,4 @@
-import Ingreso  from '../model/IngresoModel.js';
+import Ingreso  from '../models/IngresoModel.js';
 
 const crearIngreso = async(req, res)=>{
 
