@@ -10,13 +10,13 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
 
   const [cliente, setCliente] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getClientes();
-  })
+  }, [])
 
-  const getClientes = async ()=>{
-   const res = await axios.get(URI)
-   setCliente(res.data)
+  const getClientes = async () => {
+    const res = await axios.get(URI)
+    setCliente(res.data)
 
   }
 
@@ -35,21 +35,21 @@ export const Table = ({ textoColumna1, textoColumna2, textoColumna3, textoColumn
           </tr>
         </thead>
         <tbody>
-          {cliente.map((client) =>(
-             <tr key={client.idCliente}>
+         {/*  {cliente.map((client) => (
+            <tr key={client.idCliente}>
               <td>{client.cedCliente}</td>
               <td>{client.nombre}</td>
               <td>{client.correo}</td>
               <td>{client.direccion}</td>
               <td>{client.direccion}</td>
-           </tr>
+            </tr>
           )
-           
 
-          )}
-         
 
-          
+          )} */}
+
+
+
 
         </tbody>
       </table>

@@ -10,7 +10,7 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
   useEffect(()=>{
     getClientes();
-  })
+  },[])
 
   const getClientes = async ()=>{
    const res = await axios.get(URI)
