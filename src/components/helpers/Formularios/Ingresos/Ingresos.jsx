@@ -28,15 +28,7 @@ export const Ingresos = () => {
       "horasTotales": horasTotales
     })
   }
-  function formatoFecha(e)
-  {
   
-    let fecha = moment(e.value);
-    /* console.log("Fecha original:" + e.value);
-    console.log("Fecha formateada es: " + fecha.format("DD/MM/YYYY")); */
-    return fecha.format("DD/MM/YYYY");
-  }
-
   return (
     <section className="registro-cliente m-4">
       <Titulo textTitulo={"Registro Ingresos:"} />
@@ -56,7 +48,7 @@ export const Ingresos = () => {
           <FormInput classSection={'col-3'} classInput={"item-form"} tipoInput={"date"}
             infomacionInput={"Fecha Ingreso: "} inputId={'fechaIngreso'}
             inputName={'fechaIngreso'} inputPlaceholder={'11/12/2022'}
-            onChange={(e) => { setFechaIngreso(formatoFecha(e.target)) }} />
+            onChange={(e) => { setFechaIngreso(moment(e.target.value).format("DD/MM/YYYY")) }} />
 
           <FormInput classSection={'col-3'} classInput={"item-form"}
             tipoInput={"time"} infomacionInput={"Hora Ingreso: "} inputId={'horaIngreso'}
