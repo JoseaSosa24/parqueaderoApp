@@ -2,11 +2,13 @@ import React from 'react'
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
-import { TableProductos } from "../table/TableProductos";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
+import { TableVentas } from '../table/TableVentas';
 
 export const Ventas = () => {
+
+
   return (
     <section className="registro-venta m-4 d-flex flex-column justify-content-center">
       <Titulo textTitulo={"Registro  Venta:"} />
@@ -30,7 +32,7 @@ export const Ventas = () => {
       <section>
         
       </section>
-      <TableProductos
+      <TableVentas
         textoColumna1={"Id cliente"}
         textoColumna2={"Nombre Producto"}
         textoColumna3={"Fecha Venta"}

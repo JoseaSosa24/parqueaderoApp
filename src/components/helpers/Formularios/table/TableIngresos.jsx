@@ -45,7 +45,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{ingres.fechaIngreso}</td>
               <td>{ingres.horaIngreso}</td>
               <td>{ingres.horasTotales}</td>
-              <td><button onClick={()=>{deleteIngresos(ingres.idIngreso)}}>De</button>  </td>
+              <td><button className="btn btn-danger" onClick={()=>{deleteIngresos(ingres.idIngreso)}}>De</button>  </td>
               
            </tr>
           )

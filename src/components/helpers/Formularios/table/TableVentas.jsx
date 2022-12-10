@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const URI = 'http://localhost:3100/productos';
+const URI = 'http://localhost:3100/ventas';
 
 export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
@@ -10,7 +10,10 @@ export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, texto
         const res = await axios.get(URI)
         setVentas(res.data)
     }
-
+    const deleteVentas = async (id) => {
+        await axios.delete(`${URI}/${id}`);
+        getVentas();
+    }
     useEffect(() => {
         getVentas();
     }, [])
@@ -28,16 +31,17 @@ export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, texto
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {ventas.map((venta) => (
-                        <tr key={venta.idProducto}>
-                            <td>{venta.idProducto}</td>
-                            <td>{venta.nombreProducto}</td>
-                            <td>{venta.precio}</td>
-                            <td>{venta.descripcion}</td>
-                            <td>{venta.inventario}</td>
+                    {ventas.map((venta) => (
+                        <tr key={venta.idVenta}>
+                            <td>{ }</td>
+                            <td>{ }</td>
+                            <td>{venta.fechaVenta}</td>
+                            <td>{ }</td>
+                            <td>{ }</td>
+                            <td><button className="btn btn-danger" onClick={()=>{deleteVentas(venta.idVenta)}}>De</button>  </td>
                         </tr>
                     )
-                    )} */}
+                    )}
                 </tbody>
             </table>
         </section>

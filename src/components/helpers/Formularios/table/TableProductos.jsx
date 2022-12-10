@@ -5,10 +5,16 @@ const URI = 'http://localhost:3100/productos';
 
 export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
-    const [productos, setProductos] = useState([]);
+   const [productos, setProductos] = useState([]);
     const getProductos = async () => {
         const res = await axios.get(URI)
         setProductos(res.data)
+    }
+
+
+    const deleteProductos = async (id) => {
+        await axios.delete(`${URI}/${id}`);
+        getProductos();
     }
 
     useEffect(() => {
@@ -35,6 +41,7 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                             <td>{producto.precio}</td>
                             <td>{producto.descripcion}</td>
                             <td>{producto.inventario}</td>
+                            <td><button className="btn btn-danger" onClick={() => { deleteProductos(producto.idProducto) }}>Delete</button> </td>
                         </tr>
                     )
                     )}
