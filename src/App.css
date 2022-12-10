@@ -269,3 +269,28 @@ tr td {
   background-color: #6eccaf;
   height: 50px;
 }
+
+
+/*registro vetas*/
+.registro-venta{
+
+  height: 100%;
+  
+}
+.cantidad-fecha{
+  display: flex;
+ margin-left: 25%;
+  gap: 8%;
+}
+.formulario-venta{
+  background-color: #3d5656;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ .seccion-buscar-cliente{
+  width: 100%;
+  gap: 650px;
+  
+} 
