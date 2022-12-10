@@ -5,6 +5,9 @@ import { Buscar } from "../Buscar";
 import { TableIngresos } from '../table/TableIngresos'
 import axios from "axios";
 import { Button } from "../Button";
+import moment from "moment/moment";
+
+
 
 
 const URI = 'http://localhost:3100/ingresos'
@@ -25,6 +28,14 @@ export const Ingresos = () => {
       "horasTotales": horasTotales
     })
   }
+  function formatoFecha(e)
+  {
+  
+    let fecha = moment(e.value);
+    /* console.log("Fecha original:" + e.value);
+    console.log("Fecha formateada es: " + fecha.format("DD/MM/YYYY")); */
+    return fecha.format("DD/MM/YYYY");
+  }
 
   return (
     <section className="registro-cliente m-4">
@@ -35,20 +46,20 @@ export const Ingresos = () => {
           <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"text"}
             infomacionInput={"Documento Cliente: "} inputId={'documentoCliente'}
             inputName={'documentoCliente'} inputPlaceholder={'10364845'}
-            onChange={(e) => { setIdCliente(e.target.value) }} />
+            onChange={(e) => { setIdCliente(e.target.value)}} />
 
           <FormInput classSection={'col-5'} classInput={"item-form"} tipoInput={"text"}
             infomacionInput={"Placa Moto: "} inputId={'placaMonto'} inputName={'placaMoto'}
             inputPlaceholder={'ABC123'}
             onChange={(e) => { setPlacaMoto(e.target.value) }} />
 
-          <FormInput classSection={'col-3'} classInput={"item-form"} tipoInput={"text"}
+          <FormInput classSection={'col-3'} classInput={"item-form"} tipoInput={"date"}
             infomacionInput={"Fecha Ingreso: "} inputId={'fechaIngreso'}
             inputName={'fechaIngreso'} inputPlaceholder={'11/12/2022'}
-            onChange={(e) => { setFechaIngreso(e.target.value) }} />
+            onChange={(e) => { setFechaIngreso(formatoFecha(e.target)) }} />
 
           <FormInput classSection={'col-3'} classInput={"item-form"}
-            tipoInput={"text"} infomacionInput={"Hora Ingreso: "} inputId={'horaIngreso'}
+            tipoInput={"time"} infomacionInput={"Hora Ingreso: "} inputId={'horaIngreso'}
             inputName={'horaIngreso'} inputPlaceholder={'HH:MM'}
             onChange={(e) => { setHoraIngreso(e.target.value) }} />
 
