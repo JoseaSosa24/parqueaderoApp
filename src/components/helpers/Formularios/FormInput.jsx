@@ -13,12 +13,12 @@ export const FormInput = ({ estado, cambiarEstado, infomacionInput, classInput, 
     if (expresionRegular) {
       if (expresionRegular.test(estado.campo)) {
         cambiarEstado({ ...estado, valido: 'true' });
-        infomacionInput=infomacionInput+" correcto"+estado.campo
+        infomacionInput=infomacionInput+" correcto "+estado.campo
         console.log("CAMPO CORRECTO "+infomacionInput)
        
       } else {
         cambiarEstado({ ...estado, valido: 'false' });
-        infomacionInput=infomacionInput+" incorrecto"+estado.campo
+        infomacionInput=infomacionInput+" incorrecto "+estado.campo
         console.log("CAMPO INCORRECTO "+infomacionInput)
       }
     }
@@ -38,7 +38,7 @@ export const FormInput = ({ estado, cambiarEstado, infomacionInput, classInput, 
         name={inputName}
         placeholder={inputPlaceholder}
         onChange={onChange}
-        value={estado.campo}
+        /*value={estado.campo}*/
         onKeyUp={validacion}
         onBlur={validacion}
         title={title}
