@@ -5,7 +5,7 @@ const URI = 'http://localhost:3100/productos';
 
 export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
 
-   const [productos, setProductos] = useState([]);
+    const [productos, setProductos] = useState([]);
     const getProductos = async () => {
         const res = await axios.get(URI)
         setProductos(res.data)
@@ -15,6 +15,24 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
     const deleteProductos = async (id) => {
         await axios.delete(`${URI}/${id}`);
         getProductos();
+    }
+
+    const confirmacion = (id) => {
+        swal({
+            title: "Eliminar",
+            text: "¿Estás seguro de eliminar este producto?",
+            icon: "warning",
+            buttons: ["No", "Sí"]
+        }).then(value => {
+            if (value) {
+                deleteProductos(id)
+                swal({
+                    title: "Confirmación Eliminación",
+                    text: "¡Producto eliminado correctamente!",
+                    icon: "success"
+                })
+            }
+        })
     }
 
     useEffect(() => {
@@ -41,7 +59,10 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                             <td>{producto.precio}</td>
                             <td>{producto.descripcion}</td>
                             <td>{producto.inventario}</td>
-                            <td><button className="btn btn-danger" onClick={() => { deleteProductos(producto.idProducto) }}>Delete</button> </td>
+                            <td>
+                                <button className="btn btn-success">Editar</button>
+                                <button className="btn btn-danger" onClick={() => { confirmacion(producto.idProducto) }}>Delete</button>
+                            </td>
                         </tr>
                     )
                     )}

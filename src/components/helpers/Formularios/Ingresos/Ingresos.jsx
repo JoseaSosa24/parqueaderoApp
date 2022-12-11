@@ -25,8 +25,8 @@ export const Ingresos = () => {
     await axios.post(URI, {
       "idCliente": idCliente.campo,
       "placaMoto": placaMoto.campo,
-      "horaIngreso": horaIngreso.campo,
-      "fechaIngreso": fechaIngreso.campo,
+      "horaIngreso": moment().format("h:mm:ss"),
+      "fechaIngreso": moment().format("YYYY-MM-DD"),
       "horasTotales": horasTotales.campo
     })
   }
@@ -35,7 +35,7 @@ export const Ingresos = () => {
     <section className="registro-cliente m-4">
       <Titulo textTitulo={"Registro Ingresos:"} />
       <section className="formulario d-flex align-items-center justify-content-center p-4">
-        <form className="formulario-clientes row col-12 d-flex g-3 " onSubmit={createIngreso}>
+        <form className="formulario-clientes row col-12 d-flex g-3 justify-content-evenly" onSubmit={createIngreso}>
 
           <FormInput classSection={'col-4'}
             estado={idCliente}
@@ -58,26 +58,8 @@ export const Ingresos = () => {
             inputPlaceholder={'ABC123'}
             /*onChange={(e) => { setPlacaMoto(e.target.value) }} required*/ />
 
-          <FormInput classSection={'col-3'}
-            estado={fechaIngreso}
-            cambiarEstado={setFechaIngreso}
-            classInput={"item-form"} tipoInput={"date"}
-            infomacionInput={"Fecha Ingreso: "}
-            inputId={'fechaIngreso'}
-            inputName={'fechaIngreso'}
-            inputPlaceholder={'11/12/2022'}
-            /*onChange={(e) => { setFechaIngreso(moment(e.target.value).format("DD/MM/YYYY")) } required*/ />
 
-          <FormInput classSection={'col-3'}
-            estado={horaIngreso}
-            cambiarEstado={setHoraIngreso}
-            classInput={"item-form"}
-            tipoInput={"time"}
-            infomacionInput={"Hora Ingreso: "}
-            inputId={'horaIngreso'}
-            inputName={'horaIngreso'}
-            inputPlaceholder={'HH:MM'}
-            /*onChange={(e) => { setHoraIngreso(e.target.value) }} required*/ />
+
 
           <FormInput classSection={'col-2'}
             estado={horasTotales}

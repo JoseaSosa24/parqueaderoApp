@@ -38,7 +38,9 @@ export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, texto
                             <td>{venta.fechaVenta}</td>
                             <td>{ }</td>
                             <td>{ }</td>
-                            <td><button className="btn btn-danger" onClick={()=>{deleteVentas(venta.idVenta)}}>De</button>  </td>
+                            <td>
+                                <button className="btn btn-success">Editar</button>
+                                <button className="btn btn-danger" onClick={() => { deleteVentas(venta.idVenta) }}>De</button>  </td>
                         </tr>
                     )
                     )}

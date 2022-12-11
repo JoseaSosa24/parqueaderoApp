@@ -8,23 +8,39 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
   const [cliente, setCliente] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getClientes();
-  },[])
+  }, [])
 
-  const getClientes = async ()=>{
-   const res = await axios.get(URI)
-   setCliente(res.data)
+  const getClientes = async () => {
+    const res = await axios.get(URI)
+    setCliente(res.data)
 
   }
 
-  const deleteCliente = async (id)=>{
-     await axios.delete(`${URI}/${id}`);
+  const deleteCliente = async (id, e) => {
+
+    await axios.delete(`${URI}/${id}`);
     getClientes();
 
   }
-
-
+  const confirmacion = (id) => {
+    swal({
+      title: "Eliminar",
+      text: "¿Estás seguro de eliminar este cliente?",
+      icon: "warning",
+      buttons: ["No", "Sí"]
+    }).then(value => {
+      if (value) {
+        deleteCliente(id)
+        swal({
+          title: "Confirmación Eliminación",
+          text: "¡Cliente eliminado correctamente!",
+          icon: "success"
+        })
+      }
+    })
+  }
   return (
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
       <table id="tabla">
@@ -39,25 +55,26 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
           </tr>
         </thead>
         <tbody>
-          {cliente.map((client) =>(
-             <tr key={client.idCliente}>
-              
+          {cliente.map((client) => (
+            <tr key={client.idCliente}>
+
               <td>{client.cedCliente}</td>
               <td>{client.nombre}</td>
               <td>{client.correo}</td>
               <td>{client.direccion}</td>
               <td>{client.celular}</td>
               <td>
-                <button onClick={()=>{deleteCliente(client.idCliente)}}>Delete</button>
+                <button className="btn btn-success">Editar</button>
+                <button className="btn btn-danger" onClick={() => { confirmacion(client.idCliente) }}>Delete</button>
               </td>
-           </tr>
+            </tr>
           )
-           
+
 
           )}
-         
 
-          
+
+
 
         </tbody>
       </table>

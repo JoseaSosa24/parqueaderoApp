@@ -8,17 +8,17 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
   const [ingreso, setIngreso] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getIngresos();
-  },[])
+  }, [])
 
-  const getIngresos = async ()=>{
-   const res = await axios.get(URI)
-   setIngreso(res.data)
+  const getIngresos = async () => {
+    const res = await axios.get(URI)
+    setIngreso(res.data)
 
   }
 
-  const deleteIngresos = async(id)=>{
+  const deleteIngresos = async (id) => {
     await axios.delete(`${URI}/${id}`);
     getIngresos();
   }
@@ -38,20 +38,22 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
           </tr>
         </thead>
         <tbody>
-          {ingreso.map((ingres) =>(
-             <tr key={ingres.idIngreso}>
+          {ingreso.map((ingres) => (
+            <tr key={ingres.idIngreso}>
               <td>{ingres.idCliente}</td>
               <td>{ingres.placaMoto}</td>
               <td>{ingres.fechaIngreso}</td>
               <td>{ingres.horaIngreso}</td>
               <td>{ingres.horasTotales}</td>
-              <td><button className="btn btn-danger" onClick={()=>{deleteIngresos(ingres.idIngreso)}}>De</button>  </td>
-              
-           </tr>
+              <td>
+                <button className="btn btn-success">Editar</button>
+                <button className="btn btn-danger" onClick={() => { deleteIngresos(ingres.idIngreso) }}>De</button>  </td>
+
+            </tr>
           )
-           
+
           )}
-         
+
         </tbody>
       </table>
     </section>

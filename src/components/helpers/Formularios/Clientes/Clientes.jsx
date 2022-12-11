@@ -18,7 +18,7 @@ export const Clientes = () => {
   const [correo, setCorreo] = useState({ campo: '', valido: null });
   const [direccion, setDireccion] = useState({ campo: '', valido: null });
   const [celular, setCelular] = useState({ campo: '', valido: null });
-  const [formularioValido, setFormularioValido] = useState('false');
+  const [formularioValido, setFormularioValido] = useState(null);
 
   const expresionRegular = {
     usuario: /^[a-zA-Z0-9\_]{4,16}$/, // Letras, numeros, guion_bajo
@@ -34,23 +34,9 @@ export const Clientes = () => {
       title: "Mensaje de éxito",
       text: "¡Cliente agregado correctamente!",
       icon: "success",
-      buttons: {
-        catch: {
-          text: "ok",
-          value: "catch"
-        }
-      }
+      buttons: "ok"
     })
-      .then((value) => {
-        switch (value) {
-          case "catch":
 
-            break;
-
-          default:
-            break;
-        }
-      })
 
   }
 
@@ -72,6 +58,7 @@ export const Clientes = () => {
         "direccion": `${direccion.campo}`,
         "celular": `${celular.campo}`
       });
+      correcto();
       console.log("Cliente agregado correctamente")
       setDocumento({ campo: '', valido: null });
       setNombre({ campo: '', valido: null });
@@ -80,6 +67,7 @@ export const Clientes = () => {
       setCelular({ campo: '', valido: null });
     } else {
       setFormularioValido(false)
+
     }
   }
 
@@ -99,11 +87,10 @@ export const Clientes = () => {
             inputPlaceholder={'10364845'}
             /*onChange={(e) => { setDocumento(e.target.value) }}*/
             /*onkeypress={"if (e.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"}*/
-            onkeypress={(e) => { if (e.keyCode < 45 || e.keyCode > 57) e.returnValue = false }}
+            onkeypress={(e) => { if (e.keyCode < 48 || e.keyCode > 57) e.returnValue = false }}
             maxlength="10"
             pattern={"[0-9]{9,10}"}
             title='Sólo números. Minímo 9, Máximo 10 digitos'
-
             expresionRegular={expresionRegular.documento}
           />
 
@@ -165,6 +152,7 @@ export const Clientes = () => {
             pattern={"[0-9]{10}"}
             title='El celular debe ser de 10 digitos'
             maxlength="10" />
+
           {formularioValido === false &&
             <Mensaje classMensaje={'alert alert-danger'}
               mensaje={'Campos incorrectos o faltan por rellenar.'} />
@@ -172,10 +160,6 @@ export const Clientes = () => {
           <Button clase={'form-button d-flex justify-content-center col-12'}
             classButton={'guardar form-button col-3'}
             textButton={'Guardar'} type={'submit'} />
-          {formularioValido === true &&
-            correcto()
-          }
-
         </form>
       </section>
 
