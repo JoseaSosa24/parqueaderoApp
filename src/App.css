@@ -2,9 +2,22 @@
 background-color: #333333 !important;
 width: 100vw;
 } */
+input:invalid {
+  border: 2px solid red !important;
+}
+
+:invalid::after {
+  display: flex;
+  justify-content: center;
+  color: red !important;
+  content: "Hay campos incorrectos";
+}
+/* input:valid {
+  border: 2px solid green !important;
+ 
+} */
 
 /*barra lateral*/
-
 
 .barra-lateral {
   background-color: #3d5656;
@@ -20,7 +33,7 @@ width: 100vw;
   margin-bottom: 9%;
 }
 
-.icon-inicio{
+.icon-inicio {
   margin-left: -105%;
 }
 
@@ -28,7 +41,7 @@ width: 100vw;
   margin-left: -12%;
 }
 
-.menu-item-link{
+.menu-item-link {
   color: #4f5d73;
   gap: 10px;
 }
@@ -46,7 +59,6 @@ width: 100vw;
   position: relative;
 }
 
-
 .menu-item:after {
   content: "";
   position: absolute;
@@ -58,16 +70,14 @@ width: 100vw;
   transition: 0.5s;
 }
 
-
 .menu-item:hover {
   color: white;
 }
-.menu-item-link:hover{
+.menu-item-link:hover {
   color: white;
 }
 .menu-item:hover::after {
   width: 100%;
-  
 }
 
 /*inicio*/
@@ -76,7 +86,6 @@ width: 100vw;
   justify-content: center;
   align-items: center;
   margin: 2%;
-
 }
 
 .encabezado {
@@ -123,7 +132,7 @@ main {
   background-color: #6eccaf;
   /* position: relative; */
   top: 0;
-  margin-left:22%;
+  margin-left: 22%;
 }
 
 section h2 {
@@ -138,7 +147,7 @@ section h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 2%; */
-} 
+}
 
 /* .input-botton {
   margin-top: 5px;
@@ -155,7 +164,7 @@ section h2 {
   font-size: 18px !important;
   outline: none !important;
   cursor: auto !important;
-  text-align: center!important;
+  text-align: center !important;
 }
 
 /* .inputs {
@@ -166,7 +175,7 @@ section h2 {
 textarea {
   text-align: start;
   width: 100%;
- /*  height: 47px; */
+  /*  height: 47px; */
   border-radius: 12px;
   background-color: #cffdec;
   border: none;
@@ -179,7 +188,7 @@ textarea {
 .guardar {
   width: 15%;
   height: 43px;
- /*  margin-top: 2%;
+  /*  margin-top: 2%;
   margin-left: 450px;
   margin-bottom: 15px; */
   background-color: #6eccaf;
@@ -226,7 +235,7 @@ textarea {
   border-radius: 20px;
   background-color: #3d5656;
   border: none;
- /*  cursor: pointer; */
+  /*  cursor: pointer; */
   outline: none;
   color: #e0e0e0;
   text-align: center;
@@ -270,27 +279,23 @@ tr td {
   height: 50px;
 }
 
-
 /*registro vetas*/
-.registro-venta{
-
+.registro-venta {
   height: 100%;
-  
 }
-.cantidad-fecha{
+.cantidad-fecha {
   display: flex;
- margin-left: 25%;
+  margin-left: 25%;
   gap: 8%;
 }
-.formulario-venta{
+.formulario-venta {
   background-color: #3d5656;
   border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
- .seccion-buscar-cliente{
+.seccion-buscar-cliente {
   width: 100%;
   gap: 650px;
-  
-} 
+}
