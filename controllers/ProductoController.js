@@ -56,19 +56,23 @@ const editarProducto = async (req, res) => {
 
 }
 
-const borrarProducto = async (req,res) => {
+const borrarProducto = async (req, res) => {
+
     try {
 
         await Producto.destroy({
             where: { idProducto: req.params.id }
         });
         res.json({
-            message: "El producto se ha borrado correctamente "
+            message: "¡Producto eliminado correctamente!",
+            estado: true
         });
 
     } catch (error) {
         res.json({
-            message: "El producto no se puede borrar " + error
+            message: "Ha ocurrido un error y el producto no se ha eliminado",
+            estado: false,
+            messageError:error
         });
 
     }
