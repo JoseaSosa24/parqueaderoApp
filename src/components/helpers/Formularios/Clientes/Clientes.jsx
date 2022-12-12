@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
 import { TableClientes } from "../table/TableClientes";
 import { Button } from "../Button";
 import axios from "axios";
-import { useState } from "react";
 import { Mensaje } from "../Mensaje";
 import swal from 'sweetalert';
 
 const URI = 'http://localhost:3100/clientes'
 export const Clientes = () => {
-
-
   const [documento, setDocumento] = useState({ campo: '', valido: null });
   const [nombre, setNombre] = useState({ campo: '', valido: null });
   const [correo, setCorreo] = useState({ campo: '', valido: null });
@@ -70,6 +67,25 @@ export const Clientes = () => {
 
     }
   }
+
+/*
+  const buscarPorId = async (e)=>{
+    //e.preventDefault();
+    let dato = e.target.value;
+    console.log(dato);
+    const res = await axios.get(`${URI}/${dato}`)
+    setDocumento({campo: res.cedCliente, valido: null});
+    setCorreo({campo:res.correo, valido: null});
+    setDireccion({campo: res.direccion, valido: null})
+    setCelular({campo: res.celular, valido: null})
+    setNombre({campo: res.nombre, valido: null})
+
+  }
+
+  useEffect(()=>{
+    buscarPorId();
+  }, [])
+*/
 
   return (
     <section className="registro-cliente m-4">
@@ -165,7 +181,7 @@ export const Clientes = () => {
 
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Clientes Registrados: "} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'}  />
       </section>
 
       <TableClientes
