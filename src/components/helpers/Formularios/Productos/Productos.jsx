@@ -18,10 +18,10 @@ export const Productos = () => {
   const createProducto = async (e) => {
     /* e.preventDefault(); */
     await axios.post(URI, {
-      "nombreProducto": `${nombreProducto}`,
-      "precio": `${precio}`,
-      "descripcion": `${descripcion}`,
-      "inventario": `${inventario}`
+      "nombreProducto": nombreProducto,
+      "precio": precio,
+      "descripcion": descripcion,
+      "inventario": inventario
     });
 
   }

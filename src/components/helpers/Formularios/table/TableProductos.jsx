@@ -13,27 +13,52 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
 
 
     const deleteProductos = async (id) => {
-        await axios.delete(`${URI}/${id}`);
-        getProductos();
-    }
-
-    const confirmacion = (id) => {
         swal({
             title: "Eliminar",
             text: "¿Estás seguro de eliminar este producto?",
             icon: "warning",
             buttons: ["No", "Sí"]
-        }).then(value => {
+        }).then(async value => {
             if (value) {
-                deleteProductos(id)
-                swal({
-                    title: "Confirmación Eliminación",
-                    text: "¡Producto eliminado correctamente!",
-                    icon: "success"
-                })
+                const res = await axios.delete(`${URI}/${id}`);
+                if (res.data.estado) {
+                    swal({
+                        title: "Confirmación Eliminación",
+                        text: res.data.message,
+                        icon: "success"
+                    })
+                } else {
+                    console.log(res.data.messageError)
+                    swal({
+                        title: "Error al eliminar",
+                        text: ""+res.data.message,
+                        icon: "error"
+                    })
+                }
+                getProductos();
             }
         })
+
+
     }
+
+    /*  const confirmacion = (id) => {
+         swal({
+             title: "Eliminar",
+             text: "¿Estás seguro de eliminar este producto?",
+             icon: "warning",
+             buttons: ["No", "Sí"]
+         }).then(value => {
+             if (value) {
+                 deleteProductos(id)
+                 swal({
+                     title: "Confirmación Eliminación",
+                     text: "¡Producto eliminado correctamente!",
+                     icon: "success"
+                 })
+             }
+         })
+     } */
 
     useEffect(() => {
         getProductos();
@@ -61,7 +86,7 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                             <td>{producto.inventario}</td>
                             <td>
                                 <button className="btn btn-success">Editar</button>
-                                <button className="btn btn-danger" onClick={() => { confirmacion(producto.idProducto) }}>Delete</button>
+                                <button className="btn btn-danger" onClick={() => { deleteProductos(producto.idProducto) }}>Delete</button>
                             </td>
                         </tr>
                     )
