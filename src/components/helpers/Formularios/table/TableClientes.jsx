@@ -44,11 +44,44 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
       }
     })
   }
+
+  const [documento, setDocumento] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [celular, setCelular] = useState('');
+  
+
+  const buscarPorId = async (e) => {
+    e.preventDefault()
+    let id = e.target.value
+    console.log(id)
+    let res = await axios.get(URI+'/'+id)
+    console.log(res)
+    setDocumento(res.data.cedCliente);
+    console.log(res.data.cedCliente)
+    setCorreo(res.data.correo);
+    console.log(res.data.correo)
+    setDireccion(res.data.direccion)
+    console.log(res.data.direccion)
+    setCelular(res.data.celular)
+    console.log(res.celular)
+    setNombre(res.data.nombre)
+    console.log(res.data.nombre)
+
+  }
+
+  /*
+  useEffect(()=>{
+    buscarPorId(e);
+  })*/
+
+
   return (
     <>
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Clientes Registrados: "} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} onChange={buscarPorId} />
       </section>
       <section className="tablaRegistros d-flex justify-content-center align-items-start ">
 
@@ -81,6 +114,17 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
 
             )}
+
+            <tr>
+
+              <td>{documento}</td>
+              <td>{nombre}</td>
+              <td>{correo}</td>
+              <td>{direccion}</td>
+              <td>{celular}</td>
+              <td>busqueda</td> 
+            </tr>
+
 
 
 
