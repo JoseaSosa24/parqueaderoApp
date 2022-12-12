@@ -44,10 +44,7 @@ export const Productos = () => {
         </form>
       </section>
 
-      <section className="seccion-buscar2 d-flex mt-4">
-        <Titulo textTitulo={"Productos Registrados: "} tittle={'tittle'} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese Id Producto'} />
-      </section>
+      
       <TableProductos
         textoColumna1={"Id Producto"}
         textoColumna2={"Nombre"}

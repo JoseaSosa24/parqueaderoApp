@@ -76,10 +76,6 @@ export const Ingresos = () => {
         </form>
       </section>
 
-      <section className="seccion-buscar d-flex mt-4 ">
-        <Titulo textTitulo={"Registros Ingresos: "} tittle={'me-4'} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} />
-      </section>
       <TableIngresos
         textoColumna1={"Documento Cliente"}
         textoColumna2={"Placa Moto"}

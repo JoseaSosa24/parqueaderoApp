@@ -33,8 +33,6 @@ export const Clientes = () => {
       icon: "success",
       buttons: "ok"
     })
-
-
   }
 
   const createCliente = async (e) => {
