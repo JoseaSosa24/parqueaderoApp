@@ -54,7 +54,12 @@ const editarCliente = async (req, res) => {
 
     try {
         await Cliente.update(req.body, {
-            where: { idCliente: req.params.id }
+            where: {
+                [Op.or]: [
+                {idCliente: req.params.id},
+                {cedCliente: req.params.id},
+                ]
+            }
         });
         res.json({
             message: "El cliente se ha actualizado correctamente "
