@@ -66,24 +66,8 @@ export const Clientes = () => {
     }
   }
 
-/*
-  const buscarPorId = async (e)=>{
-    //e.preventDefault();
-    let dato = e.target.value;
-    console.log(dato);
-    const res = await axios.get(`${URI}/${dato}`)
-    setDocumento({campo: res.cedCliente, valido: null});
-    setCorreo({campo:res.correo, valido: null});
-    setDireccion({campo: res.direccion, valido: null})
-    setCelular({campo: res.celular, valido: null})
-    setNombre({campo: res.nombre, valido: null})
 
-  }
-
-  useEffect(()=>{
-    buscarPorId();
-  }, [])
-*/
+ 
 
   return (
     <section className="registro-cliente m-4">
