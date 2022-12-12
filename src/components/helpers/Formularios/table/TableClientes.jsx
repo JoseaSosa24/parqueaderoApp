@@ -55,11 +55,10 @@ export const TableClientes = ({
   const [correo, setCorreo] = useState('');
   const [direccion, setDireccion] = useState('');
   const [celular, setCelular] = useState('');
+  const [id, setId] = useState('')
   
-
   const buscarPorId = async (e) => {
     e.preventDefault()
-    let id = e.target.value
     console.log(id)
     let res = await axios.get(URI+'/'+id)
     console.log(res)
@@ -76,17 +75,17 @@ export const TableClientes = ({
 
   }
 
-  /*
-  useEffect(()=>{
-    buscarPorId(e);
-  })*/
+  const pulsarBuscar = (e)=>{
+    setId(e.target.value)
+
+  }
 
 
   return (
     <>
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Clientes Registrados: "} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} onChange={buscarPorId} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
       </section>
       <section className="tablaRegistros d-flex justify-content-center align-items-start ">
         <table id="tabla">
@@ -161,12 +160,10 @@ export const TableClientes = ({
               <td>busqueda</td> 
             </tr>
 
-
-
-
-
           </tbody>
+          
         </table>
+
       </section>
     </>
   );
