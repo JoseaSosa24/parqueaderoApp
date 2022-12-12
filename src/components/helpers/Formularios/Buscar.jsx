@@ -3,7 +3,7 @@ import React from "react";
 export const Buscar = ({ search, button }) => {
   return (
     <section className={button}>
-      <form action="" className="search">
+      <form className="search"  >
         <button className="icon-buscar" type="submit">
           <img
             src="../../../../src/assets/icons/icon-buscar.png"

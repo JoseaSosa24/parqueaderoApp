@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Titulo } from "../Titulo";
+import { Buscar } from "../Buscar";
 
 const URI = 'http://localhost:3100/clientes';
 
@@ -42,42 +45,50 @@ export const TableClientes = ({ textoColumna1, textoColumna2, textoColumna3, tex
     })
   }
   return (
-    <section className="tablaRegistros d-flex justify-content-center align-items-start ">
-      <table id="tabla">
-        <thead>
-          <tr>
-            <td className="td-principal" id={tdId}>{textoColumna1}</td>
-            <td className="td-principal" id={tdId}>{textoColumna2}</td>
-            <td className="td-principal" id={tdId}>{textoColumna3}</td>
-            <td className="td-principal" id={tdId}>{textoColumna4}</td>
-            <td className="td-principal" id={tdId}>{textoColumna5}</td>
-            <td className="td-principal" id={tdId}>{textoColumna6}</td>
-          </tr>
-        </thead>
-        <tbody>
-          {cliente.map((client) => (
-            <tr key={client.idCliente}>
+    <>
+      <section className="seccion-buscar d-flex mt-4 ">
+        <Titulo textTitulo={"Clientes Registrados: "} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} />
+      </section>
+      <section className="tablaRegistros d-flex justify-content-center align-items-start ">
 
-              <td>{client.cedCliente}</td>
-              <td>{client.nombre}</td>
-              <td>{client.correo}</td>
-              <td>{client.direccion}</td>
-              <td>{client.celular}</td>
-              <td>
-                <button className="btn btn-success">Editar</button>
-                <button className="btn btn-danger" onClick={() => { confirmacion(client.idCliente) }}>Delete</button>
-              </td>
+        <table id="tabla">
+          <thead>
+            <tr>
+              <td className="td-principal" id={tdId}>{textoColumna1}</td>
+              <td className="td-principal" id={tdId}>{textoColumna2}</td>
+              <td className="td-principal" id={tdId}>{textoColumna3}</td>
+              <td className="td-principal" id={tdId}>{textoColumna4}</td>
+              <td className="td-principal" id={tdId}>{textoColumna5}</td>
+              <td className="td-principal" id={tdId}>{textoColumna6}</td>
             </tr>
-          )
+          </thead>
+          <tbody>
+            {cliente.map((client) => (
+              <tr key={client.idCliente}>
+
+                <td>{client.cedCliente}</td>
+                <td>{client.nombre}</td>
+                <td>{client.correo}</td>
+                <td>{client.direccion}</td>
+                <td>{client.celular}</td>
+                <td>
+                  <Link to={'editarCliente/' + client.cedCliente} ><button className="btn btn-success" >Editar</button></Link>
+                  <button className="btn btn-danger" onClick={() => { confirmacion(client.idCliente) }}>Delete</button>
+                </td>
+              </tr>
+            )
 
 
-          )}
+            )}
 
 
 
 
-        </tbody>
-      </table>
-    </section>
+          </tbody>
+        </table>
+      </section>
+    </>
+
   );
 };

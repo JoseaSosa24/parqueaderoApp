@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Ventas } from "../helpers/Formularios/Ventas/Ventas";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { PaginaError404 } from "../helpers/Error/PaginaError404";
+import { EditarCliente } from "../helpers/Formularios/Clientes/EditarCliente";
 
 
 export const Main = () => {
@@ -47,9 +48,12 @@ export const Main = () => {
    ); */
   return (
     <main className="" id="">
-      <Routes>
-        <Route path='/' element={<Inicio />} />
+      <Routes >
+        <Route path='/' element={<Inicio />} >
+
+        </Route>
         <Route path='/clientes' element={<Clientes />} />
+        <Route path='/clientes/editarCliente/:id' element={<EditarCliente />} />
         <Route path='/productos' element={<Productos />} />
         <Route path='/ingresos' element={<Ingresos />} />
         <Route path='/ventas' element={<Ventas />} />

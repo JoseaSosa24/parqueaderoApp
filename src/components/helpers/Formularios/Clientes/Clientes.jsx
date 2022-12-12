@@ -138,11 +138,11 @@ export const Clientes = () => {
           /*onChange={(e) => { setDireccion(e.target.value) }}*/
           />
 
-          <FormInput classSection={'col-3'}
+          <FormInput classSection={'col-4'}
             estado={celular}
             cambiarEstado={setCelular}
             classInput={"item-form"}
-            tipoInput={"text"}
+            tipoInput={"number"}
             infomacionInput={"Celular: "}
             inputId={'celular'}
             inputName={'celular'}
@@ -163,11 +163,7 @@ export const Clientes = () => {
         </form>
       </section>
 
-      <section className="seccion-buscar d-flex mt-4 ">
-        <Titulo textTitulo={"Clientes Registrados: "} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} />
-      </section>
-
+      
       <TableClientes
         textoColumna1={"Documento"}
         textoColumna2={"Nombre"}

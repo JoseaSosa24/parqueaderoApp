@@ -44,20 +44,21 @@ export const FormInput = ({ estado, cambiarEstado, infomacionInput, classInput, 
   return (
     <section className={" " + classSection}>
       <h3 className="text-white fs-5">{infomacionInput}</h3>
+      {console.log(estado)}
       <input className={"form-control " + classInput+colorEstado}
         id={inputId}
         type={tipoInput}
         name={inputName}
         placeholder={inputPlaceholder}
         onChange={onChange}
-        /*value={estado.campo}*/
+        value={estado}
         /*onKeyUp={validacion}*/
-        onBlur={validacion}
+        /*onBlur={validacion}*/
         title={title}
         maxLength={maxlength}
-        onKeyDown={validacion}
+        /*onKeyDown={validacion}*/
         pattern={pattern}
-        onKeyUp={onkeypress}
+        /*onKeyUp={onkeypress}*/
         required={required}
       />
     </section>
