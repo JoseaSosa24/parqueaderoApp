@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Titulo } from "../Titulo";
+import { Buscar } from "../Buscar";
 const URI = 'http://localhost:3100/productos';
 
 export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
@@ -64,6 +66,11 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
         getProductos();
     }, [])
     return (
+        <>
+        <section className="seccion-buscar2 d-flex mt-4">
+        <Titulo textTitulo={"Productos Registrados: "} tittle={'tittle'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese Id Producto'} />
+      </section>
         <section className="tablaRegistros d-flex justify-content-center align-items-start ">
             <table className="" id="tabla">
                 <thead>
@@ -89,10 +96,12 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                                 <button className="btn btn-danger" onClick={() => { deleteProductos(producto.idProducto) }}>Delete</button>
                             </td>
                         </tr>
+
                     )
                     )}
                 </tbody>
             </table>
         </section>
+        </>
     );
 };
