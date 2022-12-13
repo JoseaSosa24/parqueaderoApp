@@ -6,33 +6,151 @@ import { TableProductos } from "../table/TableProductos";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
 import axios from "axios";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-
-const URI = 'http://localhost:3100/productos'
+const URI = "http://localhost:3100/productos";
 export const Productos = () => {
+  let nombreProducto, precio, descripcion, inventario;
 
-  const [nombreProducto, setNombreProducto] = useState('');
-  const [precio, setPrecio] = useState('');
-  const [descripcion, setdescripcion] = useState('');
-  const [inventario, setInventario] = useState('');
+
   const createProducto = async (e) => {
     /* e.preventDefault(); */
     await axios.post(URI, {
-      "nombreProducto": nombreProducto,
-      "precio": precio,
-      "descripcion": descripcion,
-      "inventario": inventario
+      nombreProducto: nombreProducto,
+      precio: precio,
+      descripcion: descripcion,
+      inventario: inventario,
     });
+  };
 
-  }
+  const expresionRegular = {
+    usuario: /^[a-zA-Z0-9\_]{4,16}$/, // Letras, numeros, guion_bajo
+    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+    password: /^.{4,12}$/, // 4 a 12 digitos
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    documento: /^\d{9,10}$/,
+    celular: /^\d{10}$/,
+  };
 
+  const correcto = (e) => {
+    swal({
+      title: "Mensaje de éxito",
+      text: "¡Cliente agregado correctamente!",
+      icon: "success",
+      buttons: "ok",
+    });
+  };
 
   return (
-    <section className="registro-cliente m-4 d-flex flex-column justify-content-center">
-      <Titulo textTitulo={"Registro Producto:"} />
-      <section className="formulario d-flex align-items-center justify-content-center p-4">
-        <form className="formulario-clientes row col-12 d-flex g-3" onSubmit={createProducto}>
-          <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
+    <>
+      <section className="registro-cliente m-4 d-flex flex-column justify-content-center">
+        <Titulo textTitulo={"Registro Producto:"} />
+
+        <section className="formulario d-flex align-items-center justify-content-center p-4">
+          <Formik
+            initialValues={{
+              nombreProducto: '',
+              precio: '',
+              inventario: '',
+              descripcion: '',
+            }}
+            validate={(valores) => {
+              let errores = {};
+
+              if (!valores.nombreProducto) {
+                errores.nombreProducto = "Por favor ingresa un producto";
+              } else if (
+                !expresionRegular.nombre.test(valores.nombreProducto)
+              ) {
+                errores.nombreProducto = "El producto debe minimo 3 caracteres";
+              }
+
+              if (!valores.precio) {
+                errores.precio = "Por favor ingresa un precio";
+              } else if (valores.precio<0) {
+                errores.precio ="El precio debe ser mayor a cero";
+              }
+              if (!valores.inventario) {
+                errores.inventario = "Por favor ingresa un inventario";
+              } else if (valores.inventario<0) {
+                errores.inventario ="El inventario debe ser mayor a cero";
+              }
+              console.log(valores.descripcion)
+              if (!valores.descripcion) {
+                errores.descripcion = "Por favor ingresa una descripcion";
+              } /*else if (!expresionRegular.direccion.test(valores.direccion)) {
+              errores.direccion = 'El direccion debe contener @ ,.'
+            }*/
+
+              return errores;
+            }}
+            onSubmit={(valores, { resetForm }) => {
+              console.table(valores);
+              nombreProducto = valores.nombreProducto;
+              console.log(nombreProducto);
+              precio = valores.precio;
+              console.log(precio);
+              inventario = valores.inventario;
+              console.log(inventario);
+              descripcion = valores.descripcion;
+              console.log(direccion);
+              createProducto();
+              correcto();
+              /* cambiarFormularioEnviado(true); */
+              resetForm();
+            }}
+          >
+            {({ errors }) => (
+            <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
+              <Form className="formulario-clientes row col-12 d-flex g-3 ">
+                <section className="col-5">
+                  <h3 className="text-white fs-5">Nombre Producto: </h3>
+                  <Field
+                    className="form-control item-form"
+                    type="text"
+                    id="nombreProducto"
+                    name="nombreProducto"
+                    placeholder="Casco"
+                  />
+                  <ErrorMessage name="nombreProducto" component={() => ( <section className="error text-danger">{errors.nombreProducto}</section>)}  />
+                </section>
+                <section className="col-4">
+                  <h3 className="text-white fs-5">Precio: </h3>
+                  <Field
+                    className="form-control item-form"
+                    type="number"
+                    id="precio"
+                    name="precio"
+                    placeholder="50000"
+                  />
+                  <ErrorMessage name="precio" component={() => ( <section className="error text-danger">{errors.precio}</section>)}  />
+                </section>
+                <section className="col-3">
+                  <h3 className="text-white fs-5">Inventario: </h3>
+                  <Field
+                    className="form-control item-form"
+                    type="number"
+                    id="inventario"
+                    name="inventario"
+                    placeholder="50"
+                  />
+                  <ErrorMessage name="inventario" component={() => ( <section className="error text-danger">{errors.inventario}</section>)}  />
+                </section>
+                <TextArea idTextArea={"descripcion"} nameTextArea={"descripcion" }textareaPlaceholder="Casco Antichoque" />
+                <ErrorMessage name="descripcion" component={() => ( <section className="error text-danger">{errors.descripcion}</section>)}  />
+                <Button clase={'form-button d-flex justify-content-center col-12'}
+                    classButton={'guardar form-button col-3'}
+                    textButton={'Guardar'} type={'submit'} />
+              </Form>
+            </section>
+             )}
+          </Formik>
+
+          {/* <Form
+              className="formulario-clientes row col-12 d-flex g-3"
+              onSubmit={createProducto}
+            > */}
+          {/*  <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
             onChange={(e) => { setNombreProducto(e.target.value) }} />
           <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Precio: "} inputId={'precio'} inputName={'precio'} inputPlaceholder={'50000'}
             onChange={(e) => { setPrecio(e.target.value) }} />
@@ -40,19 +158,17 @@ export const Productos = () => {
             onChange={(e) => { setInventario(e.target.value) }} />
           <TextArea classSection={'col-12'} classInput={"item-form"} idTextArea={'descripcion'} nameTextArea={'descripcion'}
             onChange={(e) => { setdescripcion(e.target.value) }} />
-          <Button clase={'form-button d-flex justify-content-center col-12'} classButton={'guardar form-button col-3'} textButton={'Guardar'} type={'submit'} />
-        </form>
+          <Button clase={'form-button d-flex justify-content-center col-12'} classButton={'guardar form-button col-3'} textButton={'Guardar'} type={'submit'} /> */}
+        </section>
+        <TableProductos
+          textoColumna1={"Id Producto"}
+          textoColumna2={"Nombre"}
+          textoColumna3={"Precio"}
+          textoColumna4={"Descripción"}
+          textoColumna5={"Iventario"}
+          textoColumna6={"Accion"}
+        />
       </section>
-
-      
-      <TableProductos
-        textoColumna1={"Id Producto"}
-        textoColumna2={"Nombre"}
-        textoColumna3={"Precio"}
-        textoColumna4={"Descripción"}
-        textoColumna5={"Iventario"}
-        textoColumna6={"Accion"}
-      />
-    </section>
+    </>
   );
 };
