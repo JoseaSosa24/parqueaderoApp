@@ -2,20 +2,7 @@
 background-color: #333333 !important;
 width: 100vw;
 } */
-input:invalid {
-  border: 2px solid red !important;
-}
 
-:invalid::after {
-  display: flex;
-  justify-content: center;
-  color: red !important;
-  content: "Hay campos incorrectos";
-}
-/* input:valid {
-  border: 2px solid green !important;
- 
-} */
 
 /*barra lateral*/
 
