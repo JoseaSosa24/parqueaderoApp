@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Titulo } from "../Titulo";
+import { Buscar } from "../Buscar";
 
 const URI = 'http://localhost:3100/ingresos';
 
@@ -25,6 +27,12 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
 
   return (
+    <>
+    
+    <section className="seccion-buscar d-flex mt-4 ">
+        <Titulo textTitulo={"Registros Ingresos: "} tittle={'me-4'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} />
+      </section>
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
       <table id="tabla">
         <thead>
@@ -57,5 +65,6 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
         </tbody>
       </table>
     </section>
+    </>
   );
 };

@@ -15,7 +15,6 @@ export const FormInput = ({infomacionInput, classInput, tipoInput, inputName,
         type={tipoInput}
         name={inputName}
         placeholder={inputPlaceholder}
-        title={title}
         maxLength={maxlength}
       />
     </section>

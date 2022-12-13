@@ -119,11 +119,18 @@ input:invalid {
   align-items: center;
   gap: 4%;
   border-bottom: 4px solid #3d5656;
+  margin-top: 12%;
 }
 
 .iconos-inferior {
   margin-bottom: 1.5%;
+  transition: 0.5s;
 }
+
+.iconos-inferior:hover {
+  transform: scale(1.2);
+}
+
 /*main-formularios*/
 main {
   /* height: 100vw; */
@@ -160,11 +167,15 @@ section h2 {
   border-radius: 12px !important;
   background-color: #cffdec !important;
   border: none !important;
-  color: #869f9f !important;
+  color: #656e6e !important;
   font-size: 18px !important;
   outline: none !important;
   cursor: auto !important;
   text-align: center !important;
+}
+
+.item-form::placeholder {
+  color: #869f9f69 !important;
 }
 
 /* .inputs {
@@ -211,12 +222,17 @@ textarea {
 
 .seccion-buscar {
   width: 100%;
-  gap: 32.3%;
+  gap: 51.2%;
 }
 
 .seccion-buscar2 {
   width: 100%;
-  gap: 30.4%;
+  gap: 50%;
+}
+
+.seccion-buscar-cliente {
+  width: 100%;
+  gap: 52.3%;
 }
 
 .search {
@@ -277,6 +293,7 @@ tr td {
 .td-principal {
   background-color: #6eccaf;
   height: 50px;
+  font-weight: bold;
 }
 
 /*registro vetas*/
@@ -295,7 +312,16 @@ tr td {
   justify-content: center;
   align-items: center;
 }
-.seccion-buscar-cliente {
-  width: 100%;
-  gap: 650px;
+
+/*tabla*/
+
+tbody tr {
+  color: white;
+  font-weight: 100;
+}
+
+.td-accion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
