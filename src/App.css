@@ -140,8 +140,8 @@ section h2 {
 }
 
 .formulario {
-  background-color: #3d5656;
-  border-radius: 15px;
+  background-color: #3d5656 !important;
+  border-radius: 15px !important;
   /* height: 300px; */
   /* width: 100%;
   display: flex;
