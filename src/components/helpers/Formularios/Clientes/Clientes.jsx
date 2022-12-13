@@ -12,13 +12,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const URI = 'http://localhost:3100/clientes'
 export const Clientes = () => {
-  /*   const [documento, setDocumento] = useState({ campo: '', valido: null });
-    const [nombre, setNombre] = useState({ campo: '', valido: null });
-    const [correo, setCorreo] = useState({ campo: '', valido: null });
-    const [direccion, setDireccion] = useState({ campo: '', valido: null });
-    const [celular, setCelular] = useState({ campo: '', valido: null });
-    const [formularioValido, setFormularioValido] = useState(null);
-    const [formularioEnviado, cambiarFormularioEnviado] = useState(false); */
+  const [documento, setDocumento] = useState();
+  const [nombre, setNombre] = useState();
+  const [correo, setCorreo] = useState();
+  const [direccion, setDireccion] = useState();
+  const [celular, setCelular] = useState();
+  const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
   const expresionRegular = {
     usuario: /^[a-zA-Z0-9\_]{4,16}$/, // Letras, numeros, guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,20}$/, // Letras y espacios, pueden llevar acentos.
@@ -29,64 +28,34 @@ export const Clientes = () => {
   };
 
   const correcto = (e) => {
-     swal({
-       title: "Mensaje de éxito",
-       text: "¡Cliente agregado correctamente!",
-       icon: "success",
-       buttons: "ok"
-     }) 
-   }
-   
+    swal({
+      title: "Mensaje de éxito",
+      text: "¡Cliente agregado correctamente!",
+      icon: "success",
+      buttons: "ok"
+    })
+  }
 
-  /* const createCliente = async (e) => {
+
+  const createCliente = async (e) => {
     //e.preventDefault()//Buscar la forma que guarde y muestre el registro sin recargar la pagina
-    e.preventDefault()
-    if (
-      documento.valido === 'true' &&
-      nombre.valido === 'true' &&
-      correo.valido === 'true' &&
-      direccion.valido === 'true' &&
-      celular.valido === 'true'
-    ) {
-      setFormularioValido(true)
-      await axios.post(URI, {
-        "cedCliente": `${documento.campo}`,
-        "nombre": `${nombre.campo}`,
-        "correo": `${correo.campo}`,
-        "direccion": `${direccion.campo}`,
-        "celular": `${celular.campo}`
-      });
-      correcto();
-      console.log("Cliente agregado correctamente")
-      setDocumento({ campo: '', valido: null });
-      setNombre({ campo: '', valido: null });
-      setCorreo({ campo: '', valido: null });
-      setDireccion({ campo: '', valido: null });
-      setCelular({ campo: '', valido: null });
+    console.log(documento, nombre, correo, direccion, celular)
+    const res = await axios.post(URI, {
+      "cedCliente": documento,
+      "nombre": nombre,
+      "correo": correo,
+      "direccion": direccion,
+      "celular": celular
+    });
+
+    if (res.data.estado == true) {
+      res.data.message
+      /* console.log("Cliente agregado correctamente") */
     } else {
-      setFormularioValido(false)
-
+      res.data.message
     }
-  } */
 
-  /*
-    const buscarPorId = async (e)=>{
-      //e.preventDefault();
-      let dato = e.target.value;
-      console.log(dato);
-      const res = await axios.get(`${URI}/${dato}`)
-      setDocumento({campo: res.cedCliente, valido: null});
-      setCorreo({campo:res.correo, valido: null});
-      setDireccion({campo: res.direccion, valido: null})
-      setCelular({campo: res.celular, valido: null})
-      setNombre({campo: res.nombre, valido: null})
-  
-    }
-  
-    useEffect(()=>{
-      buscarPorId();
-    }, [])
-  */
+  }
 
   return (
     <>
@@ -112,19 +81,19 @@ export const Clientes = () => {
               } else if (!expresionRegular.documento.test(valores.documento)) {
                 errores.documento = 'El documento debe minimo 9 máximo 10 digitos'
               }
-              
+
               if (!valores.nombre) {
                 errores.nombre = 'Por favor ingresa un nombre'
               } else if (!expresionRegular.nombre.test(valores.nombre)) {
                 errores.nombre = 'El nombre solo puede contener letras y espacios'
               }
-              
+
               if (!valores.correo) {
                 errores.correo = 'Por favor ingresa un correo'
               } else if (!expresionRegular.correo.test(valores.correo)) {
                 errores.correo = 'El correo solo puede contener letras y espacios'
               }
-              
+
               if (!valores.direccion) {
                 errores.direccion = 'Por favor ingresa un direccion'
               } /*else if (!expresionRegular.direccion.test(valores.direccion)) {
@@ -135,9 +104,25 @@ export const Clientes = () => {
               } else if (!expresionRegular.celular.test(valores.celular)) {
                 errores.celular = 'El celular solo puede contener numeros'
               }
-
-
               return errores;
+            }}
+
+            onSubmit={(valores, { resetForm }) => {
+              console.table(valores)
+              setDocumento(valores.documento)
+              console.log(documento)
+              setNombre(valores.nombre)
+              console.log(nombre)
+              setCorreo(valores.correo)
+              console.log(correo)
+              setDireccion(valores.direccion)
+              console.log(direccion)
+              setCelular(valores.celular)
+              console.log(celular)
+              createCliente()
+              correcto();
+              cambiarFormularioEnviado(true);
+              resetForm();
             }}
           >
             {({ errors }) => (
@@ -151,6 +136,7 @@ export const Clientes = () => {
                       id="documento"
                       name="documento"
                       placeholder="10364845"
+                      maxLength="10"
                     />
                     <ErrorMessage name="documento" component={() => (<section className="error text-danger">{errors.documento}</section>)} />
                   </section>
@@ -195,6 +181,7 @@ export const Clientes = () => {
                       id="celular"
                       name="celular"
                       placeholder="3225556898"
+                      maxLength="10"
                     />
                     <ErrorMessage name="celular" component={() => (<p className="error text-danger">{errors.celular}</p>)} />
                   </section>
@@ -204,14 +191,8 @@ export const Clientes = () => {
                 </Form>
               </section>
             )}
-
-
           </Formik>
-
-
         </section>
-
-
         <TableClientes
           textoColumna1={"Documento"}
           textoColumna2={"Nombre"}
@@ -221,16 +202,6 @@ export const Clientes = () => {
           textoColumna6={"Accion"}
 
         />
-
-
-        {/* <Table
-        textoColumna1={"Documento"}
-        textoColumna2={"Nombre"}
-        textoColumna3={"Correo"}
-        textoColumna4={"Direccion"}
-        textoColumna5={"Celular"}
-        textoColumna6={"Accion"}
-      /> */}
       </section>
     </>
 
