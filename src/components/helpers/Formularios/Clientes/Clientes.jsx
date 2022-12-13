@@ -35,9 +35,8 @@ export const Clientes = () => {
        icon: "success",
        buttons: "ok"
      }) 
- 
- 
    }
+   
 
   /* const createCliente = async (e) => {
     //e.preventDefault()//Buscar la forma que guarde y muestre el registro sin recargar la pagina
