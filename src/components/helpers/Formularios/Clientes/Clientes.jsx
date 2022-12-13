@@ -12,15 +12,16 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const URI = 'http://localhost:3100/clientes'
 export const Clientes = () => {
-  const [documento, setDocumento] = useState();
-  const [nombre, setNombre] = useState();
-  const [correo, setCorreo] = useState();
-  const [direccion, setDireccion] = useState();
-  const [celular, setCelular] = useState();
+ /*  const [documento, setDocumento] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [celular, setCelular] = useState(''); */
+  let documento, nombre,correo,direccion,celular;
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
   const expresionRegular = {
     usuario: /^[a-zA-Z0-9\_]{4,16}$/, // Letras, numeros, guion_bajo
-    nombre: /^[a-zA-ZÀ-ÿ\s]{3,20}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
     password: /^.{4,12}$/, // 4 a 12 digitos
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     documento: /^\d{9,10}$/,
@@ -109,19 +110,19 @@ export const Clientes = () => {
 
             onSubmit={(valores, { resetForm }) => {
               console.table(valores)
-              setDocumento(valores.documento)
+              documento=valores.documento
               console.log(documento)
-              setNombre(valores.nombre)
+              nombre=valores.nombre
               console.log(nombre)
-              setCorreo(valores.correo)
+              correo=valores.correo
               console.log(correo)
-              setDireccion(valores.direccion)
+              direccion=valores.direccion
               console.log(direccion)
-              setCelular(valores.celular)
+              celular=valores.celular
               console.log(celular)
               createCliente()
               correcto();
-              cambiarFormularioEnviado(true);
+              /* cambiarFormularioEnviado(true); */
               resetForm();
             }}
           >
@@ -148,6 +149,7 @@ export const Clientes = () => {
                       id="nombre"
                       name="nombre"
                       placeholder="Juan Perez"
+                      maxLength="30"
                     />
                     <ErrorMessage name="nombre" component={() => (<section className="error text-danger">{errors.nombre}</section>)} />
                   </section>
