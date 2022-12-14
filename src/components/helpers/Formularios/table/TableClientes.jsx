@@ -133,7 +133,7 @@ export const TableClientes = ({
                 <td className="td-accion">
                   <Link to={"editarCliente/" + client.cedCliente}>
                     <button className="btn botones">
-                      <img
+                      <img className="iconos-botones"
                         src={"../../../../../src/assets/icons/Editar.png"}
                         alt=""
                         width="40px "
@@ -148,6 +148,7 @@ export const TableClientes = ({
                     }}
                   >
                     <img
+                    className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
                       alt=""
                       width="40px "
@@ -169,6 +170,7 @@ export const TableClientes = ({
                 <button className="btn botones" onClick={regresar}>
                   {" "}
                   <img
+                  className="iconos-botones"
                     src={"../../../../../src/assets/icons/regreso.png"}
                     alt=""
                     width="40px "

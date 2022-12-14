@@ -118,6 +118,15 @@ width: 100vw;
   transform: scale(1.2);
 }
 
+.iconos-botones{
+  transition: 0.5s;
+}
+
+.iconos-botones:hover{
+  transform: scale(1.2);
+}
+
+
 /*main-formularios*/
 main {
   /* height: 100vw; */

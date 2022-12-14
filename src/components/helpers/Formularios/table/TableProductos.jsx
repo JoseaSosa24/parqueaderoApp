@@ -157,6 +157,7 @@ export const TableProductos = ({
                   <Link>
                     <button className="btn botones">
                       <img
+                        className="iconos-botones"
                         src={"../../../../../src/assets/icons/Editar.png"}
                         alt=""
                         width="40px "
@@ -173,6 +174,7 @@ export const TableProductos = ({
                   >
                     {" "}
                     <img
+                      className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
                       alt=""
                       width="40px "
@@ -195,6 +197,7 @@ export const TableProductos = ({
                 <button className="btn botones" onClick={regresar}>
                   {" "}
                   <img
+                    className="iconos-botones"
                     src={"../../../../../src/assets/icons/regreso.png"}
                     alt=""
                     width="40px "
