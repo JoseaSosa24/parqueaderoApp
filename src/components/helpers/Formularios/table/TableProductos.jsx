@@ -113,7 +113,7 @@ export const TableProductos = ({
   return (
     <>
       <section className="seccion-buscar2 d-flex mt-4">
-        <Titulo textTitulo={"Productos Registrados: "} tittle={"tittle"} />
+        <Titulo textTitulo={"Listado Productos"} tittle={"tittle"} />
         <Buscar
           inputbuscar={"input-buscar fst-italic"}
           search={"Ingrese Id Producto"}

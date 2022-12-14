@@ -90,7 +90,7 @@ export const TableClientes = ({
   return (
     <>
       <section className="seccion-buscar d-flex mt-4 ">
-        <Titulo textTitulo={"Clientes Registrados: "} />
+        <Titulo textTitulo={"Listado Clientes"} />
         <Buscar
           inputbuscar={"input-buscar fst-italic"}
           search={"Ingrese documento"}

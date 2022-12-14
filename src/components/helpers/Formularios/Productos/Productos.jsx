@@ -141,7 +141,7 @@ export const Productos = () => {
                       id="descripcion"
                       name="descripcion"
                       rows="4"
-                      placeholder="Casco Antichoque" >
+                      placeholder="Casco Antichoque">
                     </Field>
                     <ErrorMessage name="descripcion" component={() => (<section className="error text-danger">{errors.descripcion}</section>)} />
                   </section>

@@ -165,6 +165,10 @@ section h2 {
   color: #869f9f69 !important;
 }
 
+::placeholder{
+  color:  #869f9f69 !important;
+}
+
 /* .inputs {
   margin-left: 2%;
   margin-top: 2%;
@@ -209,12 +213,12 @@ textarea {
 
 .seccion-buscar {
   width: 100%;
-  gap: 51.2%;
+  gap: 58%;
 }
 
 .seccion-buscar2 {
   width: 100%;
-  gap: 50%;
+  gap: 56%;
 }
 
 .seccion-buscar-cliente {
