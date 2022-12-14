@@ -25,13 +25,49 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
     getIngresos();
   }
 
+  const [idIngreso, setIdIngreso] = useState('');
+
+  const [idCliente, setIdCliente] = useState('');
+  const [placa, setPlaca] = useState('');
+  const [fechaIngreso, setFechaIngreso] = useState('');
+  const [horaIngreso, setHoraIngreso] = useState('');
+  const [horasTotales, setHorasTotales] = useState('');
+  const [id, setId] = useState('')
+  const [trBody, setTrBody] = useState({display: ""})
+  const [trById, setTrById] = useState({display: "none"})
+
+  const buscarPorId = async (e) => {
+    e.preventDefault()
+    console.log(id)
+    let res = await axios.get(URI+'/'+id)
+    console.log(res)
+    setIdCliente(res.data.idCliente);
+    setPlaca(res.data.placaMoto)
+    setFechaIngreso(res.data.fechaIngreso)
+    setHoraIngreso(res.data.horaIngreso)
+    setHorasTotales(res.data.horasTotales)
+    setTrBody({display:"none"})
+    setTrById({display:""})
+
+  }
+
+  const pulsarBuscar = (e)=>{
+    setId(e.target.value)
+
+  }
+
+  const regresar = ()=>{
+    setTrBody({display:""})
+    setTrById({display:"none"})
+  }
+
 
   return (
     <>
     
     <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Registros Ingresos: "} tittle={'me-4'} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
       </section>
     <section className="tablaRegistros d-flex justify-content-center align-items-start ">
       <table id="tabla">
@@ -45,7 +81,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
             <td className="td-principal" id={tdId}>{textoColumna6}</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody style={trBody}>
           {ingreso.map((ingres) => (
             <tr key={ingres.idIngreso}>
               <td>{ingres.idCliente}</td>
@@ -62,6 +98,19 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
           )}
 
+        </tbody>
+        <tbody style={trById}>
+          <tr >
+                <td>{idCliente}</td>
+                <td>{placa}</td>
+                <td>{fechaIngreso}</td>
+                <td>{horaIngreso}</td>
+                <td>{horasTotales}</td>
+                <td>
+                  
+                  <button className="" onClick={regresar}>regresar</button>  
+                </td>
+            </tr>
         </tbody>
       </table>
     </section>
