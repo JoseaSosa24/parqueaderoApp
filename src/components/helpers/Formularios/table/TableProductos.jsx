@@ -114,6 +114,14 @@ export const TableProductos = ({
     <>
       <section className="seccion-buscar2 d-flex mt-4">
         <Titulo textTitulo={"Listado Productos"} tittle={"tittle"} />
+        <button className="btn botones-2" onClick={getProductos
+        }><img
+        className="iconos-botones-cargar"
+          src={"../../../../../src/assets/icons/girar.png"}
+          alt=""
+          width="40px "
+          height="40px"
+        /></button>
         <Buscar
           inputbuscar={"input-buscar fst-italic"}
           search={"Ingrese Id Producto"}
@@ -121,7 +129,7 @@ export const TableProductos = ({
           onChange={pulsarBuscar}
         />
       </section>
-      <section className="tablaRegistros d-flex justify-content-center align-items-start ">
+      <section className="tabla-registros d-flex justify-content-center align-items-start ">
         <table className="" id="tabla">
           <thead>
             <tr>
