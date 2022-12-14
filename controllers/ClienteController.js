@@ -4,12 +4,14 @@ const crearCliente = async (req, res) => {
     try {
         await Cliente.create(req.body);
         res.json({
-            message: "Cliente creado correctamente"
+            message: "Cliente creado correctamente",
+            estado: true
         })
 
     } catch (error) {
         res.json({
-            message: "El cliente no se pudo crear " + error
+            message: "El cliente no se pudo crear " + error,
+            estado: false
         });
     }
 
