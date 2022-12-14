@@ -35,6 +35,7 @@ export const Clientes = () => {
       icon: "success",
       buttons: "ok"
     })
+    
   }
 
 
@@ -47,7 +48,9 @@ export const Clientes = () => {
       "correo": correo,
       "direccion": direccion,
       "celular": celular
-    });
+    }
+    );
+
 
     if (res.data.estado == true) {
       res.data.message
@@ -122,6 +125,7 @@ export const Clientes = () => {
               console.log(celular)
               createCliente()
               correcto();
+              
               /* cambiarFormularioEnviado(true); */
               resetForm();
             }}
