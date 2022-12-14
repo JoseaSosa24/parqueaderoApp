@@ -12,12 +12,12 @@ import { Mensaje } from "../Mensaje";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export const EditarCliente = () => {
-    let documento, nombre,correo,direccion,celular;
-    /* const [documento, setDocumento] = useState({ campo: '', valido: null });
-    const [nombre, setNombre] = useState({ campo: '', valido: null });
-    const [correo, setCorreo] = useState({ campo: '', valido: null });
-    const [direccion, setDireccion] = useState({ campo: '', valido: null });
-    const [celular, setCelular] = useState({ campo: '', valido: null }); */
+    /* let documento, nombre, correo, direccion, celular; */
+    const [documento, setDocumento] = useState();
+    const [nombre, setNombre] = useState();
+    const [correo, setCorreo] = useState();
+    const [direccion, setDireccion] = useState();
+    const [celular, setCelular] = useState();
     const [formularioValido, setFormularioValido] = useState(null);
     const navigate = useNavigate()
     const { id } = useParams()
@@ -32,31 +32,48 @@ export const EditarCliente = () => {
     };
 
     //procedimiento para actualizar
-    const update = async (e) => {
+    const updateCliente = async (e) => {
         e.preventDefault()
         await axios.put(URI + id, {
-            "cedCliente": `${documento.campo}`,
-            "nombre": `${nombre.campo}`,
-            "correo": `${correo.campo}`,
-            "direccion": `${direccion.campo}`,
-            "celular": `${celular.campo}`
+            "cedCliente": documento,
+            "nombre": nombre,
+            "correo": correo,
+            "direccion": direccion
         })
         /* navigate('/clientes') */
     }
 
-/*     useEffect(() => {
+    useEffect(() => {
+        const getClienteById = async () => {
+            const res = await axios.get(URI + id)
+            console.table(res.data);
+            setDocumento(res.data.cedCliente)
+            console.log(documento)
+            setNombre(res.data.nombre)
+            console.log(nombre)
+            setCorreo(res.data.correo)
+            console.log(correo)
+            setDireccion(res.data.direccion)
+            console.log(direccion)
+            setCelular(res.data.celular)
+            console.log(celular)
+            
+        }
         getClienteById()
-    }, []) */
+    
+    }, [])
 
- /*    const getClienteById = async () => {
-        const res = await axios.get(URI + id)
-        valore res.data.cedCliente ,
-        nombre :res.data.nombre ,
-        correo: res.data.correo ,
-        direccion: res.data.direccion ,
-        celular: res.data.celular 
-        console.log(res);
-    } */
+    /* set */
+    
+    const correcto = (e) => {
+        swal({
+            title: "Mensaje de éxito",
+            text: "¡Cliente agregado correctamente!",
+            icon: "success",
+            buttons: "ok"
+        })
+
+    }
 
     return (
         <>
@@ -66,13 +83,13 @@ export const EditarCliente = () => {
 
                     <Formik
                         initialValues={{
-                            documento: '',
-                            nombre: '',
-                            correo: '',
-                            direccion: '',
-                            celular: ''
-                        }}
-
+                            documento: documento,
+                            nombre: nombre,
+                            correo: correo,
+                            direccion: direccion,
+                            celular: celular
+                        }
+                        }
                         validate={(valores) => {
                             let errores = {};
 
@@ -119,7 +136,7 @@ export const EditarCliente = () => {
                             console.log(direccion)
                             celular = valores.celular
                             console.log(celular)
-                            createCliente()
+                            updateCliente()
                             correcto();
 
                             /* cambiarFormularioEnviado(true); */
@@ -183,7 +200,7 @@ export const EditarCliente = () => {
                                     />
                                     <Button clase={'form-button d-flex justify-content-center col-12'}
                                         classButton={'guardar form-button col-3'}
-                                        textButton={'Guardar'} type={'submit'} />
+                                        textButton={'Actulizar'} type={'submit'} />
                                 </Form>
                             </section>
                         )}
