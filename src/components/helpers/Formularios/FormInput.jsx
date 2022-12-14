@@ -1,7 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 
-export const FormInput = ({classSection, infomacionInput,inputId, errors,classInput, tipoInput, inputName,
+export const FormInput = ({classSection, infomacionInput,inputId, error, touched,classInput, tipoInput, inputName,
  inputPlaceholder, expresionRegular, title,
   maxlength }) => {
 
@@ -10,16 +10,16 @@ export const FormInput = ({classSection, infomacionInput,inputId, errors,classIn
   return (
 
     <section className={" "+classSection}>
-      <h3 className={!errors ? "text-white fs-5" : "text-danger fs-5"}>{title}</h3>
+      <h3 className={!(error && touched) ? "text-white fs-5" : "text-danger fs-5"}>{title}</h3>
       <Field
-        className={!errors ? classInput+" form-control item-form " : "form-control item-form border border-danger border-3 rounded-4"}
+        className={!(error && touched)? classInput+" form-control item-form " : "form-control item-form border border-danger border-3 rounded-4"}
         type={tipoInput}
         id={inputId}
         name={inputName}
         placeholder={inputPlaceholder}
-        maxlength={maxlength}
+        maxLength={maxlength}
       />
-      <ErrorMessage name={inputName} component={() => (<p className="error text-danger">{errors}</p>)} />
+      <ErrorMessage name={inputName} component={() => (<p className="error text-danger">{error}</p>)} />
     </section>
 
     /*  <section className={" " + classSection}>

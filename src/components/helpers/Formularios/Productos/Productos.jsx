@@ -11,7 +11,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 const URI = "http://localhost:3100/productos";
 export const Productos = () => {
   let nombreProducto, precio, descripcion, inventario;
-
+  const [formularioCompleto, setFormularioCompleto] = useState(false);
 
   const createProducto = async (e) => {
     /* e.preventDefault(); */
@@ -40,6 +40,8 @@ export const Productos = () => {
       buttons: "ok",
     });
   };
+
+
 
   return (
     <>
@@ -99,57 +101,51 @@ export const Productos = () => {
               resetForm();
             }}
           >
-            {({ errors }) => (
+            {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                <FormInput classSection={" col-5"} 
-                errors={errors.nombreProducto} 
-                title="Nombre Producto: "
-                tipoInput={"text"}
-                inputId="nombreProducto"
-                inputName={"nombreProducto"}
-                inputPlaceholder="Casco"
-                
-                />
-                {/*   <section className="col-5">
-                    <h3 className={!errors.nombreProducto ? "text-white fs-5" : "text-danger fs-5"}>Nombre Producto: </h3>
-                    <Field
-                      className={!errors.nombreProducto ? "form-control item-form " : "form-control item-form border border-danger border-3 rounded-4"}
-                      type="text"
-                      id="nombreProducto"
-                      name="nombreProducto"
-                      placeholder="Casco"
-                    />
-                    <ErrorMessage name="nombreProducto" component={() => (<section className="error text-danger">{errors.nombreProducto}</section>)} />
-                  </section> */}
-                  <section className="col-4">
-                    <h3 className="text-white fs-5">Precio: </h3>
-                    <Field
-                      className="form-control item-form"
-                      type="number"
-                      id="precio"
-                      name="precio"
-                      placeholder="50000"
-                    />
-                    <ErrorMessage name="precio" component={() => (<section className="error text-danger">{errors.precio}</section>)} />
-                  </section>
-                  <section className="col-3">
-                    <h3 className="text-white fs-5">Inventario: </h3>
-                    <Field
-                      className="form-control item-form"
-                      type="number"
-                      id="inventario"
-                      name="inventario"
-                      placeholder="50"
-                    />
-                    <ErrorMessage name="inventario" component={() => (<section className="error text-danger">{errors.inventario}</section>)} />
-                  </section>
-
-                  <section className={"inputs col-12"}>
-                    <h3 className="text-white fs-5">Descripción:</h3>
-                    <Field className={""} component="textarea" id="descripcion" name="descripcion" rows="4" placeholder="Casco Antichoque" ></Field>
+                  <FormInput
+                    classSection={"col-5"}
+                    title={"Nombre Producto:"}
+                    error={errors.nombreProducto}
+                    touched={touched.nombreProducto}
+                    tipoInput={"text"}
+                    inputId={"nombreProducto"}
+                    inputName="nombreProducto"
+                    inputPlaceholder={"Casco"}
+                  />
+                  <FormInput
+                    classSection={"col-4"}
+                    title={"Precio:"}
+                    error={errors.precio}
+                    touched={touched.precio}
+                    tipoInput={"number"}
+                    inputId={"precio"}
+                    inputName="precio"
+                    inputPlaceholder={"50000"}
+                  />
+                  <FormInput
+                    classSection={"col-3"}
+                    title={"Inventario:"}
+                    error={errors.inventario}
+                    touched={touched.inventario}
+                    tipoInput={"number"}
+                    inputId={"inventario"}
+                    inputName="inventario"
+                    inputPlaceholder={"50"}
+                  />
+                  <section className={"textarea col-12"}>
+                    <h3 className={!(errors.descripcion && touched.descripcion) ? "text-white fs-5" : "text-danger fs-5"}>Descripción:</h3>
+                    <Field className={!(errors.descripcion && touched.descripcion) ? "textarea" : "border border-danger border-3 rounded-4"}
+                      component="textarea"
+                      id="descripcion"
+                      name="descripcion"
+                      rows="4"
+                      placeholder="Casco Antichoque" >
+                    </Field>
                     <ErrorMessage name="descripcion" component={() => (<section className="error text-danger">{errors.descripcion}</section>)} />
                   </section>
+
                   <Button clase={'form-button d-flex justify-content-center col-12'}
                     classButton={'guardar form-button col-3'}
                     textButton={'Guardar'} type={'submit'} />
