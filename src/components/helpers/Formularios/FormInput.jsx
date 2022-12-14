@@ -19,7 +19,7 @@ export const FormInput = ({classSection, infomacionInput,inputId, error, touched
         placeholder={inputPlaceholder}
         maxLength={maxlength}
       />
-      <ErrorMessage name={inputName} component={() => (<p className="error text-danger">{error}</p>)} />
+      <ErrorMessage name={inputName} component={() => (<p className="textoError text-danger">{error}</p>)} />
     </section>
 
     /*  <section className={" " + classSection}>

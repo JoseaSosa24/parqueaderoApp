@@ -92,7 +92,7 @@ export const Clientes = () => {
               if (!valores.correo) {
                 errores.correo = 'Por favor ingresa un correo'
               } else if (!expresionRegular.correo.test(valores.correo)) {
-                errores.correo = 'El correo solo puede contener letras y espacios'
+                errores.correo = 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
               }
 
               if (!valores.direccion) {
@@ -126,67 +126,61 @@ export const Clientes = () => {
               resetForm();
             }}
           >
-            {({ errors }) => (
+            {({ errors,touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                  <section className="col-3">
-                    <h3 className="text-white fs-5" >Documento:</h3>
-                    <Field
-                      className="form-control item-form"
-                      type="text"
-                      id="documento"
-                      name="documento"
-                      placeholder="10364845"
-                      maxLength="10"
-                    />
-                    <ErrorMessage name="documento" component={() => (<section className="error text-danger">{errors.documento}</section>)} />
-                  </section>
-                  <section className="col-4">
-                    <h3 className="text-white fs-5" >Nombre:</h3>
-                    <Field
-                      className="form-control item-form"
-                      type="text"
-                      id="nombre"
-                      name="nombre"
-                      placeholder="Juan Perez"
-                      maxLength="30"
-                    />
-                    <ErrorMessage name="nombre" component={() => (<section className="error text-danger">{errors.nombre}</section>)} />
-                  </section>
-                  <section className="col-5">
-                    <h3 className="text-white fs-5" >Correo:</h3>
-                    <Field
-                      className="form-control item-form"
-                      type="email"
-                      id="correo"
-                      name="correo"
-                      placeholder="juanperez@gmail.com"
-                    />
-                    <ErrorMessage name="correo" component={() => (<section className="error text-danger">{errors.correo}</section>)} />
-                  </section>
-                  <section className="col-5">
-                    <h3 className="text-white fs-5" >Dirección:</h3>
-                    <Field
-                      className="form-control item-form"
-                      type="text"
-                      id="direccion"
-                      name="direccion"
-                      placeholder="CRRA 2 CL SUR B"
-                    />
-                    <ErrorMessage name="direccion" component={() => (<section className="error text-danger">{errors.direccion}</section>)} />
-                  </section>
-                  <section className="col-4">
-                    <h3 className="text-white fs-5" >Celular: </h3>
-                    <Field
-                      className="form-control item-form"
-                      type="text"
-                      id="celular"
-                      name="celular"
-                      placeholder="3225556898"
-                      maxLength="10"
-                    />
-                    <ErrorMessage name="celular" component={() => (<p className="error text-danger">{errors.celular}</p>)} />
-                  </section>
+                <FormInput
+                    classSection={"col-3"}
+                    title={"Documento:"}
+                    error={errors.documento}
+                    touched={touched.documento}
+                    tipoInput={"text"}
+                    inputId={"documento"}
+                    inputName="documento"
+                    inputPlaceholder={"10364845"}
+                    maxlength="10"
+                  />
+                <FormInput
+                    classSection={"col-4"}
+                    title={"Nombre:"}
+                    error={errors.nombre}
+                    touched={touched.nombre}
+                    tipoInput={"text"}
+                    inputId={"nombre"}
+                    inputName="nombre"
+                    inputPlaceholder={"Juan Perez"}
+                  />
+                <FormInput
+                    classSection={"col-5"}
+                    title={"Correo:"}
+                    error={errors.correo}
+                    touched={touched.correo}
+                    tipoInput={"email"}
+                    inputId={"correo"}
+                    inputName="correo"
+                    inputPlaceholder={"juanperez@gmail.com"}
+                  />
+                <FormInput
+                    classSection={"col-5"}
+                    title={"Dirección :"}
+                    error={errors.direccion}
+                    touched={touched.direccion}
+                    tipoInput={"text"}
+                    inputId={"direccion"}
+                    inputName="direccion"
+                    inputPlaceholder={"CLL 20 A #10"}
+                  />
+                <FormInput
+                    classSection={"col-4"}
+                    title={"Celular :"}
+                    error={errors.celular}
+                    touched={touched.celular}
+                    tipoInput={"text"}
+                    inputId={"celular"}
+                    inputName="celular"
+                    inputPlaceholder={"3225556898"}
+                    maxlength="10"
+                  />
                   <Button clase={'form-button d-flex justify-content-center col-12'}
                     classButton={'guardar form-button col-3'}
                     textButton={'Guardar'} type={'submit'} />
