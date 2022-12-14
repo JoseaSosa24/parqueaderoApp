@@ -26,7 +26,7 @@ export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, texto
       <Titulo textTitulo={"Ventas Registradas: "} tittle={'me-4'} />
       <Buscar inputbuscar={"input-buscar fst-italic"} search={'Documento cliente'} />
     </section>
-        <section className="tablaRegistros d-flex justify-content-center align-items-start ">
+        <section className="tabla-registros d-flex justify-content-center align-items-start ">
             <table className="" id="tabla">
                 <thead>
                     <tr>
