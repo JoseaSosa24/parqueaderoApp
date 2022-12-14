@@ -67,13 +67,13 @@ export const Productos = () => {
 
               if (!valores.precio) {
                 errores.precio = "Por favor ingresa un precio";
-              } else if (valores.precio<0) {
-                errores.precio ="El precio debe ser mayor a cero";
+              } else if (valores.precio < 0) {
+                errores.precio = "El precio debe ser mayor a cero";
               }
               if (!valores.inventario) {
                 errores.inventario = "Por favor ingresa un inventario";
-              } else if (valores.inventario<0) {
-                errores.inventario ="El inventario debe ser mayor a cero";
+              } else if (valores.inventario < 0) {
+                errores.inventario = "El inventario debe ser mayor a cero";
               }
               console.log(valores.descripcion)
               if (!valores.descripcion) {
@@ -93,7 +93,6 @@ export const Productos = () => {
               inventario = valores.inventario;
               console.log(inventario);
               descripcion = valores.descripcion;
-              console.log(direccion);
               createProducto();
               correcto();
               /* cambiarFormularioEnviado(true); */
@@ -101,49 +100,62 @@ export const Productos = () => {
             }}
           >
             {({ errors }) => (
-            <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
-              <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                <section className="col-5">
-                  <h3 className="text-white fs-5">Nombre Producto: </h3>
-                  <Field
-                    className="form-control item-form"
-                    type="text"
-                    id="nombreProducto"
-                    name="nombreProducto"
-                    placeholder="Casco"
-                  />
-                  <ErrorMessage name="nombreProducto" component={() => ( <section className="error text-danger">{errors.nombreProducto}</section>)}  />
-                </section>
-                <section className="col-4">
-                  <h3 className="text-white fs-5">Precio: </h3>
-                  <Field
-                    className="form-control item-form"
-                    type="number"
-                    id="precio"
-                    name="precio"
-                    placeholder="50000"
-                  />
-                  <ErrorMessage name="precio" component={() => ( <section className="error text-danger">{errors.precio}</section>)}  />
-                </section>
-                <section className="col-3">
-                  <h3 className="text-white fs-5">Inventario: </h3>
-                  <Field
-                    className="form-control item-form"
-                    type="number"
-                    id="inventario"
-                    name="inventario"
-                    placeholder="50"
-                  />
-                  <ErrorMessage name="inventario" component={() => ( <section className="error text-danger">{errors.inventario}</section>)}  />
-                </section>
-                <TextArea idTextArea={"descripcion"} nameTextArea={"descripcion" }textareaPlaceholder="Casco Antichoque" />
-                <ErrorMessage name="descripcion" component={() => ( <section className="error text-danger">{errors.descripcion}</section>)}  />
-                <Button clase={'form-button d-flex justify-content-center col-12'}
+              <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
+                <Form className="formulario-clientes row col-12 d-flex g-3 ">
+                <FormInput classSection={" col-5"} 
+                errors={errors.nombreProducto} 
+                title="Nombre Producto: "
+                tipoInput={"text"}
+                inputId="nombreProducto"
+                inputName={"nombreProducto"}
+                inputPlaceholder="Casco"
+                
+                />
+                {/*   <section className="col-5">
+                    <h3 className={!errors.nombreProducto ? "text-white fs-5" : "text-danger fs-5"}>Nombre Producto: </h3>
+                    <Field
+                      className={!errors.nombreProducto ? "form-control item-form " : "form-control item-form border border-danger border-3 rounded-4"}
+                      type="text"
+                      id="nombreProducto"
+                      name="nombreProducto"
+                      placeholder="Casco"
+                    />
+                    <ErrorMessage name="nombreProducto" component={() => (<section className="error text-danger">{errors.nombreProducto}</section>)} />
+                  </section> */}
+                  <section className="col-4">
+                    <h3 className="text-white fs-5">Precio: </h3>
+                    <Field
+                      className="form-control item-form"
+                      type="number"
+                      id="precio"
+                      name="precio"
+                      placeholder="50000"
+                    />
+                    <ErrorMessage name="precio" component={() => (<section className="error text-danger">{errors.precio}</section>)} />
+                  </section>
+                  <section className="col-3">
+                    <h3 className="text-white fs-5">Inventario: </h3>
+                    <Field
+                      className="form-control item-form"
+                      type="number"
+                      id="inventario"
+                      name="inventario"
+                      placeholder="50"
+                    />
+                    <ErrorMessage name="inventario" component={() => (<section className="error text-danger">{errors.inventario}</section>)} />
+                  </section>
+
+                  <section className={"inputs col-12"}>
+                    <h3 className="text-white fs-5">Descripción:</h3>
+                    <Field className={""} component="textarea" id="descripcion" name="descripcion" rows="4" placeholder="Casco Antichoque" ></Field>
+                    <ErrorMessage name="descripcion" component={() => (<section className="error text-danger">{errors.descripcion}</section>)} />
+                  </section>
+                  <Button clase={'form-button d-flex justify-content-center col-12'}
                     classButton={'guardar form-button col-3'}
                     textButton={'Guardar'} type={'submit'} />
-              </Form>
-            </section>
-             )}
+                </Form>
+              </section>
+            )}
           </Formik>
 
           {/* <Form
