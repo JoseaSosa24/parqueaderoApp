@@ -47,54 +47,56 @@ export const TableClientes = ({
           icon: "success",
         });
       }
-    })
-  }
+    });
+  };
 
-  const [documento, setDocumento] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [direccion, setDireccion] = useState('');
-  const [celular, setCelular] = useState('');
-  const [id, setId] = useState('')
-  const [trBody, setTrBody] = useState({display: ""})
-  const [trById, setTrById] = useState({display: "none"})
+  const [documento, setDocumento] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [celular, setCelular] = useState("");
+  const [id, setId] = useState("");
+  const [trBody, setTrBody] = useState({ display: "" });
+  const [trById, setTrById] = useState({ display: "none" });
 
   const buscarPorId = async (e) => {
-    e.preventDefault()
-    console.log(id)
-    let res = await axios.get(URI+'/'+id)
-    console.log(res)
+    e.preventDefault();
+    console.log(id);
+    let res = await axios.get(URI + "/" + id);
+    console.log(res);
     setDocumento(res.data.cedCliente);
-    console.log(res.data.cedCliente)
+    console.log(res.data.cedCliente);
     setCorreo(res.data.correo);
-    console.log(res.data.correo)
-    setDireccion(res.data.direccion)
-    console.log(res.data.direccion)
-    setCelular(res.data.celular)
-    console.log(res.celular)
-    setNombre(res.data.nombre)
-    console.log(res.data.nombre)
-    setTrBody({display:"none"})
-    setTrById({display:""})
+    console.log(res.data.correo);
+    setDireccion(res.data.direccion);
+    console.log(res.data.direccion);
+    setCelular(res.data.celular);
+    console.log(res.celular);
+    setNombre(res.data.nombre);
+    console.log(res.data.nombre);
+    setTrBody({ display: "none" });
+    setTrById({ display: "" });
+  };
 
-  }
+  const pulsarBuscar = (e) => {
+    setId(e.target.value);
+  };
 
-  const pulsarBuscar = (e)=>{
-    setId(e.target.value)
-
-  }
-
-  const regresar = ()=>{
-    setTrBody({display:""})
-    setTrById({display:"none"})
-  }
-
+  const regresar = () => {
+    setTrBody({ display: "" });
+    setTrById({ display: "none" });
+  };
 
   return (
     <>
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Clientes Registrados: "} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese documento'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
+        <Buscar
+          inputbuscar={"input-buscar fst-italic"}
+          search={"Ingrese documento"}
+          onSubmit={buscarPorId}
+          onChange={pulsarBuscar}
+        />
       </section>
       <section className="tablaRegistros d-flex justify-content-center align-items-start ">
         <table id="tabla">
@@ -154,25 +156,29 @@ export const TableClientes = ({
                   </button>
                 </td>
               </tr>
-            )
-
-
-            )}
-
+            ))}
           </tbody>
           <tbody style={trById}>
             <tr>
-                <td>{documento}</td>
-                <td>{nombre}</td>
-                <td>{correo}</td>
-                <td>{direccion}</td>
-                <td>{celular}</td>
-                <td><button onClick={regresar}>Regresar</button></td> 
-              </tr>
+              <td>{documento}</td>
+              <td>{nombre}</td>
+              <td>{correo}</td>
+              <td>{direccion}</td>
+              <td>{celular}</td>
+              <td>
+                <button className="btn botones" onClick={regresar}>
+                  {" "}
+                  <img
+                    src={"../../../../../src/assets/icons/regreso.png"}
+                    alt=""
+                    width="40px "
+                    height="40px"
+                  />
+                </button>
+              </td>
+            </tr>
           </tbody>
-          
         </table>
-
       </section>
     </>
   );
