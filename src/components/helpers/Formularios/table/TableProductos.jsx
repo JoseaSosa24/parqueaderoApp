@@ -64,12 +64,55 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
 
     useEffect(() => {
         getProductos();
-    }, [])
+    }, []);
+
+  const [idProducto, setIdProducto] = useState('');
+  const [nombreProducto, setNombreProducto] = useState('');
+  const [precio, setPrecio] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [inventario, setInventario] = useState('');
+  const [id, setId] = useState('')
+  const [trBody, setTrBody] = useState({display: ""})
+  const [trById, setTrById] = useState({display: "none"})
+
+  const buscarPorId = async (e) => {
+    e.preventDefault()
+
+    console.log(id)
+    let res = await axios.get(URI+'/'+id)
+    console.log(res)
+    setIdProducto(res.data.idProducto);
+    console.log(res.data.idProducto)
+    setNombreProducto(res.data.nombreProducto);
+    console.log(res.data.nombreProducto)
+    setPrecio(res.data.precio)
+    console.log(res.data.precio)
+    setInventario(res.data.inventario)
+    console.log(res.inven)
+    setDescripcion(res.data.descripcion)
+    console.log(res.data.descripcion)
+
+    setTrBody({display:"none"})
+    setTrById({display:""})
+
+  }
+
+  const pulsarBuscar = (e)=>{
+    setId(e.target.value)
+
+  }
+
+  const regresar = ()=>{
+    setTrBody({display:""})
+    setTrById({display:"none"})
+  }
+
+
     return (
         <>
         <section className="seccion-buscar2 d-flex mt-4">
         <Titulo textTitulo={"Productos Registrados: "} tittle={'tittle'} />
-        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese Id Producto'} />
+        <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese Id Producto'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
       </section>
         <section className="tablaRegistros d-flex justify-content-center align-items-start ">
             <table className="" id="tabla">
@@ -83,7 +126,7 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                         <td className="td-principal" id={tdId}>{textoColumna6}</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style={trBody}>
                     {productos.map((producto) => (
                         <tr key={producto.idProducto}>
                             <td>{producto.idProducto}</td>
@@ -100,6 +143,17 @@ export const TableProductos = ({ textoColumna1, textoColumna2, textoColumna3, te
                     )
                     )}
                 </tbody>
+
+                <tbody style={trById}>
+                    <tr>
+                        <td>{idProducto}</td>
+                        <td>{nombreProducto}</td>
+                        <td>{precio}</td>
+                        <td>{descripcion}</td>
+                        <td>{inventario}</td>
+                        <td><button onClick={regresar}>Regresar</button></td> 
+                    </tr>
+                 </tbody>
             </table>
         </section>
         </>

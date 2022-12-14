@@ -56,7 +56,9 @@ export const TableClientes = ({
   const [direccion, setDireccion] = useState('');
   const [celular, setCelular] = useState('');
   const [id, setId] = useState('')
-  
+  const [trBody, setTrBody] = useState({display: ""})
+  const [trById, setTrById] = useState({display: "none"})
+
   const buscarPorId = async (e) => {
     e.preventDefault()
     console.log(id)
@@ -72,12 +74,19 @@ export const TableClientes = ({
     console.log(res.celular)
     setNombre(res.data.nombre)
     console.log(res.data.nombre)
+    setTrBody({display:"none"})
+    setTrById({display:""})
 
   }
 
   const pulsarBuscar = (e)=>{
     setId(e.target.value)
 
+  }
+
+  const regresar = ()=>{
+    setTrBody({display:""})
+    setTrById({display:"none"})
   }
 
 
@@ -111,7 +120,7 @@ export const TableClientes = ({
               </td>
             </tr>
           </thead>
-          <tbody>
+          <tbody style={trBody}>
             {cliente.map((client) => (
               <tr key={client.idCliente}>
                 <td>{client.cedCliente}</td>
@@ -150,16 +159,16 @@ export const TableClientes = ({
 
             )}
 
+          </tbody>
+          <tbody style={trById}>
             <tr>
-
-              <td>{documento}</td>
-              <td>{nombre}</td>
-              <td>{correo}</td>
-              <td>{direccion}</td>
-              <td>{celular}</td>
-              <td>busqueda</td> 
-            </tr>
-
+                <td>{documento}</td>
+                <td>{nombre}</td>
+                <td>{correo}</td>
+                <td>{direccion}</td>
+                <td>{celular}</td>
+                <td><button onClick={regresar}>Regresar</button></td> 
+              </tr>
           </tbody>
           
         </table>
