@@ -28,15 +28,7 @@ export const Clientes = () => {
     celular: /^\d{10}$/
   };
 
-  const correcto = (e) => {
-    swal({
-      title: "Mensaje de éxito",
-      text: "¡Cliente agregado correctamente!",
-      icon: "success",
-      buttons: "ok"
-    })
-    
-  }
+  
 
 
   const createCliente = async (e) => {
