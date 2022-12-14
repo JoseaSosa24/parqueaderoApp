@@ -7,7 +7,7 @@ import { Button } from "../Button";
 import axios from "axios";
 import { Mensaje } from "../Mensaje";
 import swal from 'sweetalert';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form} from "formik";
 
 
 const URI = 'http://localhost:3100/clientes'
@@ -29,7 +29,15 @@ export const Clientes = () => {
   };
 
   
+  const correcto = (e) => {
+    swal({
+      title: "Mensaje de éxito",
+      text: "¡Cliente agregado correctamente!",
+      icon: "success",
+      buttons: "ok"
+    })
 
+  }
 
   const createCliente = async (e) => {
     //e.preventDefault()//Buscar la forma que guarde y muestre el registro sin recargar la pagina

@@ -9,14 +9,15 @@ import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Button } from "../Button";
 import { Mensaje } from "../Mensaje";
-;
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export const EditarCliente = () => {
-    const [documento, setDocumento] = useState({ campo: '', valido: null });
+    let documento, nombre,correo,direccion,celular;
+    /* const [documento, setDocumento] = useState({ campo: '', valido: null });
     const [nombre, setNombre] = useState({ campo: '', valido: null });
     const [correo, setCorreo] = useState({ campo: '', valido: null });
     const [direccion, setDireccion] = useState({ campo: '', valido: null });
-    const [celular, setCelular] = useState({ campo: '', valido: null });
+    const [celular, setCelular] = useState({ campo: '', valido: null }); */
     const [formularioValido, setFormularioValido] = useState(null);
     const navigate = useNavigate()
     const { id } = useParams()
@@ -28,7 +29,7 @@ export const EditarCliente = () => {
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         documento: /^\d{9,10}$/,
         celular: /^\d{10}$/
-      };
+    };
 
     //procedimiento para actualizar
     const update = async (e) => {
@@ -43,112 +44,153 @@ export const EditarCliente = () => {
         /* navigate('/clientes') */
     }
 
-    useEffect(() => {
+/*     useEffect(() => {
         getClienteById()
-    }, [])
+    }, []) */
 
-    const getClienteById = async () => {
+ /*    const getClienteById = async () => {
         const res = await axios.get(URI + id)
-        setDocumento(res.data.cedCliente )
-        setNombre(res.data.nombre)
-        setCorreo(res.data.correo)
-        setDireccion(res.data.direccion)
-        setCelular(res.data.celular)
+        valore res.data.cedCliente ,
+        nombre :res.data.nombre ,
+        correo: res.data.correo ,
+        direccion: res.data.direccion ,
+        celular: res.data.celular 
         console.log(res);
-    }
+    } */
 
     return (
-        <section className="registro-cliente m-4">
-            <Titulo textTitulo={"Editar Cliente:"} />
-            <section className="formulario d-flex align-items-center justify-content-center p-4">
-                <form action="" className="formulario-clientes row col-12 d-flex g-3 " onSubmit={update}>
+        <>
+            <section className="registro-cliente m-4">
+                <Titulo textTitulo={"Editar:"} />
+                <section className="formulario d-flex align-items-center justify-content-center p-4">
 
-                    <FormInput classSection={'col-3'}
-                        estado={documento}
-                        cambiarEstado={setDocumento}
-                        classInput={"item-form"}
-                        tipoInput={"text"}
-                        infomacionInput={"Documento: "}
-                        inputId={'documento'} inputName={'documento'}
-                        
-                        /*onChange={(e) => { setDocumento(e.target.value) }}*/
-                        /*onkeypress={"if (e.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"}*/
-                        onkeypress={(e) => { if (e.keyCode < 48 || e.keyCode > 57) e.returnValue = false }}
-                        maxlength="10"
-                        pattern={"[0-9]{9,10}"}
-                        title='Sólo números. Minímo 9, Máximo 10 digitos'
-                        expresionRegular={expresionRegular.documento}
+                    <Formik
+                        initialValues={{
+                            documento: '',
+                            nombre: '',
+                            correo: '',
+                            direccion: '',
+                            celular: ''
+                        }}
 
-                    />
+                        validate={(valores) => {
+                            let errores = {};
 
-                    <FormInput classSection={'col-4'}
-                        estado={nombre}
-                        cambiarEstado={setNombre}
-                        classInput={"item-form"}
-                        tipoInput={"text"}
-                        infomacionInput={"Nombre: "}
-                        inputId={'nombre'}
-                        inputName={'nombre'}
-                       
-                        /*onChange={(e) => { setNombre(e.target.value) }}*/
-                        title='Minímo 3 letras,máximo 35'
-                        pattern={"[A-Za-zÀ-ÿ ]{2,35}"}
-                        maxlength={35}
-                        expresionRegular={expresionRegular.nombre}
-                    />
+                            if (!valores.documento) {
+                                errores.documento = 'Por favor ingresa un documento'
+                            } else if (!expresionRegular.documento.test(valores.documento)) {
+                                errores.documento = 'El documento debe minimo 9 máximo 10 digitos'
+                            }
 
-                    <FormInput classSection={'col-5'}
-                        estado={correo}
-                        cambiarEstado={setCorreo}
-                        classInput={"item-form"}
-                        tipoInput={"email"}
-                        infomacionInput={"Correo: "}
-                        inputId={'correo'}
-                        inputName={'correo'}
-                        
-                        expresionRegular={expresionRegular.correo}
-                    /*onChange={(e) => { setCorreo(e.target.value) }}*/
-                    />
+                            if (!valores.nombre) {
+                                errores.nombre = 'Por favor ingresa un nombre'
+                            } else if (!expresionRegular.nombre.test(valores.nombre)) {
+                                errores.nombre = 'El nombre solo puede contener letras y espacios'
+                            }
 
-                    <FormInput classSection={'col-5'}
-                        estado={direccion}
-                        cambiarEstado={setDireccion}
-                        classInput={"item-form"}
-                        tipoInput={"text"}
-                        infomacionInput={"Direccion: "}
-                        inputId={'direccion'}
-                        inputName={'direccion'}
-                        title='La dirección minima de 5 letras'
-                        pattern={"[A-Za-z0-9À-ÿ ,-_#]{7,50}"}
-                        expresionRegular={/^[A-Za-z0-9À-ÿ ,-_]{7,50}$/}
-                    /*onChange={(e) => { setDireccion(e.target.value) }}*/
-                    />
+                            if (!valores.correo) {
+                                errores.correo = 'Por favor ingresa un correo'
+                            } else if (!expresionRegular.correo.test(valores.correo)) {
+                                errores.correo = 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
+                            }
 
-                    <FormInput classSection={'col-3'}
-                        estado={celular}
-                        cambiarEstado={setCelular}
-                        classInput={"item-form"}
-                        tipoInput={"text"}
-                        infomacionInput={"Celular: "}
-                        inputId={'celular'}
-                        inputName={'celular'}
-                        /*onChange={(e) => { setCelular(e.target.value) }}*/
-                        expresionRegular={expresionRegular.celular}
-                        pattern={"[0-9]{10}"}
-                        title='El celular debe ser de 10 digitos'
-                        maxlength="10" />
-                    {formularioValido === false &&
-                        <Mensaje classMensaje={'alert alert-danger'}
-                            mensaje={'Campos incorrectos o faltan por rellenar.'} />
-                    }
-                    <Button clase={'form-button d-flex justify-content-center col-12'}
-                        classButton={'guardar form-button col-3'}
-                        textButton={'Actualizar'} type={'submit'} />
-                </form>
+                            if (!valores.direccion) {
+                                errores.direccion = 'Por favor ingresa un direccion'
+                            } /*else if (!expresionRegular.direccion.test(valores.direccion)) {
+                errores.direccion = 'El direccion debe contener @ ,.'
+              }*/
+                            if (!valores.celular) {
+                                errores.celular = 'Por favor ingresa un celular'
+                            } else if (!expresionRegular.celular.test(valores.celular)) {
+                                errores.celular = 'El celular solo puede contener numeros'
+                            }
+                            return errores;
+                        }}
+
+                        onSubmit={(valores, { resetForm }) => {
+                            console.table(valores)
+                            documento = valores.documento
+                            console.log(documento)
+                            nombre = valores.nombre
+                            console.log(nombre)
+                            correo = valores.correo
+                            console.log(correo)
+                            direccion = valores.direccion
+                            console.log(direccion)
+                            celular = valores.celular
+                            console.log(celular)
+                            createCliente()
+                            correcto();
+
+                            /* cambiarFormularioEnviado(true); */
+                            resetForm();
+                        }}
+                    >
+                        {({ errors, touched }) => (
+                            <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
+                                <Form className="formulario-clientes row col-12 d-flex g-3 ">
+                                    <FormInput
+                                        classSection={"col-3"}
+                                        title={"Documento:"}
+                                        error={errors.documento}
+                                        touched={touched.documento}
+                                        tipoInput={"text"}
+                                        inputId={"documento"}
+                                        inputName="documento"
+                                        inputPlaceholder={"10364845"}
+                                        maxlength="10"
+                                    />
+                                    <FormInput
+                                        classSection={"col-4"}
+                                        title={"Nombre:"}
+                                        error={errors.nombre}
+                                        touched={touched.nombre}
+                                        tipoInput={"text"}
+                                        inputId={"nombre"}
+                                        inputName="nombre"
+                                        inputPlaceholder={"Juan Perez"}
+                                    />
+                                    <FormInput
+                                        classSection={"col-5"}
+                                        title={"Correo:"}
+                                        error={errors.correo}
+                                        touched={touched.correo}
+                                        tipoInput={"email"}
+                                        inputId={"correo"}
+                                        inputName="correo"
+                                        inputPlaceholder={"juanperez@gmail.com"}
+                                    />
+                                    <FormInput
+                                        classSection={"col-5"}
+                                        title={"Dirección :"}
+                                        error={errors.direccion}
+                                        touched={touched.direccion}
+                                        tipoInput={"text"}
+                                        inputId={"direccion"}
+                                        inputName="direccion"
+                                        inputPlaceholder={"CLL 20 A #10"}
+                                    />
+                                    <FormInput
+                                        classSection={"col-4"}
+                                        title={"Celular :"}
+                                        error={errors.celular}
+                                        touched={touched.celular}
+                                        tipoInput={"text"}
+                                        inputId={"celular"}
+                                        inputName="celular"
+                                        inputPlaceholder={"3225556898"}
+                                        maxlength="10"
+                                    />
+                                    <Button clase={'form-button d-flex justify-content-center col-12'}
+                                        classButton={'guardar form-button col-3'}
+                                        textButton={'Guardar'} type={'submit'} />
+                                </Form>
+                            </section>
+                        )}
+                    </Formik>
+                </section>
             </section>
+        </>
 
-
-
-        </section>
     )
 }
