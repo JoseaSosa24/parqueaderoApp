@@ -69,7 +69,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
         <Titulo textTitulo={"Registros Ingresos: "} tittle={'me-4'} />
         <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
       </section>
-    <section className="tablaRegistros d-flex justify-content-center align-items-start ">
+    <section className="tabla-registros d-flex justify-content-center align-items-start ">
       <table id="tabla">
         <thead>
           <tr>
