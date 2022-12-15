@@ -172,7 +172,17 @@ export const EditarProducto = () => {
                         )}
                     </Formik>
                 </section>
-                <Link className="mt-3 m-3 btn btn-info " to={"/productos"}>Regresar</Link>
+                <Link className="btn botones" to={"/productos"}>
+                    <button className="botones">
+                        <img
+                            className="iconos-botones-regresar"
+                            src={"../../../../../src/assets/icons/regreso.png"}
+                            alt="logo"
+                            width="40px "
+                            height="40px"
+                        />
+                    </button>
+                </Link>
             </section>
         </>
 

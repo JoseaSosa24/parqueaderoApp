@@ -359,3 +359,21 @@ tbody tr {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
 }
+
+.botones{
+  border: none;
+  background-color: #3d5656;
+  height: 50px; width: 50px; border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconos-botones-regresar{
+  transition: 1s;
+
+}
+
+.iconos-botones-regresar:hover{
+  transform: scale(1.2);
+}
