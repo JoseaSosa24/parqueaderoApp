@@ -30,8 +30,9 @@ export const TableVentas = ({
     return (
         <>
 
-            <section className="seccion-buscar-cliente1 d-flex mt-4">
+            <section className="seccion-buscar d-flex mt-4">
                 <Titulo textTitulo={"Listado Ventas: "} tittle={'me-4'} />
+                <section className=" d-flex">
                 <button className="btn botones-2" onClick={getVentas
                 }><img
                         className="iconos-botones-cargar"
@@ -43,6 +44,8 @@ export const TableVentas = ({
                 <Buscar
                     inputbuscar={"input-buscar fst-italic"}
                     search={'Documento cliente'} />
+                </section>
+                
             </section>
             <section className="tabla-registros d-flex justify-content-center align-items-start ">
                 <table className="" id="tabla">
