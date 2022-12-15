@@ -55,6 +55,7 @@ const mostrarCliente = async (req, res) => {
 const editarCliente = async (req, res) => {
 
     try {
+        const { Op }= Sequelize
         await Cliente.update(req.body, {
             where: {
                 [Op.or]: [

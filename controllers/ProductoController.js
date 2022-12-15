@@ -34,23 +34,28 @@ const mostrarProducto = async (req, res) => {
 
     } catch (error) {
         res.json({
-            message: "El Producto no se puedo mostrar " + error
+            message: "Error al mostrar al producto " + error,
+            estado: false
         });
     }
 }
 
 const editarProducto = async (req, res) => {
     try {
-        await Producto.update(req.body, {
-            where: { idProducto: req.params.id }
+        const { Op }= Sequelize
+        await Producto.update(req.body,{
+            where: {idProducto: req.params.id }  
+            
         });
         res.json({
-            message: "El producto se ha actualizado correctamente "
+            message: "El producto se ha actualizado correctamente ",
+            estado: true
         });
 
     } catch (error) {
         res.json({
-            message: "El producto no se puede editar " + error
+            message: "Error al editar producto" + error,
+            estado: false
         });
     }
 
@@ -59,7 +64,6 @@ const editarProducto = async (req, res) => {
 const borrarProducto = async (req, res) => {
 
     try {
-
         await Producto.destroy({
             where: { idProducto: req.params.id }
         });
