@@ -39,6 +39,7 @@ export const TableClientes = ({
       text: "¿Estás seguro de eliminar este cliente?",
       icon: "warning",
       buttons: ["No", "Sí"],
+      dangerMode: true
     }).then((value) => {
       if (value) {
         deleteCliente(id);
@@ -97,12 +98,12 @@ export const TableClientes = ({
         <Titulo textTitulo={"Listado Clientes"} />
         <button className="btn botones-2" onClick={getClientes
         }><img
-        className="iconos-botones-cargar"
-          src={"../../../../../src/assets/icons/girar.png"}
-          alt=""
-          width="40px "
-          height="40px"
-        /></button>
+            className="iconos-botones-cargar"
+            src={"../../../../../src/assets/icons/girar.png"}
+            alt=""
+            width="40px "
+            height="40px"
+          /></button>
         <Buscar
           inputbuscar={"input-buscar fst-italic"}
           search={"Ingrese documento"}
@@ -159,8 +160,9 @@ export const TableClientes = ({
                     onClick={() => {
                       confirmacion(client.idCliente);
                     }}
-                  ><img
-                    className="iconos-botones"
+                  >
+                    <img
+                      className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
                       alt=""
                       width="40px "
@@ -182,7 +184,7 @@ export const TableClientes = ({
                 <button className="btn botones" onClick={regresar}>
                   {" "}
                   <img
-                  className="iconos-botones"
+                    className="iconos-botones"
                     src={"../../../../../src/assets/icons/regreso.png"}
                     alt=""
                     width="40px "

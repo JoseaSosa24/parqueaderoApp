@@ -7,30 +7,38 @@ import { Button } from "../Button";
 import { TableVentas } from '../table/TableVentas';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Navigate, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 /* constuyendo() */
 
 
-/* useEffect(() => {
-  constuyendo
-}, []);
- */
-function constuyendo() {
-  const navigate = useNavigate()
-    swal({
-      title: "Modlo en contrucción :)",
-      text: "Este modulo está en desarrollo",
-      icon: "success",
-      buttons: "ok"
-    })
-    navigate('/') 
-}
+
 
 
 
 export const Ventas = () => {
+  const navigate = useNavigate()
   let documentoCliente, idProducto, producto, cantidad;
+  useEffect(() => {
+    construyendo()
+  }, []);
 
+  const construyendo = (e) => {
+    swal({
+      title: "Modúlo Ventas en construcción",
+      text: "El modúlo ventas está en proceso de desarrollo",
+      icon: "info",
+      buttons: "ok",
+      closeOnClickOutside: false,
+      closeOnEsc: false,
+      
+    }).then((value) => {
+      if (value) {
+        navigate('/');
+       
+      }
+    })
+  }
   return (
     <>
       <section className="registro-venta m-4 d-flex flex-column justify-content-center">
@@ -84,7 +92,7 @@ export const Ventas = () => {
             {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-venta row col-12 d-flex g-3">
-                
+
                   <FormInput classSection={'col-3'}
                     title={"Documento Cliente:"}
                     error={errors.documentoCliente}
@@ -141,7 +149,7 @@ export const Ventas = () => {
           textoColumna5={"Valor"}
           textoColumna6={"Accion"}
         />
-        
+
       </section >
     </>
   )

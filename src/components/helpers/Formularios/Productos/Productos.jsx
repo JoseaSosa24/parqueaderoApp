@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Titulo } from "../Titulo";
-import { FormInput } from "../FormInput";
-import { Buscar } from "../Buscar";
+import { FormInput2 } from "../FormInput2";
 import { TableProductos } from "../table/TableProductos";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
@@ -104,7 +103,7 @@ export const Productos = () => {
             {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                  <FormInput
+                  <FormInput2
                     classSection={"col-5"}
                     title={"Nombre Producto:"}
                     error={errors.nombreProducto}
@@ -114,7 +113,7 @@ export const Productos = () => {
                     inputName="nombreProducto"
                     inputPlaceholder={"Casco"}
                   />
-                  <FormInput
+                  <FormInput2
                     classSection={"col-4"}
                     title={"Precio:"}
                     error={errors.precio}
@@ -124,7 +123,7 @@ export const Productos = () => {
                     inputName="precio"
                     inputPlaceholder={"50000"}
                   />
-                  <FormInput
+                  <FormInput2
                     classSection={"col-3"}
                     title={"Inventario:"}
                     error={errors.inventario}
@@ -158,11 +157,11 @@ export const Productos = () => {
               className="formulario-clientes row col-12 d-flex g-3"
               onSubmit={createProducto}
             > */}
-          {/*  <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
+          {/*  <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
             onChange={(e) => { setNombreProducto(e.target.value) }} />
-          <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Precio: "} inputId={'precio'} inputName={'precio'} inputPlaceholder={'50000'}
+          <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Precio: "} inputId={'precio'} inputName={'precio'} inputPlaceholder={'50000'}
             onChange={(e) => { setPrecio(e.target.value) }} />
-          <FormInput classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Inventario: "} inputId={'inventario'} inputName={'inventario'} inputPlaceholder={'50'}
+          <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Inventario: "} inputId={'inventario'} inputName={'inventario'} inputPlaceholder={'50'}
             onChange={(e) => { setInventario(e.target.value) }} />
           <TextArea classSection={'col-12'} classInput={"item-form"} idTextArea={'descripcion'} nameTextArea={'descripcion'}
             onChange={(e) => { setdescripcion(e.target.value) }} />

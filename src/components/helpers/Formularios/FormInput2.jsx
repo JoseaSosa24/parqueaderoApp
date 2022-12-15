@@ -1,7 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 
-export const FormInput = ({ value, onChange, classSection, infomacionInput, inputId, error, touched, classInput, tipoInput, inputName,
+export const FormInput2 = ({ value, onChange, classSection, infomacionInput, inputId, error, touched, classInput, tipoInput, inputName,
   inputPlaceholder, expresionRegular, title,
   maxlength }) => {
 
@@ -19,8 +19,7 @@ export const FormInput = ({ value, onChange, classSection, infomacionInput, inpu
           name={inputName}
           placeholder={inputPlaceholder}
           maxLength={maxlength}
-          value={value}
-          onChange={onChange}
+          
 
         />
         <ErrorMessage name={inputName} component={() => (<p className="textoError text-danger">{error}</p>)} />

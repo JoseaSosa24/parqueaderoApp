@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Titulo } from "../Titulo";
-import { FormInput } from "../FormInput";
+import { FormInput2 } from "../FormInput2";
 import { Buscar } from "../Buscar";
 import { TableIngresos } from '../table/TableIngresos'
 import axios from "axios";
@@ -95,7 +95,7 @@ export const Ingresos = () => {
             {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 justify-content-evenly" >
-                  <FormInput classSection={'col-4'}
+                  <FormInput2 classSection={'col-4'}
                     title={"Documento Cliente:"}
                     error={errors.documentoCliente}
                     touched={touched.documentoCliente}
@@ -105,7 +105,7 @@ export const Ingresos = () => {
                     inputPlaceholder={"10364845"}
                     maxlength="10"
                   />
-                  <FormInput classSection={'col-4'}
+                  <FormInput2 classSection={'col-4'}
                     title={"Placa Moto:"}
                     error={errors.placaMoto}
                     touched={touched.placaMoto}
@@ -115,7 +115,7 @@ export const Ingresos = () => {
                     inputPlaceholder={"ABC123"}
                     maxlength="6"
                   />
-                  <FormInput classSection={'col-3'}
+                  <FormInput2 classSection={'col-3'}
                     title={"Horas:"}
                     error={errors.horas}
                     touched={touched.horas}

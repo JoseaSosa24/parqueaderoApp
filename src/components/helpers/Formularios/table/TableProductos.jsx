@@ -27,6 +27,7 @@ export const TableProductos = ({
       text: "¿Estás seguro de eliminar este producto?",
       icon: "warning",
       buttons: ["No", "Sí"],
+      dangerMode: true
     }).then(async (value) => {
       if (value) {
         const res = await axios.delete(`${URI}/${id}`);
@@ -162,7 +163,7 @@ export const TableProductos = ({
                 <td>{producto.descripcion}</td>
                 <td>{producto.inventario}</td>
                 <td>
-                  <Link>
+                  <Link to={"editarProducto/"+producto.idProducto}>
                     <button className="btn botones">
                       <img
                         className="iconos-botones"
