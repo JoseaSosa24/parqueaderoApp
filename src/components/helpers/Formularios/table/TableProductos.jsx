@@ -203,6 +203,34 @@ export const TableProductos = ({
               <td>{descripcion}</td>
               <td>{inventario}</td>
               <td>
+              <Link to={"editarProducto/"+ idProducto}>
+                    <button className="btn botones">
+                      <img
+                        className="iconos-botones"
+                        src={"../../../../../src/assets/icons/Editar.png"}
+                        alt=""
+                        width="40px "
+                        height="40px"
+                      />
+                    </button>
+                  </Link>
+
+                  <button
+                    className="btn botones"
+                    onClick={() => {
+                      deleteProductos(idProducto);
+                      regresar();
+                    }}
+                  >
+                    {" "}
+                    <img
+                      className="iconos-botones"
+                      src={"../../../../../src/assets/icons/Eliminar.png"}
+                      alt=""
+                      width="40px "
+                      height="40px"
+                    />
+                  </button>
                 <button className="btn botones" onClick={regresar}>
                   {" "}
                   <img

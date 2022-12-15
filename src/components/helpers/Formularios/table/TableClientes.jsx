@@ -52,6 +52,7 @@ export const TableClientes = ({
     });
   };
 
+  const [idCliente, setIdCliente] = useState();
   const [documento, setDocumento] = useState('');
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
@@ -66,6 +67,7 @@ export const TableClientes = ({
     console.log(id)
     let res = await axios.get(URI + '/' + id)
     console.log(res)
+    setIdCliente(res.data.idCliente)
     setDocumento(res.data.cedCliente);
     console.log(res.data.cedCliente);
     setCorreo(res.data.correo);
@@ -174,23 +176,48 @@ export const TableClientes = ({
             ))}
           </tbody>
           <tbody style={trById}>
-            <tr>
+            <tr key={idCliente}>
               <td>{documento}</td>
               <td>{nombre}</td>
               <td>{correo}</td>
               <td>{direccion}</td>
               <td>{celular}</td>
               <td>
-                <button className="btn botones" onClick={regresar}>
-                  {" "}
-                  <img
-                    className="iconos-botones"
-                    src={"../../../../../src/assets/icons/regreso.png"}
-                    alt=""
-                    width="40px "
-                    height="40px"
-                  />
-                </button>
+              <Link to={"editarCliente/" + id}>
+                    <button className="btn botones">
+                      <img className="iconos-botones"
+                        src={"../../../../../src/assets/icons/Editar.png"}
+                        alt=""
+                        width="40px "
+                        height="40px"
+                      />
+                    </button>
+                  </Link>
+                  <button
+                    className="btn botones"
+                    onClick={() => {
+                      confirmacion(idCliente);
+                      regresar()
+                    }}
+                  >
+                    <img
+                      className="iconos-botones"
+                      src={"../../../../../src/assets/icons/Eliminar.png"}
+                      alt=""
+                      width="40px "
+                      height="40px"
+                    />
+                  </button>
+                  <button className="btn botones" onClick={regresar}>
+                    {" "}
+                    <img
+                      className="iconos-botones"
+                      src={"../../../../../src/assets/icons/regreso.png"}
+                      alt=""
+                      width="40px "
+                      height="40px"
+                    />
+                  </button>
               </td>
             </tr>
           </tbody>

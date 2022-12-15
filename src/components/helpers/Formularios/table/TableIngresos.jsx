@@ -27,7 +27,6 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
   }
 
   const [idIngreso, setIdIngreso] = useState('');
-
   const [idCliente, setIdCliente] = useState('');
   const [placa, setPlaca] = useState('');
   const [fechaIngreso, setFechaIngreso] = useState('');
@@ -42,6 +41,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
     console.log(id)
     let res = await axios.get(URI+'/'+id)
     console.log(res)
+    setIdIngreso(res.data.idIngreso)
     setIdCliente(res.data.idCliente);
     setPlaca(res.data.placaMoto)
     setFechaIngreso(res.data.fechaIngreso)
@@ -101,7 +101,16 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                       />
                     </button>
                   </Link>
-                <button className="btn btn-danger" onClick={() => { deleteIngresos(ingres.idIngreso) }}>De</button>  
+                <button className="btn btn-danger" onClick={() => { deleteIngresos(ingres.idIngreso) }}>
+                <img
+                className="iconos-botones"
+                src={"../../../../../src/assets/icons/Eliminar.png"}
+                alt=""
+                width="40px "
+                height="40px"
+              />
+                  
+                  </button>  
                 </td>
 
             </tr>
@@ -111,13 +120,37 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
         </tbody>
         <tbody style={trById}>
-          <tr >
+          <tr key={idIngreso}>
                 <td>{idCliente}</td>
                 <td>{placa}</td>
                 <td>{fechaIngreso}</td>
                 <td>{horaIngreso}</td>
                 <td>{horasTotales}</td>
                 <td>
+                <Link to={"editarIngresos/" + idIngreso}>
+                    <button className="btn botones">
+                      <img className="iconos-botones"
+                        src={"../../../../../src/assets/icons/Editar.png"}
+                        alt=""
+                        width="40px "
+                        height="40px"
+                      />
+                    </button>
+                  </Link>
+                <button className="btn btn-danger" 
+                onClick={() => { 
+                  deleteIngresos(idIngreso)
+                  regresar();
+                  }}>
+                    
+                <img
+                className="iconos-botones"
+                src={"../../../../../src/assets/icons/Eliminar.png"}
+                alt=""
+                width="40px "
+                height="40px"
+              />
+              </button>  
                   
                   <button className="" onClick={regresar}>regresar</button>  
                 </td>
