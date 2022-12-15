@@ -135,7 +135,7 @@ export const Productos = () => {
                   />
                   <section className={"textarea col-12"}>
                     <h3 className={!(errors.descripcion && touched.descripcion) ? "text-white fs-5" : "text-danger fs-5"}>Descripción:</h3>
-                    <Field className={!(errors.descripcion && touched.descripcion) ? "textarea" : "border border-danger border-3 rounded-4"}
+                    <Field className={!(errors.descripcion && touched.descripcion) ? "textarea p-3" : "border border-danger border-3 rounded-4 p-3"}
                       component="textarea"
                       id="descripcion"
                       name="descripcion"

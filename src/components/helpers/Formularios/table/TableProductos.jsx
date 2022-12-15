@@ -113,9 +113,10 @@ export const TableProductos = ({
 
   return (
     <>
-      <section className="seccion-buscar2 d-flex mt-4">
+      <section className="seccion-buscar d-flex mt-4">
         <Titulo textTitulo={"Listado Productos"} tittle={"tittle"} />
-        <button className="btn botones-2" onClick={getProductos
+        <section className="d-flex">
+        <button className="btn" onClick={getProductos
         }><img
         className="iconos-botones-cargar"
           src={"../../../../../src/assets/icons/girar.png"}
@@ -129,6 +130,8 @@ export const TableProductos = ({
           onSubmit={buscarPorId}
           onChange={pulsarBuscar}
         />
+        </section>
+       
       </section>
       <section className="tabla-registros d-flex justify-content-center align-items-start ">
         <table className="" id="tabla">

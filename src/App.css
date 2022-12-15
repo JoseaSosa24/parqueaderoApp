@@ -232,7 +232,9 @@ textarea {
 
 .seccion-buscar {
   width: 100%;
-  gap: 16%;
+  /* gap: 16%; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .seccion-buscar2 {
@@ -318,9 +320,9 @@ tr td {
 }
 
 .botones-2 {
-  margin-left: -15%;
-  margin-top: -1%;
-  margin-right: 36%;
+  /* margin-left: -15%; */
+  /* margin-top: -1%; */
+  /* margin-right: 36%; */
 }
 .botones{
  padding-right: 15%;
