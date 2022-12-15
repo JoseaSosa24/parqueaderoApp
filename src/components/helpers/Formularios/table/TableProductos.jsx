@@ -27,6 +27,7 @@ export const TableProductos = ({
       text: "¿Estás seguro de eliminar este producto?",
       icon: "warning",
       buttons: ["No", "Sí"],
+      dangerMode: true
     }).then(async (value) => {
       if (value) {
         const res = await axios.delete(`${URI}/${id}`);
