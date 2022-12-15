@@ -37,6 +37,7 @@ export const TableProductos = ({
             text: res.data.message,
             icon: "success",
           });
+          regresar();
         } else {
           console.log(res.data.messageError);
           swal({
@@ -222,7 +223,7 @@ export const TableProductos = ({
                     className="btn botones"
                     onClick={() => {
                       deleteProductos(idProducto);
-                      regresar();
+                    
                     }}
                   >
                     {" "}

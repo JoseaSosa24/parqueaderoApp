@@ -51,6 +51,25 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
     setTrById({ display: "" })
 
   }
+  
+  const confirmacion = (id) => {
+    swal({
+      title: "Eliminar",
+      text: "¿Estás seguro de eliminar este ingreso?",
+      icon: "warning",
+      buttons: ["No", "Sí"],
+      dangerMode: true
+    }).then((value) => {
+      if (value) {
+        deleteIngresos(id);
+        swal({
+          title: "Confirmación Eliminación",
+          text: "¡Cliente eliminado correctamente!",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const pulsarBuscar = (e) => {
     setId(e.target.value)
@@ -119,7 +138,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                     </button>
                   </Link>
                   <button className="btn botones"
-                    onClick={() => { deleteIngresos(ingres.idIngreso) }}>
+                    onClick={() => {  confirmacion(ingres.idCliente) }}>
                     <img
                       className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
@@ -155,7 +174,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                   </Link>
                 <button className="btn botones" 
                 onClick={() => { 
-                  deleteIngresos(idIngreso)
+                  confirmacion(idIngreso)
                   regresar();
                   }}>
                     

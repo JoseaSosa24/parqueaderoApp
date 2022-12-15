@@ -47,9 +47,12 @@ export const TableClientes = ({
           title: "Confirmación Eliminación",
           text: "¡Cliente eliminado correctamente!",
           icon: "success",
+          
         });
+        regresar()
       }
     });
+    
   };
 
   const [idCliente, setIdCliente] = useState();
@@ -200,7 +203,6 @@ export const TableClientes = ({
                     className="btn botones"
                     onClick={() => {
                       confirmacion(idCliente);
-                      regresar()
                     }}
                   >
                     <img

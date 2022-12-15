@@ -83,7 +83,7 @@ export const Clientes = () => {
               if (!valores.documento) {
                 errores.documento = 'Por favor ingresa un documento'
               } else if (!expresionRegular.documento.test(valores.documento)) {
-                errores.documento = 'El documento debe minimo 9 máximo 10 digitos'
+                errores.documento = 'El documento debe tener mínimo 9 máximo 10 digitos númericos'
               }
 
               if (!valores.nombre) {

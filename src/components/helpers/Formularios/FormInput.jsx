@@ -21,6 +21,7 @@ export const FormInput = ({ value, onChange, classSection, infomacionInput, inpu
           maxLength={maxlength}
           value={value}
           onChange={onChange}
+          
 
         />
         <ErrorMessage name={inputName} component={() => (<p className="textoError text-danger">{error}</p>)} />

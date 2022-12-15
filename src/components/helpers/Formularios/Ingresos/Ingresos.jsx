@@ -65,9 +65,9 @@ export const Ingresos = () => {
               if (!valores.documentoCliente) {
                 errores.documentoCliente = 'Por favor ingresa un documento'
               }
-              /* else if (!expresionRegular.documento.test(valores.documentoCliente)) {
-                 errores.documentoCliente = 'El documento debe minimo 9 máximo 10 digitos'
-               }*/
+              else if (!expresionRegular.documento.test(valores.documentoCliente)) {
+                 errores.documentoCliente = 'El documento debe tener mínimo 9 máximo 10 digitos númericos'
+               }
               if (!valores.placaMoto) {
                 errores.placaMoto = 'Por favor ingresa un documento'
               } else if (!expresionRegular.placaMoto.test(valores.placaMoto)) {
