@@ -68,6 +68,14 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Listado Ingresos: "} tittle={'me-4'} />
+        <button className="btn botones-2" onClick={ getIngresos
+        }><img
+            className="iconos-botones-cargar"
+            src={"../../../../../src/assets/icons/girar.png"}
+            alt=""
+            width="40px "
+            height="40px"
+          /></button>
         <Buscar inputbuscar={"input-buscar fst-italic"} search={'Ingrese placa'} button={'ms-3'} onSubmit={buscarPorId} onChange={pulsarBuscar} />
       </section>
       <section className="tabla-registros d-flex justify-content-center align-items-start ">
