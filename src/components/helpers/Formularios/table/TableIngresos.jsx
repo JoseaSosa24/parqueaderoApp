@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Titulo } from "../Titulo";
 import { Buscar } from "../Buscar";
+import { Link } from "react-router-dom";
 
 const URI = 'http://localhost:3100/ingresos';
 
@@ -89,9 +90,19 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{ingres.fechaIngreso}</td>
               <td>{ingres.horaIngreso}</td>
               <td>{ingres.horasTotales}</td>
-              <td>
-                <button className="btn btn-success">Editar</button>
-                <button className="btn btn-danger" onClick={() => { deleteIngresos(ingres.idIngreso) }}>De</button>  </td>
+              <td className="td-accion">
+              <Link to={"editarIngresos/" + ingres.idIngreso}>
+                    <button className="btn botones">
+                      <img className="iconos-botones"
+                        src={"../../../../../src/assets/icons/Editar.png"}
+                        alt=""
+                        width="40px "
+                        height="40px"
+                      />
+                    </button>
+                  </Link>
+                <button className="btn btn-danger" onClick={() => { deleteIngresos(ingres.idIngreso) }}>De</button>  
+                </td>
 
             </tr>
           )
