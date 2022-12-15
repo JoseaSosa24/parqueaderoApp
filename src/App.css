@@ -116,6 +116,7 @@ transform: rotate(360deg);
   margin-bottom: 17%;
 }
 
+
 .contenedor-inferior-iconos {
   width: 80%;
   display: flex;
@@ -238,10 +239,19 @@ textarea {
   width: 100%;
   gap: 15%;
 }
+.seccion-buscar3 {
+  width: 100%;
+  gap: 12%;
+}
+
 
 .seccion-buscar-cliente {
   width: 100%;
   gap: 52.3%;
+}
+.seccion-buscar-cliente1 {
+  width: 100%;
+  gap: 15%;
 }
 
 .search {
@@ -312,15 +322,21 @@ tr td {
   margin-top: -1%;
   margin-right: 36%;
 }
-
+.botones{
+ padding-right: 15%;
+}
 /*registro vetas*/
 .registro-venta {
   height: 100%;
 }
-.cantidad-fecha {
+/* .cantidad-fecha {
   display: flex;
   margin-left: 25%;
   gap: 8%;
+} */
+
+.cantidad{
+  margin-left: 17%;
 }
 .formulario-venta {
   background-color: #3d5656;

@@ -5,7 +5,15 @@ import { Titulo } from "../Titulo";
 import { Buscar } from "../Buscar";
 const URI = 'http://localhost:3100/ventas';
 
-export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
+export const TableVentas = ({
+    textoColumna1,
+    textoColumna2,
+    textoColumna3,
+    textoColumna4,
+    textoColumna5,
+    textoColumna6,
+    tdId
+}) => {
 
     const [ventas, setVentas] = useState([]);
     const getVentas = async () => {
@@ -21,40 +29,66 @@ export const TableVentas = ({ textoColumna1, textoColumna2, textoColumna3, texto
     }, [])
     return (
         <>
-        
-      <section className="seccion-buscar-cliente d-flex mt-4">
-      <Titulo textTitulo={"Ventas Registradas: "} tittle={'me-4'} />
-      <Buscar inputbuscar={"input-buscar fst-italic"} search={'Documento cliente'} />
-    </section>
-        <section className="tabla-registros d-flex justify-content-center align-items-start ">
-            <table className="" id="tabla">
-                <thead>
-                    <tr>
-                        <td className="td-principal" id={tdId}>{textoColumna1}</td>
-                        <td className="td-principal" id={tdId}>{textoColumna2}</td>
-                        <td className="td-principal" id={tdId}>{textoColumna3}</td>
-                        <td className="td-principal" id={tdId}>{textoColumna4}</td>
-                        <td className="td-principal" id={tdId}>{textoColumna5}</td>
-                        <td className="td-principal" id={tdId}>{textoColumna6}</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ventas.map((venta) => (
-                        <tr key={venta.idVenta}>
-                            <td>{ }</td>
-                            <td>{ }</td>
-                            <td>{venta.fechaVenta}</td>
-                            <td>{ }</td>
-                            <td>{ }</td>
-                            <td>
-                                <button className="btn btn-success">Editar</button>
-                                <button className="btn btn-danger" onClick={() => { deleteVentas(venta.idVenta) }}>De</button>  </td>
+
+            <section className="seccion-buscar-cliente1 d-flex mt-4">
+                <Titulo textTitulo={"Listado Ventas: "} tittle={'me-4'} />
+                <button className="btn botones-2" onClick={getVentas
+                }><img
+                        className="iconos-botones-cargar"
+                        src={"../../../../../src/assets/icons/girar.png"}
+                        alt=""
+                        width="40px "
+                        height="40px"
+                    /></button>
+                <Buscar
+                    inputbuscar={"input-buscar fst-italic"}
+                    search={'Documento cliente'} />
+            </section>
+            <section className="tabla-registros d-flex justify-content-center align-items-start ">
+                <table className="" id="tabla">
+                    <thead>
+                        <tr>
+                            <td className="td-principal" id={tdId}>{textoColumna1}</td>
+                            <td className="td-principal" id={tdId}>{textoColumna2}</td>
+                            <td className="td-principal" id={tdId}>{textoColumna3}</td>
+                            <td className="td-principal" id={tdId}>{textoColumna4}</td>
+                            <td className="td-principal" id={tdId}>{textoColumna5}</td>
+                            <td className="td-principal" id={tdId}>{textoColumna6}</td>
                         </tr>
-                    )
-                    )}
-                </tbody>
-            </table>
-        </section>
+                    </thead>
+                    <tbody>
+                        {ventas.map((venta) => (
+                            <tr key={venta.idVenta}>
+                                <td>{ }</td>
+                                <td>{ }</td>
+                                <td>{venta.fechaVenta}</td>
+                                <td>{ }</td>
+                                <td>{ }</td>
+                                <td className="td-accion">
+                                    <section className="botones">
+                                        <img
+                                            className="iconos-botones"
+                                            src={"../../../../../src/assets/icons/Editar.png"}
+                                            alt=""
+                                            width="40px "
+                                            height="40px"
+                                        />
+                                        <img
+                                            className="iconos-botones"
+                                            src={"../../../../../src/assets/icons/Eliminar.png"}
+                                            alt=""
+                                            width="40px "
+                                            height="40px" />
+
+
+
+                                    </section>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </section>
         </>
     );
 };
