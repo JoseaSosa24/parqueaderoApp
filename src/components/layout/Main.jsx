@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { PaginaError404 } from "../helpers/Error/PaginaError404";
 import { EditarCliente } from "../helpers/Formularios/Clientes/EditarCliente";
 import { EditarProducto } from "../helpers/Formularios/Productos/EditarProducto";
+import { Editaringreso } from "../helpers/Formularios/Ingresos/EditarIngreso";
 
 
 export const Main = () => {
@@ -58,7 +59,9 @@ export const Main = () => {
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/editarProducto/:id' element={<EditarProducto />} />
         <Route path='/ingresos' element={<Ingresos />} />
+        <Route path="/ingresos/editarIngresos/:id" element = {<Editaringreso />} />
         <Route path='/ventas' element={<Ventas />} />
+        
       </Routes>
       {/* <RouterProvider router={router} /> */}
     </main>
