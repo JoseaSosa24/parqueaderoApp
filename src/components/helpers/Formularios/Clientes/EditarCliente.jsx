@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const URI = 'http://localhost:3100/clientes/'
 
@@ -106,7 +106,7 @@ export const EditarCliente = () => {
     return (
         <>
             <section className="registro-cliente m-4">
-                <Titulo textTitulo={"Editar:"} />
+                <Titulo textTitulo={"Editar Cliente:"} />
                 <section className="formulario d-flex align-items-center justify-content-center p-4">
 
                     <Formik enableReinitialize={true}
@@ -193,12 +193,14 @@ export const EditarCliente = () => {
                                     />
                                     <Button clase={'form-button d-flex justify-content-center col-12'}
                                         classButton={'guardar form-button col-3'}
-                                        textButton={'Actulizar'} type={'submit'} />
+                                        textButton={'Actualizar'} type={'submit'} />
                                 </Form>
                             </section>
+                            
                         )}
                     </Formik>
                 </section>
+                    <Link className="mt-3 m-3 btn btn-info " to={"/clientes"}>Regresar</Link>
             </section>
         </>
 
