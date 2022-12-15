@@ -112,15 +112,17 @@ export const Ventas = () => {
                     inputName="nombreProducto"
                     inputPlaceholder={"casco"}
                   />
-                  <FormInput classSection={'col-3'}
+                  <section className='cantidad'>
+                  <FormInput classSection={'col-1'}
                     title={"Cantidad:"}
                     error={errors.cantidad}
                     touched={touched.cantidad}
                     tipoInput={"number"}
                     inputId={"cantidad"}
                     inputName="cantidad"
-                    inputPlaceholder={"1"}
-                  />
+                    inputPlaceholder={"1"} />
+                  </section>
+                  
                   <Button clase={'form-button d-flex justify-content-center col-12'}
                     classButton={'guardar form-button col-3'}
                     textButton={'Guardar'} type={'submit'} />

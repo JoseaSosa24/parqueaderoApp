@@ -159,8 +159,7 @@ export const TableClientes = ({
                     onClick={() => {
                       confirmacion(client.idCliente);
                     }}
-                  >
-                    <img
+                  ><img
                     className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
                       alt=""
