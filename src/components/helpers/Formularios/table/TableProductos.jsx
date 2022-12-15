@@ -162,7 +162,7 @@ export const TableProductos = ({
                 <td>{producto.descripcion}</td>
                 <td>{producto.inventario}</td>
                 <td>
-                  <Link>
+                  <Link to={"editarProducto/"+producto.idProducto}>
                     <button className="btn botones">
                       <img
                         className="iconos-botones"

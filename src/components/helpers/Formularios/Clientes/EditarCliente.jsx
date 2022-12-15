@@ -45,9 +45,10 @@ export const EditarCliente = () => {
             "correo": correo,
             "direccion": direccion,
             "celular": celular
-            
+
         })
-         navigate('/clientes') 
+        correcto()
+        navigate('/clientes')
     }
 
     const handleOnChange = ({ target }) => {
@@ -96,7 +97,7 @@ export const EditarCliente = () => {
     const correcto = (e) => {
         swal({
             title: "Mensaje de éxito",
-            text: "¡Cliente agregado correctamente!",
+            text: "¡Cliente actualizado correctamente!",
             icon: "success",
             buttons: "ok"
         })
@@ -196,11 +197,11 @@ export const EditarCliente = () => {
                                         textButton={'Actualizar'} type={'submit'} />
                                 </Form>
                             </section>
-                            
+
                         )}
                     </Formik>
                 </section>
-                    <Link className="mt-3 m-3 btn btn-info " to={"/clientes"}>Regresar</Link>
+                <Link className="mt-3 m-3 btn btn-info " to={"/clientes"}>Regresar</Link>
             </section>
         </>
 
