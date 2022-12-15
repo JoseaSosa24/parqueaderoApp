@@ -136,19 +136,18 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                       />
                     </button>
                   </Link>
-                <button className="btn btn-danger" 
+                <button className="btn botones" 
                 onClick={() => { 
                   deleteIngresos(idIngreso)
                   regresar();
                   }}>
                     
-                <img
-                className="iconos-botones"
-                src={"../../../../../src/assets/icons/Eliminar.png"}
-                alt=""
-                width="40px "
-                height="40px"
-              />
+                    <img
+                      className="iconos-botones"
+                      src={"../../../../../src/assets/icons/Eliminar.png"}
+                      alt=""
+                      width="40px "
+                      height="40px" />
               </button>  
                   
                   <button className="" onClick={regresar}>regresar</button>  
