@@ -47,12 +47,12 @@ export const TableClientes = ({
           title: "Confirmación Eliminación",
           text: "¡Cliente eliminado correctamente!",
           icon: "success",
-          
+
         });
         regresar()
       }
     });
-    
+
   };
 
   const [idCliente, setIdCliente] = useState();
@@ -68,21 +68,32 @@ export const TableClientes = ({
   const buscarPorId = async (e) => {
     e.preventDefault()
     console.log(id)
-    let res = await axios.get(URI + '/' + id)
-    console.log(res)
-    setIdCliente(res.data.idCliente)
-    setDocumento(res.data.cedCliente);
-    console.log(res.data.cedCliente);
-    setCorreo(res.data.correo);
-    console.log(res.data.correo)
-    setDireccion(res.data.direccion)
-    console.log(res.data.direccion)
-    setCelular(res.data.celular)
-    console.log(res.celular)
-    setNombre(res.data.nombre)
-    console.log(res.data.nombre)
-    setTrBody({ display: "none" })
-    setTrById({ display: "" })
+
+    try {
+      let res = await axios.get(URI + '/' + id)
+      /* console.log(res) */
+      setIdCliente(res.data.idCliente)
+      setDocumento(res.data.cedCliente);
+      /* console.log(res.data.cedCliente); */
+      setCorreo(res.data.correo);
+      /* console.log(res.data.correo) */
+      setDireccion(res.data.direccion)
+      /*  console.log(res.data.direccion) */
+      setCelular(res.data.celular)
+      /* console.log(res.celular) */
+      setNombre(res.data.nombre)
+      /* console.log(res.data.nombre) */
+      setTrBody({ display: "none" })
+      setTrById({ display: "" })
+
+    } catch (error) {
+      swal({
+        title: "Dato no encontrado",
+        text: "El dato ingresado no se encuentra en la base de datos",
+        icon: "error",
+        button: "ok"
+      });
+    }
 
   }
 
@@ -101,23 +112,23 @@ export const TableClientes = ({
     <>
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Listado Clientes"} />
-        <section className="d-flex"> 
-        <button className="btn" onClick={getClientes
-        }><img
-            className="iconos-botones-cargar"
-            src={"../../../../../src/assets/icons/girar.png"}
-            alt=""
-            width="40px "
-            height="40px"
-          /></button>
-        <Buscar
-          inputbuscar={"input-buscar fst-italic"}
-          search={"Ingrese documento"}
-          onSubmit={buscarPorId}
-          onChange={pulsarBuscar}
-        />
+        <section className="d-flex">
+          <button className="btn" onClick={getClientes
+          }><img
+              className="iconos-botones-cargar"
+              src={"../../../../../src/assets/icons/girar.png"}
+              alt=""
+              width="40px "
+              height="40px"
+            /></button>
+          <Buscar
+            inputbuscar={"input-buscar fst-italic"}
+            search={"Ingrese documento"}
+            onSubmit={buscarPorId}
+            onChange={pulsarBuscar}
+          />
         </section>
-       
+
       </section>
       <section className="tabla-registros d-flex justify-content-center align-items-start ">
 
@@ -189,40 +200,40 @@ export const TableClientes = ({
               <td>{direccion}</td>
               <td>{celular}</td>
               <td>
-              <Link to={"editarCliente/" + id}>
-                    <button className="btn botones">
-                      <img className="iconos-botones"
-                        src={"../../../../../src/assets/icons/Editar.png"}
-                        alt=""
-                        width="40px "
-                        height="40px"
-                      />
-                    </button>
-                  </Link>
-                  <button
-                    className="btn botones"
-                    onClick={() => {
-                      confirmacion(idCliente);
-                    }}
-                  >
-                    <img
-                      className="iconos-botones"
-                      src={"../../../../../src/assets/icons/Eliminar.png"}
+                <Link to={"editarCliente/" + id}>
+                  <button className="btn botones">
+                    <img className="iconos-botones"
+                      src={"../../../../../src/assets/icons/Editar.png"}
                       alt=""
                       width="40px "
                       height="40px"
                     />
                   </button>
-                  <button className="btn botones" onClick={regresar}>
-                    {" "}
-                    <img
-                      className="iconos-botones"
-                      src={"../../../../../src/assets/icons/regreso.png"}
-                      alt=""
-                      width="40px "
-                      height="40px"
-                    />
-                  </button>
+                </Link>
+                <button
+                  className="btn botones"
+                  onClick={() => {
+                    confirmacion(idCliente);
+                  }}
+                >
+                  <img
+                    className="iconos-botones"
+                    src={"../../../../../src/assets/icons/Eliminar.png"}
+                    alt=""
+                    width="40px "
+                    height="40px"
+                  />
+                </button>
+                <button className="btn botones" onClick={regresar}>
+                  {" "}
+                  <img
+                    className="iconos-botones"
+                    src={"../../../../../src/assets/icons/regreso.png"}
+                    alt=""
+                    width="40px "
+                    height="40px"
+                  />
+                </button>
               </td>
             </tr>
           </tbody>

@@ -13,7 +13,7 @@ export const Inicio = () => {
         
       </section>
       <section className="time">
-      <h1> {moment().format('MMMM Do YYYY, h:mm:ss a')}</h1>
+      <h1> {moment().format('MMMM Do YYYY, h:mm a')}</h1>
         
       </section>
       <BarraInferiorIconos/>

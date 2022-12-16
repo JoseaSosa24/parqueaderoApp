@@ -86,21 +86,30 @@ export const TableProductos = ({
     e.preventDefault();
 
     console.log(id);
-    let res = await axios.get(URI + "/" + id);
-    console.log(res);
-    setIdProducto(res.data.idProducto);
-    console.log(res.data.idProducto);
-    setNombreProducto(res.data.nombreProducto);
-    console.log(res.data.nombreProducto);
-    setPrecio(res.data.precio);
-    console.log(res.data.precio);
-    setInventario(res.data.inventario);
-    console.log(res.inven);
-    setDescripcion(res.data.descripcion);
-    console.log(res.data.descripcion);
+    try {
+      let res = await axios.get(URI + "/" + id);
+      console.log(res);
+      setIdProducto(res.data.idProducto);
+      /* console.log(res.data.idProducto); */
+      setNombreProducto(res.data.nombreProducto);
+      /* console.log(res.data.nombreProducto); */
+      setPrecio(res.data.precio);
+      console.log(res.data.precio);
+      setInventario(res.data.inventario);
+      /*  console.log(res.inven); */
+      setDescripcion(res.data.descripcion);
+      /* console.log(res.data.descripcion); */
+      setTrBody({ display: "none" });
+      setTrById({ display: "" });
+    } catch (error) {
+      swal({
+        title: "Dato no encontrado",
+        text: "El dato ingresado no se encuentra en la base de datos",
+        icon: "error",
+        button: "ok"
+      });
+    }
 
-    setTrBody({ display: "none" });
-    setTrById({ display: "" });
   };
 
   const pulsarBuscar = (e) => {
@@ -117,22 +126,22 @@ export const TableProductos = ({
       <section className="seccion-buscar d-flex mt-4">
         <Titulo textTitulo={"Listado Productos"} tittle={"tittle"} />
         <section className="d-flex">
-        <button className="btn" onClick={getProductos
-        }><img
-        className="iconos-botones-cargar"
-          src={"../../../../../src/assets/icons/girar.png"}
-          alt=""
-          width="40px "
-          height="40px"
-        /></button>
-        <Buscar
-          inputbuscar={"input-buscar fst-italic"}
-          search={"Ingrese Id Producto"}
-          onSubmit={buscarPorId}
-          onChange={pulsarBuscar}
-        />
+          <button className="btn" onClick={getProductos
+          }><img
+              className="iconos-botones-cargar"
+              src={"../../../../../src/assets/icons/girar.png"}
+              alt=""
+              width="40px "
+              height="40px"
+            /></button>
+          <Buscar
+            inputbuscar={"input-buscar fst-italic"}
+            search={"Ingrese Id Producto"}
+            onSubmit={buscarPorId}
+            onChange={pulsarBuscar}
+          />
         </section>
-       
+
       </section>
       <section className="tabla-registros d-flex justify-content-center align-items-start ">
         <table className="" id="tabla">
@@ -167,7 +176,7 @@ export const TableProductos = ({
                 <td>{producto.descripcion}</td>
                 <td>{producto.inventario}</td>
                 <td>
-                  <Link to={"editarProducto/"+producto.idProducto}>
+                  <Link to={"editarProducto/" + producto.idProducto}>
                     <button className="btn botones">
                       <img
                         className="iconos-botones"
@@ -207,34 +216,34 @@ export const TableProductos = ({
               <td>{descripcion}</td>
               <td>{inventario}</td>
               <td>
-              <Link to={"editarProducto/"+ idProducto}>
-                    <button className="btn botones">
-                      <img
-                        className="iconos-botones"
-                        src={"../../../../../src/assets/icons/Editar.png"}
-                        alt=""
-                        width="40px "
-                        height="40px"
-                      />
-                    </button>
-                  </Link>
-
-                  <button
-                    className="btn botones"
-                    onClick={() => {
-                      deleteProductos(idProducto);
-                    
-                    }}
-                  >
-                    {" "}
+                <Link to={"editarProducto/" + idProducto}>
+                  <button className="btn botones">
                     <img
                       className="iconos-botones"
-                      src={"../../../../../src/assets/icons/Eliminar.png"}
+                      src={"../../../../../src/assets/icons/Editar.png"}
                       alt=""
                       width="40px "
                       height="40px"
                     />
                   </button>
+                </Link>
+
+                <button
+                  className="btn botones"
+                  onClick={() => {
+                    deleteProductos(idProducto);
+
+                  }}
+                >
+                  {" "}
+                  <img
+                    className="iconos-botones"
+                    src={"../../../../../src/assets/icons/Eliminar.png"}
+                    alt=""
+                    width="40px "
+                    height="40px"
+                  />
+                </button>
                 <button className="btn botones" onClick={regresar}>
                   {" "}
                   <img

@@ -127,12 +127,12 @@ export const Editaringreso = () => {
                                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
                                     <FormInput
                                         classSection={"col-3"}
-                                        title={"idCliente:"}
+                                        title={"Cliente:"}
                                         tipoInput={"number"}
                                         inputId={"idCliente"}
                                         inputName="idCliente"
                                         inputPlaceholder={idCliente}
-                                        maxlength="10"
+                                        maxLength={"10"}
                                         value={idCliente}
                                         onChange={(e) => handleOnChange(e)}
                                     />
@@ -142,6 +142,7 @@ export const Editaringreso = () => {
                                         tipoInput={"text"}
                                         inputId={"placaMoto"}
                                         inputName="placaMoto"
+                                        maxLength={"6"}
                                         value={placaMoto}
                                         onChange={(e) => handleOnChange(e)}
 

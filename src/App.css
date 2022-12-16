@@ -124,7 +124,7 @@ transform: rotate(360deg);
   align-items: center;
   gap: 4%;
   border-bottom: 4px solid #3d5656;
-  margin-top: 12%;
+  /* margin-top: 12%; */
 
 }
 
@@ -259,7 +259,7 @@ textarea {
 .search {
   display: flex;
   flex-direction: row-reverse;
-  width: 300px;
+  width: 350px;
   height: 42px;
   background-color: #3d5656;
   border-radius: 20px;

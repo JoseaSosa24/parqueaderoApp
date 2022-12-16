@@ -3,12 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Titulo } from "../Titulo";
 import { Buscar } from "../Buscar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const URI = 'http://localhost:3100/ingresos';
 
 export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
-
+  const navigate = useNavigate()
   const [ingreso, setIngreso] = useState([]);
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
   const getIngresos = async () => {
     const res = await axios.get(URI)
     setIngreso(res.data)
+    navigate('/ingresos')
 
   }
 
@@ -39,19 +40,30 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
   const buscarPorId = async (e) => {
     e.preventDefault()
     console.log(id)
-    let res = await axios.get(URI + '/' + id)
-    console.log(res)
-    setIdIngreso(res.data.idIngreso)
-    setIdCliente(res.data.idCliente);
-    setPlaca(res.data.placaMoto)
-    setFechaIngreso(res.data.fechaIngreso)
-    setHoraIngreso(res.data.horaIngreso)
-    setHorasTotales(res.data.horasTotales)
-    setTrBody({ display: "none" })
-    setTrById({ display: "" })
+    
+    /* console.log(res) */
+    try {
+      let res = await axios.get(URI + '/' + id)
+      setIdIngreso(res.data.idIngreso)
+      setIdCliente(res.data.idCliente);
+      setPlaca(res.data.placaMoto)
+      setFechaIngreso(res.data.fechaIngreso)
+      setHoraIngreso(res.data.horaIngreso)
+      setHorasTotales(res.data.horasTotales)
+      setTrBody({ display: "none" })
+      setTrById({ display: "" })
+    } catch (error) {
+      swal({
+        title: "Dato no encontrado",
+        text: "El dato ingresado no se encuentra en la base de datos",
+        icon: "error",
+        button: "ok"
+      });
+    }
+
 
   }
-  
+
   const confirmacion = (id) => {
     swal({
       title: "Eliminar",
@@ -66,7 +78,9 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
           title: "Confirmación Eliminación",
           text: "¡Cliente eliminado correctamente!",
           icon: "success",
+
         });
+        regresar();
       }
     });
   };
@@ -88,23 +102,23 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Listado Ingresos: "} tittle={'me-4'} />
         <section className="d-flex">
-        <button className="btn botones-2" onClick={ getIngresos
-        }><img
-            className="iconos-botones-cargar"
-            src={"../../../../../src/assets/icons/girar.png"}
-            alt=""
-            width="40px "
-            height="40px"
-          /></button>
-          <Buscar inputbuscar={"input-buscar fst-italic"} 
-          search={'Ingrese placa'} 
-          button={'ms-3'} 
-          onSubmit={buscarPorId} 
-          onChange={pulsarBuscar} 
+          <button className="btn botones-2" onClick={getIngresos
+          }><img
+              className="iconos-botones-cargar"
+              src={"../../../../../src/assets/icons/girar.png"}
+              alt=""
+              width="40px "
+              height="40px"
+            /></button>
+          <Buscar inputbuscar={"input-buscar fst-italic"}
+            search={'Ingrese placa, documento'}
+            button={'ms-3'}
+            onSubmit={buscarPorId}
+            onChange={pulsarBuscar}
           />
         </section>
-       
-        
+
+
       </section>
       <section className="tabla-registros d-flex justify-content-center align-items-start ">
         <table id="tabla">
@@ -138,7 +152,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                     </button>
                   </Link>
                   <button className="btn botones"
-                    onClick={() => {  confirmacion(ingres.idCliente) }}>
+                    onClick={() => { confirmacion(ingres.placaMoto) }}>
                     <img
                       className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
@@ -153,50 +167,50 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
 
             )}
 
-        </tbody>
-        <tbody style={trById}>
-          <tr key={idIngreso}>
-                <td>{idCliente}</td>
-                <td>{placa}</td>
-                <td>{fechaIngreso}</td>
-                <td>{horaIngreso}</td>
-                <td>{horasTotales}</td>
-                <td>
+          </tbody>
+          <tbody style={trById}>
+            <tr key={idIngreso}>
+              <td>{idCliente}</td>
+              <td>{placa}</td>
+              <td>{fechaIngreso}</td>
+              <td>{horaIngreso}</td>
+              <td>{horasTotales}</td>
+              <td>
                 <Link to={"editarIngresos/" + idIngreso}>
-                    <button className="btn botones">
-                      <img className="iconos-botones"
-                        src={"../../../../../src/assets/icons/Editar.png"}
-                        alt=""
-                        width="40px "
-                        height="40px"
-                      />
-                    </button>
-                  </Link>
-                <button className="btn botones" 
-                onClick={() => { 
-                  confirmacion(idIngreso)
-                  regresar();
-                  }}>
-                    
-                    <img
-                      className="iconos-botones"
-                      src={"../../../../../src/assets/icons/Eliminar.png"}
-                      alt=""
-                      width="40px "
-                      height="40px" />
-              </button>  
-                  
-              <button className="btn botones" onClick={regresar}>
-                    {" "}
-                    <img
-                      className="iconos-botones"
-                      src={"../../../../../src/assets/icons/regreso.png"}
+                  <button className="btn botones">
+                    <img className="iconos-botones"
+                      src={"../../../../../src/assets/icons/Editar.png"}
                       alt=""
                       width="40px "
                       height="40px"
                     />
-                  </button>  
-                </td>
+                  </button>
+                </Link>
+                <button className="btn botones"
+                  onClick={() => {
+                    confirmacion(idIngreso)
+
+                  }}>
+
+                  <img
+                    className="iconos-botones"
+                    src={"../../../../../src/assets/icons/Eliminar.png"}
+                    alt=""
+                    width="40px "
+                    height="40px" />
+                </button>
+
+                <button className="btn botones" onClick={regresar}>
+                  {" "}
+                  <img
+                    className="iconos-botones"
+                    src={"../../../../../src/assets/icons/regreso.png"}
+                    alt=""
+                    width="40px "
+                    height="40px"
+                  />
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
