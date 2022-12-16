@@ -29,6 +29,7 @@ const mostrarProducto = async (req, res) => {
     try {
         const producto = await Producto.findOne({
             where: { idProducto: req.params.id }
+            
         });
         res.json(producto)
 
