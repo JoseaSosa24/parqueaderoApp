@@ -38,13 +38,24 @@ export const EditarProducto = () => {
         console.log(precio)
         console.log(descripcion)
         console.log(inventario)
-        await axios.put(URI + id, {
+        const res=await axios.put(URI + id, {
             "nombreProducto": nombreProducto,
             "precio": precio,
             "descripcion": descripcion,
             "inventario": inventario,
         })
-        correcto()
+        
+        if (res.data.estado) {
+            correcto()
+        } else {
+            swal({
+                title: "Error",
+                text: res.data.message,
+                icon: "error",
+                buttons: "ok"
+            })
+        }
+       
         navigate('/productos')
 
 
