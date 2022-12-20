@@ -33,11 +33,16 @@ export const EditarProducto = () => {
     //procedimiento para actualizar
     const updateProducto = async (e) => {
         /* e.preventDefault() */
+        /*  getProductoById() */
+        console.log(nombreProducto)
+        console.log(precio)
+        console.log(descripcion)
+        console.log(inventario)
         await axios.put(URI + id, {
-            nombreProducto: nombreProducto,
-            precio: precio,
-            descripcion: descripcion,
-            inventario: inventario,
+            "nombreProducto": nombreProducto,
+            "precio": precio,
+            "descripcion": descripcion,
+            "inventario": inventario,
         })
         correcto()
         navigate('/productos')
@@ -69,7 +74,7 @@ export const EditarProducto = () => {
         getProductoById()
     }, [])
     const getProductoById = async () => {
-        let res = await axios.get(URI + id)
+        const res = await axios.get(URI + id)
         console.table(res.data);
         setNombreProducto(res.data.nombreProducto)
         console.log(nombreProducto)
@@ -99,11 +104,10 @@ export const EditarProducto = () => {
 
                     <Formik enableReinitialize={true}
                         initialValues={{
-                            documento: '',
-                            nombre: '',
-                            correo: '',
-                            direccion: '',
-                            celular: ''
+                            nombreProducto: '',
+                            precio: '',
+                            inventario: '',
+                            descripcion: '',
                         }}
 
                         onSubmit={(valores, { }) => {
@@ -112,7 +116,7 @@ export const EditarProducto = () => {
 
                         }}
                     >
-                        {({ errors, touched }) => (
+                        {({ errors, touched, formik }) => (
                             <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
                                     <FormInput
@@ -122,9 +126,10 @@ export const EditarProducto = () => {
                                         touched={touched.nombreProducto}*/
                                         tipoInput={"text"}
                                         inputId={"nombreProducto"}
-                                        inputName="nombreProducto"
+                                        inputName={"nombreProducto"}
                                         value={nombreProducto}
                                         onChange={(e) => handleOnChange(e)}
+
                                     />
                                     <FormInput
                                         classSection={"col-4"}
@@ -133,7 +138,7 @@ export const EditarProducto = () => {
                                         touched={touched.precio}*/
                                         tipoInput={"number"}
                                         inputId={"precio"}
-                                        inputName="precio"
+                                        inputName={"precio"}
                                         value={precio}
                                         onChange={(e) => handleOnChange(e)}
                                     />
@@ -144,7 +149,7 @@ export const EditarProducto = () => {
                                         touched={touched.inventario}*/
                                         tipoInput={"number"}
                                         inputId={"inventario"}
-                                        inputName="inventario"
+                                        inputName={"inventario"}
                                         inputPlaceholder={"50"}
                                         value={inventario}
                                         onChange={(e) => handleOnChange(e)}

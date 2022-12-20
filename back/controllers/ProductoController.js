@@ -43,7 +43,6 @@ const mostrarProducto = async (req, res) => {
 
 const editarProducto = async (req, res) => {
     try {
-        const { Op }= Sequelize
         await Producto.update(req.body,{
             where: {idProducto: req.params.id }  
             

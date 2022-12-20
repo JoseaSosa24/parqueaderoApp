@@ -130,7 +130,7 @@ export const Editaringreso = () => {
                                         title={"Cliente:"}
                                         tipoInput={"number"}
                                         inputId={"idCliente"}
-                                        inputName="idCliente"
+                                        inputName={"idCliente"}
                                         inputPlaceholder={idCliente}
                                         maxLength={"10"}
                                         value={idCliente}
