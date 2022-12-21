@@ -7,17 +7,13 @@ import { Button } from "../Button";
 import axios from "axios";
 import { Mensaje } from "../Mensaje";
 import swal from 'sweetalert';
-import { Formik, Form} from "formik";
+import { Formik, Form } from "formik";
+import { useNavigate } from "react-router-dom";
 
 
-const URI = 'http://localhost:3100/clientes'
+const uriClientes = 'http://localhost:3100/clientes'
+
 export const Clientes = () => {
- /*  const [documento, setDocumento] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [direccion, setDireccion] = useState('');
-  const [celular, setCelular] = useState(''); */
-  let documento, nombre,correo,direccion,celular;
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
   const expresionRegular = {
     usuario: /^[a-zA-Z0-9\_]{4,16}$/, // Letras, numeros, guion_bajo
@@ -28,7 +24,6 @@ export const Clientes = () => {
     celular: /^\d{10}$/
   };
 
-  
   const correcto = (e) => {
     swal({
       title: "Mensaje de éxito",
@@ -36,27 +31,35 @@ export const Clientes = () => {
       icon: "success",
       buttons: "ok"
     })
-
   }
 
-  const createCliente = async (e) => {
+  const incorrecto = (text) => {
+    swal({
+      title: "Error",
+      text: text,
+      icon: "error",
+      buttons: "ok"
+    })
+  }
+
+  const agregarCliente = async (valores) => {
     //e.preventDefault()//Buscar la forma que guarde y muestre el registro sin recargar la pagina
-    console.log(documento, nombre, correo, direccion, celular)
-    const res = await axios.post(URI, {
+    /* console.log(documento, nombre, correo, direccion, celular) */
+    console.table(valores)
+    const { documento, nombre, correo, direccion, celular } = valores
+    const res = await axios.post(uriClientes, {
       "cedCliente": documento,
       "nombre": nombre,
       "correo": correo,
       "direccion": direccion,
       "celular": celular
-    }
-    );
-
-
-    if (res.data.estado == true) {
-      res.data.message
+    });
+    if (res.data.estado) {
+      /* res.data.message */
+      correcto();
       /* console.log("Cliente agregado correctamente") */
     } else {
-      res.data.message
+      incorrecto(res.data.message);
     }
 
   }
@@ -112,28 +115,15 @@ export const Clientes = () => {
             }}
 
             onSubmit={(valores, { resetForm }) => {
-              console.table(valores)
-              documento=valores.documento
-              console.log(documento)
-              nombre=valores.nombre
-              console.log(nombre)
-              correo=valores.correo
-              console.log(correo)
-              direccion=valores.direccion
-              console.log(direccion)
-              celular=valores.celular
-              console.log(celular)
-              createCliente()
-              correcto();
-              
+              agregarCliente(valores)
               /* cambiarFormularioEnviado(true); */
               resetForm();
             }}
           >
-            {({ errors,touched }) => (
+            {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                <FormInput2
+                  <FormInput2
                     classSection={"col-3"}
                     title={"Documento:"}
                     error={errors.documento}
@@ -144,7 +134,7 @@ export const Clientes = () => {
                     inputPlaceholder={"10364845"}
                     maxlength="10"
                   />
-                <FormInput2
+                  <FormInput2
                     classSection={"col-4"}
                     title={"Nombre:"}
                     error={errors.nombre}
@@ -154,7 +144,7 @@ export const Clientes = () => {
                     inputName="nombre"
                     inputPlaceholder={"Juan Perez"}
                   />
-                <FormInput2
+                  <FormInput2
                     classSection={"col-5"}
                     title={"Correo:"}
                     error={errors.correo}
@@ -164,7 +154,7 @@ export const Clientes = () => {
                     inputName="correo"
                     inputPlaceholder={"juanperez@gmail.com"}
                   />
-                <FormInput2
+                  <FormInput2
                     classSection={"col-5"}
                     title={"Dirección :"}
                     error={errors.direccion}
@@ -174,7 +164,7 @@ export const Clientes = () => {
                     inputName="direccion"
                     inputPlaceholder={"CLL 20 A #10"}
                   />
-                <FormInput2
+                  <FormInput2
                     classSection={"col-4"}
                     title={"Celular :"}
                     error={errors.celular}
