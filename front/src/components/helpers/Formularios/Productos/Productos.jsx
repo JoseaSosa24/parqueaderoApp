@@ -7,19 +7,26 @@ import { Button } from "../Button";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-const URI = "http://localhost:3100/productos";
+const uriProductos = "http://localhost:3100/productos";
 export const Productos = () => {
-  let nombreProducto, precio, descripcion, inventario;
   const [formularioCompleto, setFormularioCompleto] = useState(false);
 
-  const createProducto = async (e) => {
+  const crearProducto = async (valores) => {
     /* e.preventDefault(); */
-    await axios.post(URI, {
-      nombreProducto: nombreProducto,
-      precio: precio,
-      descripcion: descripcion,
-      inventario: inventario,
+    const { nombreProducto, precio, descripcion, inventario } = valores
+    const res = await axios.post(uriProductos, {
+      "nombreProducto": nombreProducto,
+      "precio": precio,
+      "descripcion": descripcion,
+      "inventario": inventario,
     });
+    if (res.data.estado) {
+      /* res.data.message */
+      correcto();
+      /* console.log("Cliente agregado correctamente") */
+    } else {
+      incorrecto(res.data.message);
+    }
   };
 
   const expresionRegular = {
@@ -34,12 +41,20 @@ export const Productos = () => {
   const correcto = (e) => {
     swal({
       title: "Mensaje de éxito",
-      text: "¡Cliente agregado correctamente!",
+      text: "¡Producto agregado correctamente!",
       icon: "success",
       buttons: "ok",
     });
   };
 
+  const incorrecto = (text) => {
+    swal({
+      title: "Error",
+      text: text,
+      icon: "error",
+      buttons: "ok"
+    })
+  }
 
 
   return (
@@ -86,16 +101,7 @@ export const Productos = () => {
               return errores;
             }}
             onSubmit={(valores, { resetForm }) => {
-              console.table(valores);
-              nombreProducto = valores.nombreProducto;
-              console.log(nombreProducto);
-              precio = valores.precio;
-              console.log(precio);
-              inventario = valores.inventario;
-              console.log(inventario);
-              descripcion = valores.descripcion;
-              createProducto();
-              correcto();
+              crearProducto(valores);
               /* cambiarFormularioEnviado(true); */
               resetForm();
             }}
@@ -155,7 +161,7 @@ export const Productos = () => {
 
           {/* <Form
               className="formulario-clientes row col-12 d-flex g-3"
-              onSubmit={createProducto}
+              onSubmit={crearProducto}
             > */}
           {/*  <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
             onChange={(e) => { setNombreProducto(e.target.value) }} />

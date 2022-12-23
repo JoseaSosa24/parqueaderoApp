@@ -4,12 +4,14 @@ const crearProducto = async (req, res) => {
     try {
         await Producto.create(req.body);
         res.json({
-            message: "Producto creado correctamente"
+            message: "Producto creado correctamente",
+            estado: true
         })
 
     } catch (error) {
         res.json({
-            message: "El producto no se pudo crear " + error
+            message: "El producto no se pudo crear " + error,
+            estado: false
         });
     }
 }
