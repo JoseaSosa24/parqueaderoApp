@@ -34,17 +34,17 @@ export const Editaringreso = () => {
     //procedimiento para actualizar
     const updateIngreso = async (e) => {
         /* e.preventDefault() */
-       
+
         await axios.put(URIIngresos + id, {
             "idCliente": idCliente,
             "placaMoto": placaMoto,
             "fechaIngreso": fechaIngreso,
             "horaIngreso": horaIngreso,
             "horasTotales": horasTotales
-            
+
         })
-         correcto();
-         navigate('/ingresos') 
+        correcto();
+        navigate('/ingresos')
     }
 
     const handleOnChange = ({ target }) => {
@@ -74,6 +74,7 @@ export const Editaringreso = () => {
     }, []);
 
     const getIngresoById = async () => {
+        console.log(id)
         let res = await axios.get(URIIngresos + id)
         console.table(res.data);
         setIdCliente(res.data.idCliente)
@@ -117,7 +118,7 @@ export const Editaringreso = () => {
                         onSubmit={(valores, { }) => {
 
                             updateIngreso()
-                            
+
                             /* cambiarFormularioEnviado(true); */
 
                         }}
@@ -182,20 +183,20 @@ export const Editaringreso = () => {
                                         textButton={'Actualizar'} type={'submit'} />
                                 </Form>
                             </section>
-                            
+
                         )}
                     </Formik>
                 </section>
-                    <Link className="btn botones " to={"/ingresos"}> <button className="botones">
-                        <img
-                            className="iconos-botones-regresar"
-                            src={"../../../../../src/assets/icons/regreso.png"}
-                            alt="logo"
-                            width="40px "
-                            height="40px"
-                        />
-                    </button>
-                    </Link>
+                <Link className="btn botones " to={"/ingresos"}> <button className="botones">
+                    <img
+                        className="iconos-botones-regresar"
+                        src={"../../../../../src/assets/icons/regreso.png"}
+                        alt="logo"
+                        width="40px "
+                        height="40px"
+                    />
+                </button>
+                </Link>
             </section>
         </>
 

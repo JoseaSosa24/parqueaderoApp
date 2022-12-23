@@ -10,10 +10,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 
 
-const URI = 'http://localhost:3100/ingresos'
+const uriIngresos = 'http://localhost:3100/ingresos'
 export const Ingresos = () => {
-
-  let documentoCliente, placa, horas;
   const [formularioValido, setFormularioValido] = useState('false');
 
 
@@ -36,16 +34,31 @@ export const Ingresos = () => {
     })
 
   }
+  
+  const incorrecto = (text) => {
+    swal({
+      title: "Error",
+      text: text,
+      icon: "error",
+      buttons: "ok"
+    })
+  }
 
-  const createIngreso = async (e) => {
+  const agregarIngreso = async (valores) => {
     /* e.preventDefault() */
-    await axios.post(URI, {
-      "idCliente": documentoCliente,
-      "placaMoto": placa,
+   const res= await axios.post(uriIngresos, {
+      "idCliente": valores.documentoCliente,
+      "placaMoto": valores.placaMoto,
       "horaIngreso": moment().format("h:mm:ss"),
       "fechaIngreso": moment().format("YYYY-MM-DD"),
-      "horasTotales": horas
+      "horasTotales": valores.horas
     })
+    
+    if (res.data.estado) {
+      correcto();
+    } else {
+      incorrecto(res.data.message)
+    }
   }
 
   return (
@@ -83,11 +96,7 @@ export const Ingresos = () => {
             }}
             onSubmit={(valores, { resetForm }) => {
               console.table(valores)
-              documentoCliente = valores.documentoCliente
-              placa = valores.placaMoto
-              horas = valores.horas
-              createIngreso();
-              correcto();
+              agregarIngreso(valores);
               /* cambiarFormularioEnviado(true); */
               resetForm();
             }}

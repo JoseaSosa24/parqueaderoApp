@@ -5,26 +5,67 @@ import { Titulo } from "../Titulo";
 import { Buscar } from "../Buscar";
 import { Link, useNavigate } from "react-router-dom";
 
-const URI = 'http://localhost:3100/ingresos';
+const uriIngresos = 'http://localhost:3100/ingresos';
 
 export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, textoColumna4, textoColumna5, textoColumna6, tdId }) => {
   const navigate = useNavigate()
-  const [ingreso, setIngreso] = useState([]);
+  const [ingresos, setIngreso] = useState([]);
+  const [ingresosId, setIngresoId] = useState([]);
 
   useEffect(() => {
     getIngresos();
   }, [])
 
   const getIngresos = async () => {
-    const res = await axios.get(URI)
+    const res = await axios.get(uriIngresos)
     setIngreso(res.data)
     navigate('/ingresos')
+  }
+
+
+  const correcto = (e) => {
+    swal({
+      title: "Mensaje de éxito",
+      text: "¡Ingreso eliminado correctamente!",
+      icon: "success",
+      buttons: "ok"
+    })
 
   }
 
-  const deleteIngresos = async (id) => {
-    await axios.delete(`${URI}/${id}`);
+  const incorrecto = (text) => {
+    swal({
+      title: "Error",
+      text: text,
+      icon: "error",
+      buttons: "ok"
+    })
+  }
+
+  const eliminarIngreso = async (id) => {
+    const res = await axios.delete(`${uriIngresos}/${id}`);
+    console.log(res.data.estado)
+    if (res.data.estado) {
+      correcto();
+    } else {
+      incorrecto(res.data.message);
+    }
     getIngresos();
+  }
+
+  const deleteIngresos = (id) => {
+    swal({
+      title: "Eliminar",
+      text: "¿Estás seguro de eliminar este ingreso?",
+      icon: "warning",
+      buttons: ["No", "Sí"],
+      dangerMode: true
+    }).then((value) => {
+      if (value) {
+        eliminarIngreso(id);
+        regresar();
+      }
+    });
   }
 
   const [idIngreso, setIdIngreso] = useState('');
@@ -40,16 +81,16 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
   const buscarPorId = async (e) => {
     e.preventDefault()
     console.log(id)
-    
-    /* console.log(res) */
     try {
-      let res = await axios.get(URI + '/' + id)
-      setIdIngreso(res.data.idIngreso)
-      setIdCliente(res.data.idCliente);
-      setPlaca(res.data.placaMoto)
-      setFechaIngreso(res.data.fechaIngreso)
-      setHoraIngreso(res.data.horaIngreso)
-      setHorasTotales(res.data.horasTotales)
+      const res = await axios.get(uriIngresos + '/' + id)
+      setIngresoId(res.data)
+      console.table(res.data)
+        setIdIngreso(res.data.idIngreso)
+        setIdCliente(res.data.idCliente);
+        setPlaca(res.data.placaMoto)
+        setFechaIngreso(res.data.fechaIngreso)
+        setHoraIngreso(res.data.horaIngreso)
+        setHorasTotales(res.data.horasTotales)
       setTrBody({ display: "none" })
       setTrById({ display: "" })
     } catch (error) {
@@ -60,30 +101,8 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
         button: "ok"
       });
     }
-
-
   }
 
-  const confirmacion = (id) => {
-    swal({
-      title: "Eliminar",
-      text: "¿Estás seguro de eliminar este ingreso?",
-      icon: "warning",
-      buttons: ["No", "Sí"],
-      dangerMode: true
-    }).then((value) => {
-      if (value) {
-        deleteIngresos(id);
-        swal({
-          title: "Confirmación Eliminación",
-          text: "¡Cliente eliminado correctamente!",
-          icon: "success",
-
-        });
-        regresar();
-      }
-    });
-  };
 
   const pulsarBuscar = (e) => {
     setId(e.target.value)
@@ -102,14 +121,15 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
       <section className="seccion-buscar d-flex mt-4 ">
         <Titulo textTitulo={"Listado Ingresos: "} tittle={'me-4'} />
         <section className="d-flex">
-          <button className="btn botones-2" onClick={getIngresos
-          }><img
+          <button className="btn botones-2" onClick={getIngresos}>
+            <img
               className="iconos-botones-cargar"
               src={"../../../../../src/assets/icons/girar.png"}
               alt=""
               width="40px "
               height="40px"
-            /></button>
+            />
+          </button>
           <Buscar inputbuscar={"input-buscar fst-italic"}
             search={'Ingrese placa, documento'}
             button={'ms-3'}
@@ -133,15 +153,15 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
             </tr>
           </thead>
           <tbody style={trBody}>
-            {ingreso.map((ingres) => (
-              <tr key={ingres.idIngreso}>
-                <td>{ingres.idCliente}</td>
-                <td>{ingres.placaMoto}</td>
-                <td>{ingres.fechaIngreso}</td>
-                <td>{ingres.horaIngreso}</td>
-                <td>{ingres.horasTotales}</td>
+            {ingresos.map((ingreso) => (
+              <tr key={ingreso.idIngreso}>
+                <td>{ingreso.idCliente}</td>
+                <td>{ingreso.placaMoto}</td>
+                <td>{ingreso.fechaIngreso}</td>
+                <td>{ingreso.horaIngreso}</td>
+                <td>{ingreso.horasTotales}</td>
                 <td className="td-accion">
-                  <Link to={"editarIngresos/" + ingres.idIngreso}>
+                  <Link to={"editarIngresos/" + ingreso.idIngreso}>
                     <button className="btn botones">
                       <img className="iconos-botones"
                         src={"../../../../../src/assets/icons/Editar.png"}
@@ -152,7 +172,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                     </button>
                   </Link>
                   <button className="btn botones"
-                    onClick={() => { confirmacion(ingres.placaMoto) }}>
+                    onClick={() => { deleteIngresos(ingreso.idIngreso) }}>
                     <img
                       className="iconos-botones"
                       src={"../../../../../src/assets/icons/Eliminar.png"}
@@ -163,9 +183,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                 </td>
 
               </tr>
-            )
-
-            )}
+            ))}
 
           </tbody>
           <tbody style={trById}>
@@ -175,7 +193,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
               <td>{fechaIngreso}</td>
               <td>{horaIngreso}</td>
               <td>{horasTotales}</td>
-              <td>
+              <td className="td-accion">
                 <Link to={"editarIngresos/" + idIngreso}>
                   <button className="btn botones">
                     <img className="iconos-botones"
@@ -187,11 +205,7 @@ export const TableIngresos = ({ textoColumna1, textoColumna2, textoColumna3, tex
                   </button>
                 </Link>
                 <button className="btn botones"
-                  onClick={() => {
-                    confirmacion(idIngreso)
-
-                  }}>
-
+                  onClick={() => { deleteIngresos(idIngreso) }}>
                   <img
                     className="iconos-botones"
                     src={"../../../../../src/assets/icons/Eliminar.png"}
