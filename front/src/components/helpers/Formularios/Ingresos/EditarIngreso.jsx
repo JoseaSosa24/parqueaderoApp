@@ -1,23 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-const URIIngresos = 'http://localhost:3100/ingresos/'
-
 import React from 'react'
 import { Titulo } from "../Titulo";
 import { FormInput } from "../FormInput";
 import { Button } from "../Button";
 import { Mensaje } from "../Mensaje";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form} from "formik";
 
 export const Editaringreso = () => {
-    /* let documento, nombre, correo, direccion, celular; */
-    const [idCliente, setIdCliente] = useState('');
-    const [placaMoto, setPlacaMoto] = useState('');
-    const [fechaIngreso, setFechaIngreso] = useState('');
-    const [horaIngreso, setHoraIngreso] = useState('');
-    const [horasTotales, setHorasTotales] = useState('');
+    const uriIngresos = 'http://localhost:3100/ingresos/'
+    const [initialValues, setInitialValues] = useState("");
     const [formularioValido, setFormularioValido] = useState(null);
     const navigate = useNavigate()
     const { id } = useParams()
@@ -28,68 +21,45 @@ export const Editaringreso = () => {
         password: /^.{4,12}$/, // 4 a 12 digitos
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         documento: /^\d{9,10}$/,
-        celular: /^\d{10}$/
+        celular: /^\d{10}$/,
+        placaMoto: /^[a-zA-Z0-9]{6}$/
     };
 
     //procedimiento para actualizar
-    const updateIngreso = async (e) => {
+    const updateIngreso = async (valores) => {
         /* e.preventDefault() */
+        console.table(valores)
+        try {
+            await axios.put(uriIngresos + id, valores)
+            correcto();
+            navigate('/ingresos')
+        } catch (error) {
+            incorrecto("Error al tratar de actulizar este registro")
+        }
 
-        await axios.put(URIIngresos + id, {
-            "idCliente": idCliente,
-            "placaMoto": placaMoto,
-            "fechaIngreso": fechaIngreso,
-            "horaIngreso": horaIngreso,
-            "horasTotales": horasTotales
-
-        })
-        correcto();
-        navigate('/ingresos')
     }
-
-    const handleOnChange = ({ target }) => {
-        const { name, value } = target;
-        if (name == "idCliente") {
-            setIdCliente(value)
-        }
-        if (name == "placaMoto") {
-            setPlacaMoto(value)
-        }
-        if (name == "fechaIngreso") {
-            setFechaIngreso(value)
-        }
-        if (name == "horaIngreso") {
-            setHoraIngreso(value)
-        }
-        if (name == "horasTotales") {
-            setHorasTotales(value)
-        }
-
-        /*   setValoresForm({...valoresForm, [name]: value}) */
-    }
-
 
     useEffect(() => {
         getIngresoById()
-    }, []);
+    }, [uriIngresos]);
 
     const getIngresoById = async () => {
-        console.log(id)
-        let res = await axios.get(URIIngresos + id)
-        console.table(res.data);
-        setIdCliente(res.data.idCliente)
-        console.log(idCliente)
-        setPlacaMoto(res.data.placaMoto)
-        console.log(placaMoto)
-        setFechaIngreso(res.data.fechaIngreso)
-        console.log(fechaIngreso)
-        setHoraIngreso(res.data.horaIngreso)
-        console.log(horaIngreso)
-        setHorasTotales(res.data.horasTotales)
-        console.log(horasTotales)
+        try {
+            const res = await axios.get(uriIngresos + id)
+            console.table(res.data);
+            setInitialValues({
+                idCliente: res.data.idCliente,
+                placaMoto: res.data.placaMoto,
+                fechaIngreso: res.data.fechaIngreso,
+                horaIngreso: res.data.horaIngreso,
+                horasTotales: res.data.horasTotales
+            });
 
+        } catch (error) {
+            console.error("Error al cargar los datos: " + error);
+        }
     }
-    /* set */
+
 
     const correcto = (e) => {
         swal({
@@ -100,90 +70,114 @@ export const Editaringreso = () => {
         })
     }
 
+    const incorrecto = (text) => {
+        swal({
+            title: "Error",
+            text: text,
+            icon: "error",
+            buttons: "ok"
+        })
+    }
+
     return (
         <>
             <section className="registro-cliente m-4">
                 <Titulo textTitulo={"Editar Ingreso:"} />
                 <section className="formulario d-flex align-items-center justify-content-center p-4">
 
-                    <Formik enableReinitialize={true}
-                        initialValues={{
-                            idCliente: '',
-                            placaMoto: '',
-                            fechaIngreso: '',
-                            horaIngreso: '',
-                            horasTotales: ''
+                    <Formik
+                        enableReinitialize={true}
+                        initialValues={initialValues}
+                        validate={(valores) => {
+                            let errores = {};
+
+                            if (!valores.idCliente) {
+                                errores.idCliente = 'Por favor ingresa un documento'
+                            }
+                            else if (!expresionRegular.documento.test(valores.idCliente)) {
+                                errores.idCliente = 'El documento debe tener mínimo 9 máximo 10 digitos númericos'
+                            }
+                            if (valores.fechaIngreso==="0000-00-00") {
+                                errores.fechaIngreso = 'Por favor ingresa una fecha valida'
+                            }
+                            if (!valores.horaIngreso) {
+                                errores.horaIngreso = 'Por favor ingresa una hora valida'
+                            }
+                            
+                            if (!valores.placaMoto) {
+                                errores.placaMoto = 'Por favor ingresa un documento'
+                            } else if (!expresionRegular.placaMoto.test(valores.placaMoto)) {
+                                errores.placaMoto = 'La placa debe contener 6 caracteres'
+                            }
+                            
+                            if (!valores.horasTotales) {
+                                errores.horasTotales = "Por favor ingresa las horas";
+                            } else if (valores.horasTotales < 0) {
+                                errores.horasTotales = "Las horas deben ser mayor a cero";
+                            }
+
+                            return errores;
                         }}
-
-                        onSubmit={(valores, { }) => {
-
-                            updateIngreso()
-
-                            /* cambiarFormularioEnviado(true); */
-
+                        onSubmit={(valores) => {
+                            updateIngreso(valores)
                         }}
                     >
                         {({ errors, touched }) => (
                             <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
-                                <Form className="formulario-clientes row col-12 d-flex g-3 ">
+                                <Form className="formulario-ingresos row col-12 d-flex g-3 ">
                                     <FormInput
                                         classSection={"col-3"}
                                         title={"Cliente:"}
+                                        error={errors.idCliente}
+                                        touched={touched.idCliente}
                                         tipoInput={"number"}
                                         inputId={"idCliente"}
                                         inputName={"idCliente"}
-                                        inputPlaceholder={idCliente}
-                                        maxLength={"10"}
-                                        value={idCliente}
-                                        onChange={(e) => handleOnChange(e)}
+                                        maxlength={"10"}
                                     />
                                     <FormInput
                                         classSection={"col-4"}
                                         title={"Placa: "}
+                                        error={errors.placaMoto}
+                                        touched={touched.placaMoto}
                                         tipoInput={"text"}
                                         inputId={"placaMoto"}
                                         inputName="placaMoto"
-                                        maxLength={"6"}
-                                        value={placaMoto}
-                                        onChange={(e) => handleOnChange(e)}
-
+                                        maxlength="6"
                                     />
                                     <FormInput
                                         classSection={"col-5"}
                                         title={"fechaIngreso:"}
+                                        error={errors.fechaIngreso}
+                                        touched={touched.fechaIngreso}
                                         tipoInput={"date"}
                                         inputId={"fechaIngreso"}
                                         inputName="fechaIngreso"
-                                        value={fechaIngreso}
-                                        onChange={(e) => handleOnChange(e)}
-
-
                                     />
                                     <FormInput
                                         classSection={"col-5"}
                                         title={"horaingreso :"}
+                                        error={errors.horaIngreso}
+                                        touched={touched.horaIngreso}
                                         tipoInput={"time"}
                                         inputId={"horaIngreso"}
                                         inputName="horaIngreso"
-                                        value={horaIngreso}
-                                        onChange={(e) => handleOnChange(e)}
                                     />
                                     <FormInput
                                         classSection={"col-4"}
                                         title={"horasTotales :"}
+                                        error={errors.horasTotales}
+                                        touched={touched.horasTotales}
                                         tipoInput={"number"}
                                         inputId={"horasTotales"}
                                         inputName={"horasTotales"}
                                         maxlength="10"
-                                        value={horasTotales}
-                                        onChange={(e) => handleOnChange(e)}
                                     />
                                     <Button clase={'form-button d-flex justify-content-center col-12'}
                                         classButton={'guardar form-button col-3'}
                                         textButton={'Actualizar'} type={'submit'} />
                                 </Form>
                             </section>
-
                         )}
                     </Formik>
                 </section>

@@ -1,7 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 
-export const FormInput = ({ value, onChange, classSection, infomacionInput, inputId, error, touched, classInput, tipoInput, inputName,
+export const FormInput = ({classSection, infomacionInput, inputId, error, touched, classInput, tipoInput, inputName,
   inputPlaceholder, expresionRegular, title,
   maxlength }) => {
 
