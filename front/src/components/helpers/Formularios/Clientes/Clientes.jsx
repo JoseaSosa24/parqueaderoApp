@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Titulo } from "../Titulo";
-import { FormInput2 } from "../FormInput2";
+import { FormInput } from "../FormInput";
 import { Buscar } from "../Buscar";
 import { TableClientes } from "../table/TableClientes";
 import { Button } from "../Button";
@@ -123,7 +123,7 @@ export const Clientes = () => {
             {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                  <FormInput2
+                  <FormInput
                     classSection={"col-3"}
                     title={"Documento:"}
                     error={errors.documento}
@@ -134,7 +134,7 @@ export const Clientes = () => {
                     inputPlaceholder={"10364845"}
                     maxlength="10"
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-4"}
                     title={"Nombre:"}
                     error={errors.nombre}
@@ -144,7 +144,7 @@ export const Clientes = () => {
                     inputName="nombre"
                     inputPlaceholder={"Juan Perez"}
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-5"}
                     title={"Correo:"}
                     error={errors.correo}
@@ -154,7 +154,7 @@ export const Clientes = () => {
                     inputName="correo"
                     inputPlaceholder={"juanperez@gmail.com"}
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-5"}
                     title={"Dirección :"}
                     error={errors.direccion}
@@ -164,7 +164,7 @@ export const Clientes = () => {
                     inputName="direccion"
                     inputPlaceholder={"CLL 20 A #10"}
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-4"}
                     title={"Celular :"}
                     error={errors.celular}

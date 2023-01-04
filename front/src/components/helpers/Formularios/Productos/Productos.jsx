@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Titulo } from "../Titulo";
-import { FormInput2 } from "../FormInput2";
 import { TableProductos } from "../table/TableProductos";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { FormInput } from "../FormInput";
 
 const uriProductos = "http://localhost:3100/productos";
 export const Productos = () => {
@@ -59,7 +59,7 @@ export const Productos = () => {
 
   return (
     <>
-      <section className="registro-cliente m-4 d-flex flex-column justify-content-center">
+      <section className="registro-producto m-4 d-flex flex-column justify-content-center">
         <Titulo textTitulo={"Registro Producto:"} />
 
         <section className="formulario d-flex align-items-center justify-content-center p-4">
@@ -109,7 +109,7 @@ export const Productos = () => {
             {({ errors, touched }) => (
               <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                  <FormInput2
+                  <FormInput
                     classSection={"col-5"}
                     title={"Nombre Producto:"}
                     error={errors.nombreProducto}
@@ -119,7 +119,7 @@ export const Productos = () => {
                     inputName="nombreProducto"
                     inputPlaceholder={"Casco"}
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-4"}
                     title={"Precio:"}
                     error={errors.precio}
@@ -129,7 +129,7 @@ export const Productos = () => {
                     inputName="precio"
                     inputPlaceholder={"50000"}
                   />
-                  <FormInput2
+                  <FormInput
                     classSection={"col-3"}
                     title={"Inventario:"}
                     error={errors.inventario}
@@ -158,20 +158,6 @@ export const Productos = () => {
               </section>
             )}
           </Formik>
-
-          {/* <Form
-              className="formulario-clientes row col-12 d-flex g-3"
-              onSubmit={crearProducto}
-            > */}
-          {/*  <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"text"} infomacionInput={"Nombre: "} inputId={'nombre'} inputName={'nombre'} inputPlaceholder={'Casco'}
-            onChange={(e) => { setNombreProducto(e.target.value) }} />
-          <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Precio: "} inputId={'precio'} inputName={'precio'} inputPlaceholder={'50000'}
-            onChange={(e) => { setPrecio(e.target.value) }} />
-          <FormInput2 classSection={'col-4'} classInput={"item-form"} tipoInput={"number"} infomacionInput={"Inventario: "} inputId={'inventario'} inputName={'inventario'} inputPlaceholder={'50'}
-            onChange={(e) => { setInventario(e.target.value) }} />
-          <TextArea classSection={'col-12'} classInput={"item-form"} idTextArea={'descripcion'} nameTextArea={'descripcion'}
-            onChange={(e) => { setdescripcion(e.target.value) }} />
-          <Button clase={'form-button d-flex justify-content-center col-12'} classButton={'guardar form-button col-3'} textButton={'Guardar'} type={'submit'} /> */}
         </section>
         <TableProductos
           textoColumna1={"Id Producto"}

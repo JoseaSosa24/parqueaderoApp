@@ -10,7 +10,6 @@ import { FormInput } from "../FormInput";
 import { Button } from "../Button";
 import { Mensaje } from "../Mensaje";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FormInput2 } from "../FormInput2";
 
 export const EditarCliente = () => {
     const uriClientes = 'http://localhost:3100/clientes/'
@@ -137,7 +136,7 @@ export const EditarCliente = () => {
                         {({ errors, touched }) => (
                             <section className="formulario d-flex align-items-center justify-content-center p-4 w-100">
                                 <Form className="formulario-clientes row col-12 d-flex g-3 ">
-                                    <FormInput2
+                                    <FormInput
                                         classSection={"col-3"}
                                         title={"Documento:"}
                                         error={errors.cedCliente}
@@ -148,7 +147,7 @@ export const EditarCliente = () => {
                                         maxlength="10"
 
                                     />
-                                    <FormInput2
+                                    <FormInput
                                         classSection={"col-4"}
                                         title={"Nombre:"}
                                         error={errors.nombre}
@@ -157,7 +156,7 @@ export const EditarCliente = () => {
                                         inputId={"nombre"}
                                         inputName="nombre"
                                     />
-                                    <FormInput2
+                                    <FormInput
                                         classSection={"col-5"}
                                         title={"Correo:"}
                                         error={errors.correo}
@@ -167,7 +166,7 @@ export const EditarCliente = () => {
                                         inputName="correo"
 
                                     />
-                                    <FormInput2
+                                    <FormInput
                                         classSection={"col-5"}
                                         title={"Dirección :"}
                                         error={errors.direccion}
@@ -177,7 +176,7 @@ export const EditarCliente = () => {
                                         inputName="direccion"
 
                                     />
-                                    <FormInput2
+                                    <FormInput
                                         classSection={"col-4"}
                                         title={"Celular :"}
                                         error={errors.celular}

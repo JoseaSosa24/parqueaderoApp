@@ -6,7 +6,6 @@ export const FormInput = ({ value, onChange, classSection, infomacionInput, inpu
   maxlength }) => {
 
 
-
   return (
     <>
 
@@ -19,25 +18,9 @@ export const FormInput = ({ value, onChange, classSection, infomacionInput, inpu
           name={inputName}
           placeholder={inputPlaceholder}
           maxLength={maxlength}
-          value={value}
-          onChange={onChange}
-          
-
         />
         <ErrorMessage name={inputName} component={() => (<p className="textoError text-danger">{error}</p>)} />
       </section>
     </>
-
-    /*  <section className={" " + classSection}>
-       <h3 className="text-white fs-5">{infomacionInput}</h3>
-       {console.log(estado)}
-       <input className={"form-control " + classInput}
-         id={inputId}
-         type={tipoInput}
-         name={inputName}
-         placeholder={inputPlaceholder}
-         maxLength={maxlength}
-       />
-     </section> */
   );
 };
